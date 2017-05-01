@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditThor1", "EditThor1\EditThor1.csproj", "{445E2827-4AAE-47A7-9FB0-C26BD306C15A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditThor1.Tests", "EditThor1.Tests\EditThor1.Tests.csproj", "{56BC7EE4-6DCE-4C4B-8803-97F3627BD687}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{445E2827-4AAE-47A7-9FB0-C26BD306C15A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{445E2827-4AAE-47A7-9FB0-C26BD306C15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{445E2827-4AAE-47A7-9FB0-C26BD306C15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{445E2827-4AAE-47A7-9FB0-C26BD306C15A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56BC7EE4-6DCE-4C4B-8803-97F3627BD687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56BC7EE4-6DCE-4C4B-8803-97F3627BD687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56BC7EE4-6DCE-4C4B-8803-97F3627BD687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56BC7EE4-6DCE-4C4B-8803-97F3627BD687}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
