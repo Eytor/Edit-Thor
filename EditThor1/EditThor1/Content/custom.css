@@ -1,4 +1,9 @@
-﻿a.logo
+﻿.nav > li
+{
+    margin-top: 4px;
+}
+
+a.logo
 {
     background: url(../Images/logo1.png) no-repeat top left;
     background-size: 56px 59px;
@@ -6,4 +11,5 @@
      width: 56px;
      height: 59px;
      text-indent: -9999px; /* hides the link text */
+     margin-top: 1px;
 }
