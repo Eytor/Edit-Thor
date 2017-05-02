@@ -16,5 +16,7 @@ namespace EditThor1.Models.Entities
         //the type of file ?
         public string type { get; set; }
 
+        public int projectID { get; set; }
+
     }
 }
