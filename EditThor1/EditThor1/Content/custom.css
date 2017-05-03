@@ -7,9 +7,18 @@ a.logo
 {
     background: url(../Images/logo1.png) no-repeat top left;
     background-size: 56px 59px;
-     display: block;
-     width: 56px;
-     height: 59px;
-     text-indent: -9999px; /* hides the link text */
-     margin-top: 1px;
+    display: block;
+    width: 56px;
+    height: 59px;
+    text-indent: -9999px; /* hides the link text */
+    margin-top: 1px;
+}
+.center-image
+{
+    margin: 5px auto;
+}
+form 
+{ 
+    margin: 0 auto; 
+    width:500px;
 }
