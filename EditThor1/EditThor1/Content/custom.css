@@ -19,5 +19,10 @@ form
     width:500px;
 }
 .wrapper {
-  width: 40%;
+  width: 25%;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
