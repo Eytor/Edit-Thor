@@ -40,3 +40,11 @@ form
     font-family: 'Glyphicons Halflings';
     line-height: 1;
 }
+#userbtn
+{
+    height: 50px;
+    color: #0363a8;
+    padding-top: 15px;
+    font-size: 130%;
+}
+#red{border-top:4px solid #0363a8;}
