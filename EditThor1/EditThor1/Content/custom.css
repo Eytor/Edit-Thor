@@ -13,12 +13,11 @@ a.logo
     text-indent: -9999px; /* hides the link text */
     margin-top: 1px;
 }
-.center-image
-{
-    margin: 5px auto;
-}
 form 
 { 
     margin: 0 auto; 
     width:500px;
+}
+.wrapper {
+  width: 40%;
 }
