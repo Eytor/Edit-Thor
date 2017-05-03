@@ -32,3 +32,11 @@ form
     padding-bottom:30px;
     padding-top:20px;
 }
+.btn.glyphicon { 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 1.428571429;
+}
+.btn.glyphicon::first-letter { 
+    font-family: 'Glyphicons Halflings';
+    line-height: 1;
+}
