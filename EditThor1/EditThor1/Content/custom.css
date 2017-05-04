@@ -26,3 +26,25 @@ form
   margin-left: auto;
   margin-right: auto;
 }
+
+.margintopbottom
+{
+    padding-bottom:30px;
+    padding-top:20px;
+}
+.btn.glyphicon { 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 1.428571429;
+}
+.btn.glyphicon::first-letter { 
+    font-family: 'Glyphicons Halflings';
+    line-height: 1;
+}
+#userbtn
+{
+    height: 50px;
+    color: #0363a8;
+    padding-top: 15px;
+    font-size: 130%;
+}
+#red{border-top:4px solid #0363a8;}
