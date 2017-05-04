@@ -47,4 +47,19 @@ form
     padding-top: 15px;
     font-size: 130%;
 }
-#red{border-top:4px solid #0363a8;}
+#red
+{
+    border-top:4px solid #0363a8;
+
+}
+#editor
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width:90%;
+    height:92%;
+    margin-top:62px;
+}
