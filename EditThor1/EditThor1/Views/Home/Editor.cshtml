@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Editor";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ACE in Action</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width:90%;
+            height:89%;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Editor</h2>
+    <div id="editor"></div>
+    <script src="@Url.Content("~/Scripts/ace-builds-master/ace-builds-master/src-noconflict/ace.js")"></script>
+    <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setMode("ace/mode/html");
+    </script>
+</body>
+</html>
+

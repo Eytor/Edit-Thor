@@ -30,5 +30,10 @@ namespace EditThor1.Controllers
 
             return View();
         }
+
+        public ActionResult Editor()
+        {
+            return View();
+        }
     }
 }
