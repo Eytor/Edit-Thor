@@ -6,9 +6,9 @@
 a.logo
 {
     background: url(../Images/logo1.png) no-repeat top left;
-    background-size: 180px 59px;
+    background-size: 220px 59px;
     display: block;
-    width: 180px;
+    width: 220px;
     height: 59px;
     text-indent: -9999px; /* hides the link text */
     margin-top: 1px;
