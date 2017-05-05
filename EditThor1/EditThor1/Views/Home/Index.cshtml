@@ -1,4 +1,4 @@
-﻿
+﻿@model EditThor1.Models.ViewModels.ListProjectViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -12,6 +12,24 @@
     </div>
     <div class="col-md-10">
        <!-- <a class="btn custom-btn col-md-12" href="#"><span class="glyphicon glyphicon-plus"></span></a>-->
+
+        <table class="table">
+            <tr>
+                <th>
+                   
+                </th>
+            </tr>
+            @foreach (var item in Model.AllProject)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
         @Html.ActionLink("new project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-default" })       
     </div>
 </div>

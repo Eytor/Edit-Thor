@@ -35,12 +35,15 @@ namespace EditThor1.Services
             return result;
         }
 
-        public IEnumerator<Project> GetAllUserProjects(int id)
+        public List<Project> GetAllUserProjects()
         {
-            IEnumerable<Project> result = from project in projects
-                                          orderby project.name descending
-                                          select project;
-            return null;
+            string userId = HttpContext.Current.User.Identity.GetUserId();
+            List<Project> result = (from project in _db.Projects
+                                           orderby project.name ascending
+                                           where userId == project.ownerID
+                                           select project).ToList();
+
+            return result;
         }
         
         

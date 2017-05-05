@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EditThor1.Services;
+using EditThor1.Models.ViewModels;
 
 namespace EditThor1.Controllers
 {
     public class HomeController : Controller
     {
+        private ProjectService service = new ProjectService();
+
         public ActionResult Index()
         {
+
             if(!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View();
+
+            ListProjectViewModel listAll = new ListProjectViewModel();
+            listAll.AllProject = service.GetAllUserProjects();
+
+            return View(listAll);
         }
 
         public ActionResult About()
