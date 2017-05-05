@@ -10,25 +10,35 @@ namespace EditThor1.Services
 {
     public class ProjectService
     {
-        private List<Project> projects = new List<Project>();
+        private List<Project> _projects = new List<Project>();
         
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         public void AddProject(string name)
         {
             string userId = HttpContext.Current.User.Identity.GetUserId();
-            Project Adds = new Project();
-            Adds.name = name;
-            Adds.ownerID = userId;
+            Project adds = new Project();
+            File file = new File();
+            adds.name = name;
+            adds.ownerID = userId;
 
-            _db.Projects.Add(Adds);
+            _db.Projects.Add(adds);
             _db.SaveChanges();
-           
+            var theProjectID = (from i in _db.Projects
+                                where i.name == name
+                                where i.ownerID == userId
+                                select i.ID).SingleOrDefault();
+            file.name = "Index.html";
+            file.type = "HTML";
+            file.file = new byte[64];
+            file.projectID = theProjectID;
+            _db.Files.Add(file);
+            _db.SaveChanges();
         }
 
         public Project GetProjectById(int id)
         {
-            var result = (from project in projects
+            var result = (from project in _projects
                           where project.ID == id
                           select project).SingleOrDefault();
 
@@ -37,7 +47,7 @@ namespace EditThor1.Services
 
         public IEnumerator<Project> GetAllUserProjects(int id)
         {
-            IEnumerable<Project> result = from project in projects
+            IEnumerable<Project> result = from project in _projects
                                           orderby project.name descending
                                           select project;
             return null;
