@@ -36,5 +36,11 @@ namespace EditThor1.Controllers
             return View();
         }
 
+        public ActionResult Project()
+        {
+            //makar þetta eitthvað sens?
+            return RedirectToAction("CreateProject" , "Project");
+        }
+
     }
 }
