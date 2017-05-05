@@ -43,5 +43,6 @@ namespace EditThor1.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

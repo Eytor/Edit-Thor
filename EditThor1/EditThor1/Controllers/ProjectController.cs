@@ -29,14 +29,9 @@ namespace EditThor1.Controllers
             ProjectViewModel model = new ProjectViewModel();
             UpdateModel(model);
 
-            var IDs = model.ID;
             var names = model.name;
-            var userID = model.ownerID;
 
-
-            service.AddProject(IDs, names, userID);
-
-            
+            service.AddProject(names);
 
             return RedirectToAction("Index", "Home");
         }

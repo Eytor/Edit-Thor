@@ -1,24 +1,28 @@
-﻿using EditThor1.Models.Entities;
+﻿using EditThor1.Models;
+using EditThor1.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using Microsoft.AspNet.Identity;
+using System.Web.Security;
 namespace EditThor1.Services
 {
     public class ProjectService
     {
         private List<Project> projects = new List<Project>();
-        private Project Adds = new Project();
+        
+        private ApplicationDbContext _db = new ApplicationDbContext();
 
-        public void AddProject(int ID, string name, string owner)
+        public void AddProject(string name)
         {
-            
-            Adds.ID = ID;
+            string userId = HttpContext.Current.User.Identity.GetUserId();
+            Project Adds = new Project();
             Adds.name = name;
-            Adds.ownerID = owner;
+            Adds.ownerID = userId;
 
-            projects.Add(Adds);
+            _db.Projects.Add(Adds);
+            _db.SaveChanges();
            
         }
 
@@ -38,5 +42,7 @@ namespace EditThor1.Services
                                           select project;
             return null;
         }
+        
+        
     }
 }
