@@ -7,13 +7,33 @@
 
 
     <h2>Editor</h2>
-    <div id="editor"></div>
+    <div class="row">
+        <div id="editor" class="col-md-10"></div>
+
+        <div class="col-md-2 ">
+            <a id="save-btn" class="btn btn-danger">Save</a>
+        </div>
+    </div>
     <script src="@Url.Content("~/Scripts/ace-builds-master/ace-builds-master/src-noconflict/ace.js")"></script>
+    <script src=" http//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js " ></script>
     <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setMode("ace/mode/html");
-    </script>
+    
+        function findFooLineNumbers(editor) {
+            var lines = editor.session.doc.getAllLines()
+            console.log("buttons yay");
+            return lines;
+        }
 
+      /*  $(document).onclick(function () {
+
+            $("#save-btn").
+        });*/
+
+
+        document.getElementById("save-btn").onclick = function(){ findFooLineNumbers(editor)};
+    </script>
 

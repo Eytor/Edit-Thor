@@ -21,13 +21,13 @@ namespace EditThor1.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<User> Users { get; set; }
+        public IDbSet<User> Users { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        public IDbSet<Project> Projects { get; set; }
 
-        public DbSet<File> Files { get; set; }
+        public IDbSet<File> Files { get; set; }
 
-        public DbSet<Theme> Themes { get; set; }
+        public IDbSet<Theme> Themes { get; set; }
 
 
         public ApplicationDbContext()
