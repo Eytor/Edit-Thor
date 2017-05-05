@@ -16,6 +16,10 @@ namespace EditThor1.Models.Entities
         //the type of file ?
         public string type { get; set; }
 
+        //the actual file itself
+        public byte[] file { get; set; }
+
+        //the ID of the project this particular file belongs to
         public int projectID { get; set; }
 
     }
