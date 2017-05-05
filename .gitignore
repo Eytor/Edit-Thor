@@ -253,5 +253,4 @@ paket-files/
 .idea/
 *.sln.iml
 
-# my shit
-.\Web.config
+
