@@ -52,6 +52,7 @@ form
     color: #0363a8;
     padding-top: 15px;
     font-size: 130%;
+    text-align: left;
 }
 
 #red
@@ -72,8 +73,11 @@ form
     margin-top: 12px;
 }
 
-.custom-btn
+#large 
 {
+    font-size: 200%;
+    font-weight: bold;
+    border:dashed 2px #0363a8;
     border:dotted 1px #0363a8;
 }
 

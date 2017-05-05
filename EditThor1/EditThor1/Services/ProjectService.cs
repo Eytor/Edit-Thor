@@ -56,7 +56,15 @@ namespace EditThor1.Services
             return result;
 
         }
-        
-        
+
+        public List<File> OpenProject(int? id)
+        {
+            string userId = HttpContext.Current.User.Identity.GetUserId();
+            Project projectId = new Project();
+            List<File> result = (from i in _db.Files
+                                 where i.ID == id
+                                 select i).ToList();
+            return result;
+        }
     }
 }
