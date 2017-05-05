@@ -9,7 +9,8 @@ namespace EditThor1.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            ContextKey = "EditThor1.Models.ApplicationDbContext";
         }
 
         protected override void Seed(EditThor1.Models.ApplicationDbContext context)
