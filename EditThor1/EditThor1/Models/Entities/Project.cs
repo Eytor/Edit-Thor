@@ -13,11 +13,10 @@ namespace EditThor1.Models.Entities
         //the name of the project
         public string name { get; set; }
 
-        //the type of the project
-        public string type { get; set; }
+        //the list of all users associated with the project
+        public virtual List<ApplicationUser> userslist { get; set; }
 
-        //the path to the file
-        public string path { get; set; }
-
+        //the ID of the user who created the project
+        public string ownerID { get; set; }
     }
 }
