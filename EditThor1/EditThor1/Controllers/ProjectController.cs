@@ -31,11 +31,10 @@ namespace EditThor1.Controllers
 
             var IDs = model.ID;
             var names = model.name;
-            var types = model.type;
-            var paths = model.path;
+            var userID = model.ownerID;
 
 
-            service.AddProject(IDs, names, types, paths);
+            service.AddProject(IDs, names, userID);
 
             
 

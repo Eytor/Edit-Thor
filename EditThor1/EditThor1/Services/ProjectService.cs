@@ -11,13 +11,12 @@ namespace EditThor1.Services
         private List<Project> projects = new List<Project>();
         private Project Adds = new Project();
 
-        public void AddProject(int ID, string name, string type , string path)
+        public void AddProject(int ID, string name, string owner)
         {
-            Console.WriteLine("huuuuuuu");
+            
             Adds.ID = ID;
             Adds.name = name;
-            Adds.type = type;
-            Adds.path = path;
+            Adds.ownerID = owner;
 
             projects.Add(Adds);
            

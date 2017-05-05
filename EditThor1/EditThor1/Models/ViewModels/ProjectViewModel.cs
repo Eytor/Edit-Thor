@@ -14,10 +14,10 @@ namespace EditThor1.Models.ViewModels
         public string name { get; set; }
 
         //the type of the project
-        public string type { get; set; }
+        public string ownerID { get; set; }
 
         //the path to the file
-        public string path { get; set; }
+        public List<ApplicationUser> userslist { get; set; }
 
         public List<File> listFiles { get; set; }
     }
