@@ -12,24 +12,33 @@
     </div>
     <div class="col-md-10">
        <!-- <a class="btn custom-btn col-md-12" href="#"><span class="glyphicon glyphicon-plus"></span></a>-->
+        <div div="row">
+            <div class="col-md-10">
+                <div class="col-md-5" style="text-align:left;"><h4>Project Name</h4></div>
+                <div class="col-md-5" style="text-align:left;"><h4>Owner</h4></div>
+            </div>
 
-        <table class="table">
-            <tr>
-                <th>
-                   
-                </th>
-            </tr>
             @foreach (var item in Model.AllProject)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                </tr>
+                <a class="btn col-md-10 custom-btn" href="home/editor/@Html.DisplayFor(modelItem => item.ID)">
+                    <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
+                    <div class="col-md-5" style="text-align:left;">@HttpContext.Current.User.Identity.Name</div>
+                </a>
+                <div class="col-md-2 dropdown navbar-right">
+                    <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Invite</a></li>
+                        <li><a href="#">Download (.zip)</a></li>
+                        <li><a href="#">Delete</a></li>
+                    </ul>
+                </div>
             }
+        </div>
 
-        </table>
+       
 
-        @Html.ActionLink("new project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-default" })       
+        @Html.ActionLink("+", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12",id = "large" })       
     </div>
 </div>
