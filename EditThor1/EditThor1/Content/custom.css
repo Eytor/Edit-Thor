@@ -6,21 +6,24 @@
 a.logo
 {
     background: url(../Images/logo1.png) no-repeat top left;
-    background-size: 180px 59px;
+    background-size: 220px 59px;
     display: block;
-    width: 180px;
+    width: 220px;
     height: 59px;
     text-indent: -9999px; /* hides the link text */
     margin-top: 1px;
 }
+
 form 
 { 
     margin: 0 auto; 
     width:500px;
 }
+
 .wrapper {
   width: 25%;
 }
+
 .center-block {
   display: block;
   margin-left: auto;
@@ -32,14 +35,17 @@ form
     padding-bottom:30px;
     padding-top:20px;
 }
+
 .btn.glyphicon { 
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 1.428571429;
 }
+
 .btn.glyphicon::first-letter { 
     font-family: 'Glyphicons Halflings';
     line-height: 1;
 }
+
 #userbtn
 {
     height: 50px;
@@ -47,11 +53,13 @@ form
     padding-top: 15px;
     font-size: 130%;
 }
+
 #red
 {
     border-top:4px solid #0363a8;
 
 }
+
 #editor
 {
     position: absolute;
@@ -59,7 +67,17 @@ form
     right: 0;
     bottom: 0;
     left: 0;
-    width:90%;
-    height:92%;
-    margin-top:62px;
+    width: 90%;
+    height: 92%;
+    margin-top: 62px;
+}
+
+#main-content
+{
+    margin-top: 12px;
+}
+
+.custom-btn
+{
+    border:dotted 1px #0363a8;
 }
