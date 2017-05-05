@@ -1415,7 +1415,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   }
 
   Tooltip.prototype.validate = function () {
-    if (!this.$element[0].parentNode) {
+    if (!this.$element[0].parent
+) {
       this.hide()
       this.$element = null
       this.options  = null

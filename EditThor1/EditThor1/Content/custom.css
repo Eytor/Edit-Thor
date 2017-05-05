@@ -63,13 +63,8 @@ form
 #editor
 {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 90%;
+    right: 50px;
     height: 92%;
-    margin-top: 62px;
 }
 
 #main-content
@@ -80,4 +75,13 @@ form
 .custom-btn
 {
     border:dotted 1px #0363a8;
+}
+
+#filecolumn
+{
+    margin-top:100px;
+    height:437px;
+    width:180px;
+    top:-100px;
+    background-color:#000000;
 }
