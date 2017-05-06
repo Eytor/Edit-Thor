@@ -48,5 +48,21 @@ namespace EditThor1.Controllers
             return View(service.OpenProject(id));
         }
 
+        [HttpPost]
+        public ActionResult Save(string[] arr)
+        {
+            if (Request.Files != null && Request.Files.Count == 1)
+            {
+                var file = Request.Files[0];
+                if (file != null && file.ContentLength > 0)
+                {
+                    var content = new byte[file.ContentLength];
+                    file.InputStream.Read(content, 0, file.ContentLength);
+                    content = arr.Select(byte.Parse).ToArray();
+                }
+            }
+            return RedirectToAction("Editor", "Project");
+        }
+
     }
 }
