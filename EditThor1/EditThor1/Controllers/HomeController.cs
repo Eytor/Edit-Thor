@@ -26,10 +26,8 @@ namespace EditThor1.Controllers
             return View(listAll);
         }
 
-        public ActionResult About()
+        public ActionResult Help()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
