@@ -38,20 +38,20 @@ namespace EditThor1.Controllers
             return View();
         }
 
-        public ActionResult Editor()
-        {
-            return RedirectToAction("OpenEditor", "Project");
-        }
-
         public ActionResult Project()
         {
-            //makar þetta eitthvað sens?
+            //makar þetta eitthvað sens? nei, hvad atti thetta ad gera?
             return RedirectToAction("CreateProject" , "Project");
         }
 
         [HttpGet]
         public ActionResult OpenEditor(int? id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             FileViewModel model = new FileViewModel();
 
             if (id == null)

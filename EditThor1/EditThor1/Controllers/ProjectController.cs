@@ -13,16 +13,19 @@ namespace EditThor1.Controllers
     {
         private ProjectService service = new ProjectService();
         // GET: Project
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
 
         public ActionResult CreateProject()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             ProjectViewModel model = new ProjectViewModel();
             return View(model);
         }
+
         [HttpPost]
         public ActionResult CreateProject(FormCollection formData)
         {
@@ -39,6 +42,11 @@ namespace EditThor1.Controllers
         [HttpGet]
         public ActionResult OpenEditor(int? id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
             return View(model);
@@ -63,7 +71,12 @@ namespace EditThor1.Controllers
         [HttpGet]
         public ActionResult DeleteProject(int? id)
         {
-            if(id != null)
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (id != null)
             {
                 if(service.ProjectExists(id))
                 {
