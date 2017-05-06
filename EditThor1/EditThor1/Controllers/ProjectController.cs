@@ -60,5 +60,20 @@ namespace EditThor1.Controllers
             return RedirectToAction("Editor", "Project");
         }
 
+        [HttpGet]
+        public ActionResult DeleteProject(int? id)
+        {
+            if(id != null)
+            {
+                if(service.ProjectExists(id))
+                {
+                    service.DeleteProject(id);
+                    return RedirectToAction("Index", "Home");
+                }
+                return HttpNotFound();
+            }
+            return HttpNotFound();
+        }
+
     }
 }

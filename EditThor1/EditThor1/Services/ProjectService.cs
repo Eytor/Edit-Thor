@@ -84,6 +84,26 @@ namespace EditThor1.Services
                                  select i).ToList();
             return result;
         }
+        public bool ProjectExists(int? id)
+        {
+            if(_db.Projects.Where(x => x.ID == id).SingleOrDefault() != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public void DeleteProject(int? id)
+        {
+            Project project = _db.Projects.Where(x => x.ID == id).SingleOrDefault();
+            if(project != null)
+            {
+                FileService fileService = new FileService();
+                fileService.DeleteFiles(id);
+                _db.Projects.Remove(project);
+                _db.SaveChanges();
+            }
+        }
+
 
     }
 }

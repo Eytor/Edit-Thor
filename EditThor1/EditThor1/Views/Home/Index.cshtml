@@ -31,7 +31,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Invite</a></li>
                         <li><a href="#">Download (.zip)</a></li>
-                        <li><a href="#">Delete</a></li>
+                        <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
                     </ul>
                 </div>
             }
