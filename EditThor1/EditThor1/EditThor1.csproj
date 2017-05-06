@@ -210,6 +210,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\FileViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListFileViewModel.cs" />
     <Compile Include="Models\ViewModels\ListProjectViewModel.cs" />
     <Compile Include="Models\ViewModels\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,11 +238,6 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui.custom.js" />
-    <Content Include="Scripts\jquery-ui.custom.min.js" />
-    <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\jquery.js" />
-    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -286,8 +282,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Editor.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Project\Editor.cshtml" />
+    <Content Include="Views\Project\OpenEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

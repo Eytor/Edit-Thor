@@ -40,13 +40,25 @@ namespace EditThor1.Controllers
 
         public ActionResult Editor()
         {
-            return View();
+            return RedirectToAction("OpenEditor", "Project");
         }
 
         public ActionResult Project()
         {
             //makar þetta eitthvað sens?
             return RedirectToAction("CreateProject" , "Project");
+        }
+
+        [HttpGet]
+        public ActionResult OpenEditor(int? id)
+        {
+            FileViewModel model = new FileViewModel();
+
+            if (id == null)
+            {
+                throw new HttpException(404, "Project is Empty");
+            }
+            return View(service.OpenProject(id));
         }
 
     }

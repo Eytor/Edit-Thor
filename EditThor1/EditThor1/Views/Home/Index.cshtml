@@ -20,7 +20,7 @@
 
             @foreach (var item in Model.AllProject)
             {
-                <a class="btn col-md-10 custom-btn" href="home/editor/@Html.DisplayFor(modelItem => item.ID)">
+                <a class="btn col-md-10 custom-btn" href="Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                     <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
                     <div class="col-md-5" style="text-align:left;">@HttpContext.Current.User.Identity.Name</div>
                 </a>

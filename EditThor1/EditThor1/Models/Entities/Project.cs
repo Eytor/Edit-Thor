@@ -18,5 +18,9 @@ namespace EditThor1.Models.Entities
 
         //the ID of the user who created the project
         public string ownerID { get; set; }
+
+        //the list of all files in a project
+        public virtual List<File> filesList { get; set; }
+
     }
 }
