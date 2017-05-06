@@ -45,6 +45,14 @@ namespace EditThor1.Services
             return result;
         }
 
+        public string GetProjectName(int id)
+        {
+            var result = (from project in _projects
+                          where project.ID == id
+                          select project.name).SingleOrDefault();
+            return result;
+        }
+
         public List<Project> GetAllUserProjects()
         {
             string userId = HttpContext.Current.User.Identity.GetUserId();
