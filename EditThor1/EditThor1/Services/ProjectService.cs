@@ -62,9 +62,20 @@ namespace EditThor1.Services
             string userId = HttpContext.Current.User.Identity.GetUserId();
             Project projectId = new Project();
             List<File> result = (from i in _db.Files
+                                 where i.projectID == id
+                                 select i).ToList();
+            return result;
+        }
+
+        public List<File> GetAllFiles(int id)
+        {
+            string userId = HttpContext.Current.User.Identity.GetUserId();
+            Project projectId = GetProjectById(id);
+            List<File> result = (from i in _db.Files
                                  where i.ID == id
                                  select i).ToList();
             return result;
         }
+
     }
 }
