@@ -30,6 +30,7 @@
         function findFooLineNumbers(editor) {
             var lines = editor.session.doc.getAllLines()
             console.log("buttons yay");
+            console.log(lines);
             return lines;
         }
 
@@ -39,5 +40,5 @@
         });*/
 
 
-        document.getElementById("save-btn").onclick = function(){ findFooLineNumbers(editor)};
+       var result = document.getElementById("save-btn").onclick = function(){ findFooLineNumbers(editor)};
 </script>

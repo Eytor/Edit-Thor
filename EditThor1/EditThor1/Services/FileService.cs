@@ -13,19 +13,16 @@ namespace EditThor1.Services
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        public void SaveFile(byte[] arr, int? id)
+        public void SaveFile(byte[] arr, int id)
         {
             Project adds = new Project();
             File file = new File();
 
-            var theProjectID = (from f in _db.Files
-                                where f.ID == id
-                                select f).SingleOrDefault();
-            file.name = "Index.html";
-            file.type = "HTML";
+            file = (from f in _db.Files
+                    where f.ID == id
+                    select f).SingleOrDefault();
+       
             file.file = arr;
-            //file.projectID = theProjectID;
-            _db.Files.Add(file);
             _db.SaveChanges();
         }
 
