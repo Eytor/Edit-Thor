@@ -6,12 +6,12 @@
     @Html.AntiForgeryToken()
 
         <div class="dropdown navbar-right">
-            <a class="btn dropdown-toggle " type="button" id="userbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <a class="btn dropdown-toggle " id="userbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 @User.Identity.GetUserName()
                 <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
                 <span class="caret" id="red"></span>
             </a>    
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <ul class="dropdown-menu">
                     <li>
                         @Html.ActionLink("Change your password", "ChangePassword", "Manage")
                     </li>
