@@ -33,6 +33,7 @@ namespace EditThor1.Models
 
         public IDbSet<Theme> Themes { get; set; }
 
+        public IDbSet<UserProject> UserProjects { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
