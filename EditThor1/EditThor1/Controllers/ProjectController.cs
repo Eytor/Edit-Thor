@@ -12,6 +12,7 @@ namespace EditThor1.Controllers
     public class ProjectController : Controller
     {
         private ProjectService service = new ProjectService();
+        private FileService fileService = new FileService();
         // GET: Project
         
 
@@ -49,24 +50,51 @@ namespace EditThor1.Controllers
 
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
+            var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(id));
+
+            /* for (int i = 0; i < str.Length; i++)
+             {
+                 ViewBag.displayText += str[i];
+             }*/
+            for (int i = 0; i < 10; i++)
+            {
+                ViewBag.displayText = "veii stebbi er bestur";
+            }
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Save(ListFileViewModel model)
+        public ActionResult Save(ListFileViewModel model, int id)
         {
-
+          
+            byte[] content;
             if (Request.Files != null && Request.Files.Count == 1)
             {
+                
                 var file = Request.Files[0];
+               
                 if (file != null && file.ContentLength > 0)
                 {
-                    var content = new byte[file.ContentLength];
-                    file.InputStream.Read(content, 0, file.ContentLength);
-                    content = model.Content.Select(byte.Parse).ToArray();
+                    content = new byte[file.ContentLength];
+                    file.InputStream.Read(content, 0, file.ContentLength);            
                 }
             }
-            return RedirectToAction("Editor", "Project");
+            content = model.Content.Select(byte.Parse).ToArray();
+            fileService.SaveFile(content, id);
+            return View("OpenProject");
+        }
+
+        [HttpGet]
+        public ActionResult DisplayFile(int id)
+        {
+            var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(id));
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                ViewBag.displayText += str[i];
+            }
+
+            return View("OpenProject");
         }
 
         [HttpGet]
@@ -87,6 +115,31 @@ namespace EditThor1.Controllers
                 return HttpNotFound();
             }
             return HttpNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult ShareProject(int? id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            UserViewModel model = new UserViewModel();
+            model.ProjectID = Convert.ToInt32(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ShareProject(UserViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            string userName = model.userName;
+            model.ID = service.GetUserID(userName);
+            return View(model);
         }
 
     }

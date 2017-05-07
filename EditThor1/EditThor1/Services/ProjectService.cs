@@ -104,6 +104,25 @@ namespace EditThor1.Services
             }
         }
 
+        public string GetUserID(string name)
+        {
+            ApplicationUser user = _db.Users.Where(x => x.UserName == name).SingleOrDefault();
+            if(user != null)
+            {
+                return user.Id;
+            }
+            return "";
+        }
+
+        public void ShareProject(string userID, int projectID)
+        {
+            UserProject shareTable = new UserProject();
+            shareTable.ProjectID = projectID;
+            shareTable.UserID = userID;
+
+            _db.UserProjects.Add(shareTable);
+            _db.SaveChanges();
+        }
 
     }
 }

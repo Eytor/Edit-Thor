@@ -32,10 +32,17 @@ namespace EditThor1.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
+<<<<<<< HEAD
         //    ViewResult result = controller.About() as ViewResult;
 
             // Assert
       //      Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+=======
+            //ViewResult result = controller.About() as ViewResult;
+
+            // Assert
+            //Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+>>>>>>> 1e52eb7cd4d27a983149bc830e61b21fa8b8678c
         }
 
         [TestMethod]

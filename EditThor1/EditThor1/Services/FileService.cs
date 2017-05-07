@@ -26,6 +26,22 @@ namespace EditThor1.Services
             _db.SaveChanges();
         }
 
+        public byte[] GetFiles(int? id)
+        {
+            byte[] arr;
+
+            File file = new File();
+
+            file = (from f in _db.Files
+                    where f.ID == id
+                    select f).SingleOrDefault();
+
+            arr = file.file;
+
+            return arr;
+        }
+
+
         public void DeleteFiles(int? projectId)
         {
             List<File> files = _db.Files.Where(x => x.projectID == projectId).ToList();

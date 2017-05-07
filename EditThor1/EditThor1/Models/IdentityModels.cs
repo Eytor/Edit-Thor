@@ -33,6 +33,7 @@ namespace EditThor1.Models
 
         public IDbSet<Theme> Themes { get; set; }
 
+        public IDbSet<UserProject> UserProjects { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -44,5 +45,8 @@ namespace EditThor1.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<EditThor1.Models.ViewModels.ProjectViewModel> ProjectViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<EditThor1.Models.ViewModels.UserViewModel> UserViewModels { get; set; }
     }
 }
