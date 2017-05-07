@@ -12,16 +12,29 @@ namespace EditThor1.Controllers
     {
         private ProjectService service = new ProjectService();
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-
             if(!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
 
             ListProjectViewModel listAll = new ListProjectViewModel();
-            listAll.AllProject = service.GetAllUserProjects();
+            if (id == null)
+            {
+                listAll.AllProject = service.GetAllUserProjects();
+
+            }
+            else if(id == 1)
+            {
+                listAll.AllProject = service.GetMyProjects();
+            }
+            else
+            {
+                listAll.AllProject = service.GetSharedProjects();
+            }
+            
+            
 
             return View(listAll);
         }

@@ -124,7 +124,7 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-
+            ViewBag.ProjectID = id;
             UserViewModel model = new UserViewModel();
             model.ProjectID = Convert.ToInt32(id);
             return View(model);
@@ -139,7 +139,8 @@ namespace EditThor1.Controllers
             }
             string userName = model.userName;
             model.ID = service.GetUserID(userName);
-            return View(model);
+            service.ShareProject(model.ID, model.ProjectID);
+            return RedirectToAction("Index", "Home");
         }
 
     }

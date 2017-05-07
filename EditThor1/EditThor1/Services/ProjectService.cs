@@ -38,7 +38,7 @@ namespace EditThor1.Services
 
         public Project GetProjectById(int id)
         {
-            var result = (from project in _projects
+            var result = (from project in _db.Projects
                           where project.ID == id
                           select project).SingleOrDefault();
 
@@ -52,8 +52,22 @@ namespace EditThor1.Services
                           select project.name).SingleOrDefault();
             return result;
         }
-
         public List<Project> GetAllUserProjects()
+        {
+            List<Project> projects = GetMyProjects();
+            List<Project> sharedProjects = GetSharedProjects();
+            if (sharedProjects != null)
+            {
+                foreach (Project project in sharedProjects)
+                {
+                    projects.Add(project);
+                }
+            }
+            
+            return projects;
+        }
+
+        public List<Project> GetMyProjects()
         {
             string userId = HttpContext.Current.User.Identity.GetUserId();
             List<Project> result = (from project in _db.Projects
@@ -63,6 +77,16 @@ namespace EditThor1.Services
 
             return result;
 
+        }
+
+        public List<Project> GetSharedProjects()
+        {
+            string userId = HttpContext.Current.User.Identity.GetUserId();
+            List<Project> projects = (from u in _db.UserProjects
+                                      join i in _db.Projects on u.ProjectID equals i.ID
+                                      where u.UserID == userId
+                                      select i).ToList();
+            return projects; 
         }
 
         public List<File> OpenProject(int? id)
