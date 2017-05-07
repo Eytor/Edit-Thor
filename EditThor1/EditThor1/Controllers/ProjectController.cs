@@ -53,8 +53,9 @@ namespace EditThor1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(string[] arr)
+        public ActionResult Save(ListFileViewModel model)
         {
+
             if (Request.Files != null && Request.Files.Count == 1)
             {
                 var file = Request.Files[0];
@@ -62,7 +63,7 @@ namespace EditThor1.Controllers
                 {
                     var content = new byte[file.ContentLength];
                     file.InputStream.Read(content, 0, file.ContentLength);
-                    content = arr.Select(byte.Parse).ToArray();
+                    content = model.Content.Select(byte.Parse).ToArray();
                 }
             }
             return RedirectToAction("Editor", "Project");
