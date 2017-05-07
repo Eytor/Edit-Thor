@@ -29,7 +29,7 @@
                         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Invite</a></li>
+                        <li>@Html.ActionLink("Invite", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                         <li><a href="#">Download (.zip)</a></li>
                         <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
                     </ul>

@@ -88,5 +88,30 @@ namespace EditThor1.Controllers
             return HttpNotFound();
         }
 
+        [HttpGet]
+        public ActionResult ShareProject(int? id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            UserViewModel model = new UserViewModel();
+            model.ProjectID = Convert.ToInt32(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ShareProject(UserViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            string userName = model.userName;
+            model.ID = service.GetUserID(userName);
+            return View(model);
+        }
+
     }
 }
