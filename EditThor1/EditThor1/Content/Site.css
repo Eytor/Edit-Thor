@@ -30,3 +30,7 @@ textarea {
     margin-bottom:15px;
 }
 
+a:focus
+{
+    outline: none;
+}

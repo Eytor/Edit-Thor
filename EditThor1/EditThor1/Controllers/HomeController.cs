@@ -34,6 +34,7 @@ namespace EditThor1.Controllers
                 listAll.AllProject = service.GetSharedProjects();
             }
             
+            
 
             return View(listAll);
         }
