@@ -108,6 +108,7 @@ namespace EditThor1.Services
                                  select i).ToList();
             return result;
         }
+
         public bool ProjectExists(int? id)
         {
             if(_db.Projects.Where(x => x.ID == id).SingleOrDefault() != null)
