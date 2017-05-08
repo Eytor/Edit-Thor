@@ -30,13 +30,14 @@ namespace EditThor1.Services
         {
             byte[] arr;
 
-            File file = new File();
+            File data = new File();
 
-            file = (from f in _db.Files
+            data = (from f in _db.Files
                     where f.ID == id
                     select f).SingleOrDefault();
 
-            arr = file.file;
+            arr = data.file;
+            Console.WriteLine(arr);
 
             return arr;
         }

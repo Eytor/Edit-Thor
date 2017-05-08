@@ -16,7 +16,7 @@ namespace EditThor1.Controllers
         private ProjectService service = new ProjectService();
         private FileService fileService = new FileService();
         // GET: Project
-        
+
 
         public ActionResult CreateProject()
         {
@@ -66,28 +66,33 @@ namespace EditThor1.Controllers
         }
 
         [HttpPost]
+        [Route("id")]
         public ActionResult Save(ListFileViewModel model, int id)
         {
-          
-            byte[] content;
-            if (Request.Files != null && Request.Files.Count == 1)
-            {
-                
-                var file = Request.Files[0];
-               
-                if (file != null && file.ContentLength > 0)
-                {
-                    content = new byte[file.ContentLength];
-                    file.InputStream.Read(content, 0, file.ContentLength);            
-                }
-            }
-            content = model.Content.Select(byte.Parse).ToArray();
-            fileService.SaveFile(content, id);
-            return View("OpenProject");
+
+            /* byte[] content;
+             if (Request.Files != null && Request.Files.Count == 1)
+             {
+
+                 var file = Request.Files[0];
+
+                 if (file != null && file.ContentLength > 0)
+                 {
+                     content = new byte[file.ContentLength];
+                     file.InputStream.Read(content, 0, file.ContentLength);            
+                 }
+             }
+             content = model.Content.Select(byte.Parse).ToArray();
+             fileService.SaveFile(content, id);*/
+
+            var data = model.Content.Select(byte.Parse).ToArray();
+            fileService.SaveFile(data, id);
+
+            return View("OpenEditor");
         }
 
         [HttpGet]
-        public ActionResult DisplayFile(int id)
+        public ActionResult DisplayFile(int? id)
         {
             var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(id));
 
@@ -96,7 +101,7 @@ namespace EditThor1.Controllers
                 ViewBag.displayText += str[i];
             }
 
-            return View("OpenProject");
+            return View("OpenEditor");
         }
 
         [HttpGet]

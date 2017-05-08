@@ -11,8 +11,8 @@
 
 @using (Html.BeginForm("Save", "Project", FormMethod.Post))
 {
-    @Html.HiddenFor(m => m.Content, new { @id = "stringArrayValue" })
-    <input type="submit" value="Save code" />
+    @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
+    < input type="submit" value="Save code" />
 }
 
 <div class="row">
@@ -21,16 +21,16 @@
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
-                    <li class="active">@Html.ActionLink(item.name , "Save", new { id = item.ID})</li>
+                    <li class="active">@Html.ActionLink(item.name , "DisplayFile", new { id = item.ID})</li>
+                    @Request["id"];
+                    //@Html.ActionLink("Edit Category 10", "Edit", "Categorys", new { area = "Admin", id = 10 }, null)
+
                 }
             </ul>
         </div>
     </div>
     <div id="editor" class="col-md-9">
-        @for (int i = 0; i < 10; i++)
-        {
-            @ViewBag.displayText
-        }
+      
     </div>
 </div>
 
@@ -46,9 +46,16 @@
     editor.getSession().setMode("ace/mode/html");
 
 
-    $("form").submit(function() {
-        $("#hidden_editor").val(editor.session.doc.getAllLines());
+    $(document).ready(function () {
+        $("#editor").val(editor.setValue("we are snugging"));
     });
+
+    $("form").submit(function() {
+        $("#hidden_editor").val(editor.getSession().getValue());
+    });
+
+
+
 
         function findFooLineNumbers(editor) {
             var lines = editor.session.doc.getAllLines()
