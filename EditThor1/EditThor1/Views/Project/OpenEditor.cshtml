@@ -5,24 +5,18 @@
 }
 
 
-
-
-<div><a id="save-btn" class="btn btn-success">Save</a></div>
-
-@using (Html.BeginForm("Save", "Project", FormMethod.Post))
+@using (Html.BeginForm("Save", "Project", FormMethod.Post, new {id = "form1" }))
 {
-    @Html.HiddenFor(m => m.Content,  new { @id = "hidden_editor" })
+    @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
     <input type="submit" value="Save code" />
 }
-
 <div class="row">
     <div class="col-md-3" id="filecolumn">
         <div>
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
-                    <li class="active">@Html.ActionLink(item.name , "DisplayFile", new { id = item.ID, projectID = item.projectID})</li>
-                    @Request["id"];
+                    <li class="active">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
                     //@Html.ActionLink("Edit Category 10", "Edit", "Categorys", new { area = "Admin", id = 10 }, null)
 
                 }
@@ -30,15 +24,17 @@
         </div>
     </div>
     <div id="editor" class="col-md-9">
-      
+        @ViewBag.str
     </div>
+
 </div>
 
+
+@section scripts
+{
 <script src="@Url.Content("~/Scripts/ace-builds-master/ace-builds-master/src-noconflict/ace.js")"></script>
-<script src="http//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src='jquery/jquery.js' type="text/javascript"></script>
 <script src='jquery/jquery-ui.custom.js' type="text/javascript"></script>
-
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
@@ -46,23 +42,12 @@
     editor.getSession().setMode("ace/mode/html");
 
 
-    $(document).ready(function () {
-        $("#editor").val(editor.setValue("we are snugging"));
-    });
-
-    $("form").submit(function() {
+    $("#form1").submit(function() {
         $("#hidden_editor").val(editor.getSession().getValue());
+        console.log("asdasdasd");
     });
 
-
-
-
-        function findFooLineNumbers(editor) {
-            var lines = editor.session.doc.getAllLines()
-            console.log("buttons yay");
-            console.log(lines);
-            return lines;
-        }
-
-        var returner = document.getElementById("save-btn").onclick = function () { findFooLineNumbers(editor) };
 </script>
+}
+
+

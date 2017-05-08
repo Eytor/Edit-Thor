@@ -8,6 +8,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
 
 namespace EditThor1.Controllers
 {
@@ -57,8 +58,22 @@ namespace EditThor1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(ListFileViewModel model)
+        public ActionResult Save(FormCollection model)
         {
+
+            ListFileViewModel data = new ListFileViewModel();
+            UpdateModel(data);
+
+            
+
+            if (data.Content == null)
+            {
+                //todo error ?
+            }
+
+
+            byte[] array = Encoding.ASCII.GetBytes(data.Content);
+            fileService.SaveFile(array, 2);
 
             /* byte[] content;
              if (Request.Files != null && Request.Files.Count == 1)
@@ -75,8 +90,7 @@ namespace EditThor1.Controllers
              content = model.Content.Select(byte.Parse).ToArray();
              fileService.SaveFile(content, id);*/
 
-            var data = model.Content.Select(byte.Parse).ToArray();
-            fileService.SaveFile(data, 2);
+
 
             return View("OpenEditor");
         }
@@ -84,9 +98,9 @@ namespace EditThor1.Controllers
         [HttpGet]
         public ActionResult DisplayFile(int? fileId, int? ProjectId)
         {
-            var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(fileId, ProjectId));
+            ViewBag.str = Encoding.Default.GetString(fileService.GetFiles(2, ProjectId));
 
-            return View("OpenEditor");
+            return View("OpenEditor/"+ ProjectId);
         }
 
         [HttpGet]
