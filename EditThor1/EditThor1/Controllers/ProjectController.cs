@@ -8,14 +8,16 @@ using System.IO.Compression;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
 
 namespace EditThor1.Controllers
 {
     public class ProjectController : Controller
     {
         private ProjectService service = new ProjectService();
+        private FileService fileService = new FileService();
         // GET: Project
-        
+
 
         public ActionResult CreateProject()
         {
@@ -51,23 +53,54 @@ namespace EditThor1.Controllers
 
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
+          
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Save(string[] arr)
+        public ActionResult Save(FormCollection model)
         {
-            if (Request.Files != null && Request.Files.Count == 1)
+
+            ListFileViewModel data = new ListFileViewModel();
+            UpdateModel(data);
+
+            
+
+            if (data.Content == null)
             {
-                var file = Request.Files[0];
-                if (file != null && file.ContentLength > 0)
-                {
-                    var content = new byte[file.ContentLength];
-                    file.InputStream.Read(content, 0, file.ContentLength);
-                    content = arr.Select(byte.Parse).ToArray();
-                }
+                //todo error ?
             }
-            return RedirectToAction("Editor", "Project");
+
+
+            byte[] array = Encoding.ASCII.GetBytes(data.Content);
+            fileService.SaveFile(array, 2);
+
+            /* byte[] content;
+             if (Request.Files != null && Request.Files.Count == 1)
+             {
+
+                 var file = Request.Files[0];
+
+                 if (file != null && file.ContentLength > 0)
+                 {
+                     content = new byte[file.ContentLength];
+                     file.InputStream.Read(content, 0, file.ContentLength);            
+                 }
+             }
+             content = model.Content.Select(byte.Parse).ToArray();
+             fileService.SaveFile(content, id);*/
+
+
+
+            return View("OpenEditor");
+        }
+
+        [HttpGet]
+        public ActionResult DisplayFile(int? fileId, int? ProjectId)
+        {
+            ViewBag.str = Encoding.Default.GetString(fileService.GetFiles(2, ProjectId));
+
+            return View("OpenEditor/"+ ProjectId);
         }
 
         [HttpGet]
@@ -119,8 +152,14 @@ namespace EditThor1.Controllers
         [HttpGet]
         public FileResult Download(int id)
         {
+            string projectName = "";
+            if (service.GetProjectName(id) != null)
+            { 
+                projectName = service.GetProjectName(id) + ".zip";
+            }
+
             // af því "File" er frátekið í Systems.IO þarf að skrifa út allt namespacið
-            List<EditThor1.Models.Entities.File> files = service.GetAllFiles(id);
+            List<Models.Entities.File> files = service.GetAllFiles(id);
 
             using (var compressedFileStream = new MemoryStream())
             {
@@ -144,7 +183,7 @@ namespace EditThor1.Controllers
                     }
                 }
 
-                return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = "archive.zip" };
+                return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = projectName };
             }
 
         }
