@@ -21,9 +21,11 @@ namespace EditThor1.Services
             File file = new File();
             adds.name = name;
             adds.ownerID = userId;
+            adds.owner = (from u in _db.Users where u.Id == userId select u).FirstOrDefault();
 
             _db.Projects.Add(adds);
             _db.SaveChanges();
+
             var theProjectID = (from i in _db.Projects
                                 where i.name == name
                                 where i.ownerID == userId

@@ -23,7 +23,7 @@
             {
                 if(item.ownerID == User.Identity.GetUserId())
                 {
-                    <a class="btn col-md-10 custom-btn" href="Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
+                    <a class="btn col-md-10 custom-btn" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                         <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
                         <div class="col-md-5" style="text-align:left;">@HttpContext.Current.User.Identity.Name</div>
                     </a>
@@ -40,7 +40,7 @@
                 }
                 else
                 {
-                    <a class="btn col-md-10 custom-btn" style="outline:none;" href="Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
+                    <a class="btn col-md-10 custom-btn" style="outline:none;" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                         <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
                         <div class="col-md-5" style="text-align:left;">NOT ME</div>
                     </a>
@@ -49,7 +49,7 @@
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Download (.zip)</a></li>
+                            <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                         </ul>
                     </div>
                 }
