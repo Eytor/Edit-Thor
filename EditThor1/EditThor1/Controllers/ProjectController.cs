@@ -126,7 +126,7 @@ namespace EditThor1.Controllers
             }
 
             // af því "File" er frátekið í Systems.IO þarf að skrifa út allt namespacið
-            List<EditThor1.Models.Entities.File> files = service.GetAllFiles(id);
+            List<Models.Entities.File> files = service.GetAllFiles(id);
 
             using (var compressedFileStream = new MemoryStream())
             {
