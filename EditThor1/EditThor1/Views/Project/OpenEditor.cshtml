@@ -5,7 +5,7 @@
 }
 
 
-@using (Html.BeginForm("Save", "Project", FormMethod.Post, new {id = "form1" }))
+@using (Html.BeginForm("Save", "Project", FormMethod.Post, new {id = "form1", projectID = Model.AllFiles[0].projectID }))
 {
     @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
     <input type="submit" value="Save code" />
@@ -22,9 +22,10 @@
                 }
             </ul>
         </div>
+        @Html.ActionLink("+", "CreateFile", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = "large" })
     </div>
     <div id="editor" class="col-md-9">
-        @ViewBag.str
+        @ViewBag.code
     </div>
 
 </div>

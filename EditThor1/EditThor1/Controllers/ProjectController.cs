@@ -44,7 +44,7 @@ namespace EditThor1.Controllers
         }
 
         [HttpGet]
-        public ActionResult OpenEditor(int? id)
+        public ActionResult OpenEditor(int? id, string code)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -53,7 +53,7 @@ namespace EditThor1.Controllers
 
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
-          
+            ViewBag.code = code;
             return View(model);
         }
 
@@ -73,34 +73,17 @@ namespace EditThor1.Controllers
 
 
             byte[] array = Encoding.ASCII.GetBytes(data.Content);
-            fileService.SaveFile(array, 2);
-
-            /* byte[] content;
-             if (Request.Files != null && Request.Files.Count == 1)
-             {
-
-                 var file = Request.Files[0];
-
-                 if (file != null && file.ContentLength > 0)
-                 {
-                     content = new byte[file.ContentLength];
-                     file.InputStream.Read(content, 0, file.ContentLength);            
-                 }
-             }
-             content = model.Content.Select(byte.Parse).ToArray();
-             fileService.SaveFile(content, id);*/
-
-
-
-            return View("OpenEditor");
+            fileService.SaveFile(array, 22);
+            
+            return RedirectToAction("OpenEditor", "Project", new { id = 22 });
         }
 
         [HttpGet]
-        public ActionResult DisplayFile(int? fileId, int? ProjectId)
+        public ActionResult DisplayFile(int? id, int? projectID)
         {
-            ViewBag.str = Encoding.Default.GetString(fileService.GetFiles(2, ProjectId));
+            ViewBag.code = Encoding.Default.GetString(fileService.GetFiles(id, projectID));
 
-            return View("OpenEditor/"+ ProjectId);
+            return RedirectToAction("OpenEditor", "Project", new { id = id, code = ViewBag.code });
         }
 
         [HttpGet]
