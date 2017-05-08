@@ -211,6 +211,7 @@
     <Compile Include="Models\Entities\UserProject.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\EditorViewModel.cs" />
     <Compile Include="Models\ViewModels\FileViewModel.cs" />
     <Compile Include="Models\ViewModels\ListFileViewModel.cs" />
     <Compile Include="Models\ViewModels\ListProjectViewModel.cs" />
