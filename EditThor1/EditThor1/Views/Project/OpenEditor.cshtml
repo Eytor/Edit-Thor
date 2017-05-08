@@ -11,8 +11,8 @@
 
 @using (Html.BeginForm("Save", "Project", FormMethod.Post))
 {
-    @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
-    < input type="submit" value="Save code" />
+    @Html.HiddenFor(m => m.Content,  new { @id = "hidden_editor" })
+    <input type="submit" value="Save code" />
 }
 
 <div class="row">
@@ -21,7 +21,7 @@
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
-                    <li class="active">@Html.ActionLink(item.name , "DisplayFile", new { id = item.ID})</li>
+                    <li class="active">@Html.ActionLink(item.name , "DisplayFile", new { id = item.ID, projectID = item.projectID})</li>
                     @Request["id"];
                     //@Html.ActionLink("Edit Category 10", "Edit", "Categorys", new { area = "Admin", id = 10 }, null)
 

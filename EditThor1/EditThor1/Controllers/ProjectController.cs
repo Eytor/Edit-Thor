@@ -52,22 +52,12 @@ namespace EditThor1.Controllers
 
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
-            var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(id));
-
-            /* for (int i = 0; i < str.Length; i++)
-             {
-                 ViewBag.displayText += str[i];
-             }*/
-            for (int i = 0; i < 10; i++)
-            {
-                ViewBag.displayText = "veii stebbi er bestur";
-            }
+          
             return View(model);
         }
 
         [HttpPost]
-        [Route("id")]
-        public ActionResult Save(ListFileViewModel model, int id)
+        public ActionResult Save(ListFileViewModel model)
         {
 
             /* byte[] content;
@@ -86,20 +76,15 @@ namespace EditThor1.Controllers
              fileService.SaveFile(content, id);*/
 
             var data = model.Content.Select(byte.Parse).ToArray();
-            fileService.SaveFile(data, id);
+            fileService.SaveFile(data, 2);
 
             return View("OpenEditor");
         }
 
         [HttpGet]
-        public ActionResult DisplayFile(int? id)
+        public ActionResult DisplayFile(int? fileId, int? ProjectId)
         {
-            var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(id));
-
-            for (int i = 0; i < str.Length; i++)
-            {
-                ViewBag.displayText += str[i];
-            }
+            var str = System.Text.Encoding.Default.GetString(fileService.GetFiles(fileId, ProjectId));
 
             return View("OpenEditor");
         }

@@ -13,20 +13,20 @@ namespace EditThor1.Services
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        public void SaveFile(byte[] arr, int id)
+        public void SaveFile(byte[] arr, int fileId)
         {
             Project adds = new Project();
             File file = new File();
 
             file = (from f in _db.Files
-                    where f.ID == id
+                    where f.ID == fileId
                     select f).SingleOrDefault();
        
             file.file = arr;
             _db.SaveChanges();
         }
 
-        public byte[] GetFiles(int? id)
+        public byte[] GetFiles(int? id, int? prId)
         {
             byte[] arr;
 
@@ -34,11 +34,10 @@ namespace EditThor1.Services
 
             data = (from f in _db.Files
                     where f.ID == id
+                    where f.projectID == prId
                     select f).SingleOrDefault();
 
             arr = data.file;
-            Console.WriteLine(arr);
-
             return arr;
         }
 
