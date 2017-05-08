@@ -4,14 +4,15 @@
     ViewBag.Title = "CreateProject";
 }
 
-<h2>CreateProject</h2>
+<h2>New project</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ProjectViewModel</h4>
+        <h4>Create a new project</h4>
+        <h5>Please enter a name for your project</h5>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -33,5 +34,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-default" })
 </div>
