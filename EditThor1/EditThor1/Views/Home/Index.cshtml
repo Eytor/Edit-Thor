@@ -25,7 +25,7 @@
                 {
                     <a class="btn col-md-10 custom-btn" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                         <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                        <div class="col-md-5" style="text-align:left;">@HttpContext.Current.User.Identity.Name</div>
+                        <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName )</div>
                     </a>
                     <div class="col-md-2 dropdown navbar-right">
                         <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -42,7 +42,7 @@
                 {
                     <a class="btn col-md-10 custom-btn" style="outline:none;" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                         <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                        <div class="col-md-5" style="text-align:left;">NOT ME</div>
+                        <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
                     </a>
                     <div class="col-md-2 dropdown navbar-right">
                         <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
