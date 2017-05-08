@@ -125,6 +125,12 @@ namespace EditThor1.Services
             Project project = _db.Projects.Where(x => x.ID == id).SingleOrDefault();
             if(project != null)
             {
+                List<UserProject> connections = _db.UserProjects.Where(x => x.ProjectID == id).ToList();
+                foreach (UserProject connection in connections)
+                {
+                    _db.UserProjects.Remove(connection);
+                    _db.SaveChanges();
+                }
                 FileService fileService = new FileService();
                 fileService.DeleteFiles(id);
                 _db.Projects.Remove(project);
