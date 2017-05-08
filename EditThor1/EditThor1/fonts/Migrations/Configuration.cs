@@ -10,6 +10,7 @@ namespace EditThor1.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "EditThor1.Models.ApplicationDbContext";
         }
 
