@@ -21,8 +21,9 @@ namespace EditThor1.Services
             File file = new File();
             adds.name = name;
             adds.ownerID = userId;
-            adds.owner = (from u in _db.Users where u.Id == userId select u).FirstOrDefault();
-
+            adds.ownerName = (from u in _db.Users
+                          where u.Id == userId
+                          select u.UserName).SingleOrDefault();
             _db.Projects.Add(adds);
             _db.SaveChanges();
 
@@ -73,9 +74,9 @@ namespace EditThor1.Services
         {
             string userId = HttpContext.Current.User.Identity.GetUserId();
             List<Project> result = (from project in _db.Projects
-                                           orderby project.name ascending
-                                           where userId == project.ownerID
-                                           select project).ToList();
+                                    orderby project.name ascending
+                                    where userId == project.ownerID
+                                    select project).ToList();
 
             return result;
 
