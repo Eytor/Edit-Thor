@@ -119,6 +119,12 @@ namespace EditThor1.Controllers
         [HttpGet]
         public FileResult Download(int id)
         {
+            string projectName = "";
+            if (service.GetProjectName(id) != null)
+            { 
+                projectName = service.GetProjectName(id) + ".zip";
+            }
+
             // af því "File" er frátekið í Systems.IO þarf að skrifa út allt namespacið
             List<EditThor1.Models.Entities.File> files = service.GetAllFiles(id);
 
@@ -144,7 +150,7 @@ namespace EditThor1.Controllers
                     }
                 }
 
-                return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = "archive.zip" };
+                return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = projectName };
             }
 
         }

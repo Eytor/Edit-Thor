@@ -50,7 +50,7 @@ namespace EditThor1.Services
 
         public string GetProjectName(int id)
         {
-            var result = (from project in _projects
+            var result = (from project in _db.Projects
                           where project.ID == id
                           select project.name).SingleOrDefault();
             return result;
