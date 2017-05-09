@@ -50,6 +50,10 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            if (!service.HasAccess(Convert.ToInt32(id)))
+            {
+                throw new HttpException(404, "Project is Empty");
+            }
             ViewBag.fileID = fileID;
             ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
             ListFileViewModel model = new ListFileViewModel();
