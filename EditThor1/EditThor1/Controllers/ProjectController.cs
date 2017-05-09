@@ -199,5 +199,17 @@ namespace EditThor1.Controllers
             fileService.CreateFile(model.projectID, model.name, model.type);
             return RedirectToAction("OpenEditor", "Project", new { id = model.projectID });
         }
+
+        [HttpPost]
+        public ActionResult DeleteFile(FormCollection model)
+        {
+
+            ListFileViewModel data = new ListFileViewModel();
+            UpdateModel(data);
+
+            fileService.DeleteFile(data.fileId);
+
+            return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
+        }
     }
 }
