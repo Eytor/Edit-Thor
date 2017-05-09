@@ -103,10 +103,9 @@ a:focus
 }
 
 .project-list {
-    padding:20px;
     border-top: 1px solid grey; 
     list-style: none;
-    height:10px;
+    padding-bottom; padding-top:10px;
 }
 
 .filter-list {
@@ -124,3 +123,5 @@ a:focus
     margin-left:30px;
     margin-top:10px;
 }
+
+

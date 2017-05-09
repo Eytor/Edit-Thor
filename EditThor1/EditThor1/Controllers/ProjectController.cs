@@ -44,16 +44,22 @@ namespace EditThor1.Controllers
         }
 
         [HttpGet]
-        public ActionResult OpenEditor(int? id, string code)
+        public ActionResult OpenEditor(int? id, string code, int? fileID)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
-
+            ViewBag.fileID = fileID;
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
+            if(fileID != null)
+            {
+                model.projectId = Convert.ToInt32(id);
+                model.fileId = Convert.ToInt32(fileID);
+            }
             ViewBag.code = code;
+            ViewBag.DocumentId = id;
             return View(model);
         }
 
@@ -64,7 +70,7 @@ namespace EditThor1.Controllers
             ListFileViewModel data = new ListFileViewModel();
             UpdateModel(data);
 
-            
+
 
             if (data.Content == null)
             {
@@ -73,9 +79,9 @@ namespace EditThor1.Controllers
 
 
             byte[] array = Encoding.ASCII.GetBytes(data.Content);
-            fileService.SaveFile(array, 22);
-            
-            return RedirectToAction("OpenEditor", "Project", new { id = 22 });
+            fileService.SaveFile(array, data.fileId );
+
+            return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
         }
 
         [HttpGet]
@@ -83,7 +89,7 @@ namespace EditThor1.Controllers
         {
             ViewBag.code = Encoding.Default.GetString(fileService.GetFiles(id, projectID));
 
-            return RedirectToAction("OpenEditor", "Project", new { id = id, code = ViewBag.code });
+            return RedirectToAction("OpenEditor", "Project", new { id = projectID, code = ViewBag.code, fileID = id });
         }
 
         [HttpGet]
@@ -96,7 +102,7 @@ namespace EditThor1.Controllers
 
             if (id != null)
             {
-                if(service.ProjectExists(id))
+                if (service.ProjectExists(id))
                 {
                     service.DeleteProject(id);
                     return RedirectToAction("Index", "Home");
@@ -137,7 +143,7 @@ namespace EditThor1.Controllers
         {
             string projectName = "";
             if (service.GetProjectName(id) != null)
-            { 
+            {
                 projectName = service.GetProjectName(id) + ".zip";
             }
 
@@ -168,8 +174,30 @@ namespace EditThor1.Controllers
 
                 return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = projectName };
             }
-
         }
 
+        [HttpGet]
+        public ActionResult CreateFile(int? id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            ViewBag.ProjectID = id;
+            FileViewModel model = new FileViewModel();
+            model.projectID = Convert.ToInt32(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateFile(FileViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            fileService.CreateFile(model.projectID, model.name, model.type);
+            return RedirectToAction("OpenEditor", "Project", new { id = model.projectID });
+        }
     }
 }

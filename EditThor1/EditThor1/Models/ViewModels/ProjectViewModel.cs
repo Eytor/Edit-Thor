@@ -1,6 +1,7 @@
 ﻿using EditThor1.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +12,8 @@ namespace EditThor1.Models.ViewModels
         public int ID { get; set; }
 
         //the name of the project
+        [Required]
+        [Display(Name = "Project name")]
         public string name { get; set; }
 
         //the type of the project
