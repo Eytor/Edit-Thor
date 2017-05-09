@@ -66,6 +66,12 @@ namespace EditThor1.Controllers
             }
             ViewBag.code = code;
             ViewBag.DocumentId = id;
+
+            if (fileID == null)
+            {
+                return RedirectToAction("DisplayFile", new {id = model.AllFiles.First().ID , projectID = id});
+            }
+
             return View(model);
         }
 
