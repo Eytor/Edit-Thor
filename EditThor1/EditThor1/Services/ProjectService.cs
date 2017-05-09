@@ -190,11 +190,12 @@ namespace EditThor1.Services
             UserProject result = (from u in _db.UserProjects
                                   where u.ProjectID == projectID
                                   where u.UserID == _userId
-                                  select u).SingleOrDefault();
+                                  select u).FirstOrDefault();
             _db.UserProjects.Remove(result);
             _db.SaveChanges();
         }
 
+<<<<<<< HEAD
         public bool checkSameName(string name)
         {
             List<Project> projectNames = (from f in _db.Projects
@@ -206,6 +207,17 @@ namespace EditThor1.Services
                 {
                     return true;
                 }
+=======
+        public bool UserHasAccess(string userID, int projectID)
+        {
+            UserProject result = (from u in _db.UserProjects
+                                  where u.ProjectID == projectID
+                                  where u.UserID == userID
+                                  select u).FirstOrDefault();
+            if (result != null)
+            {
+                return true;
+>>>>>>> 1544efb724e63a94c7df3b7b653c4af62adbfbec
             }
             return false;
         }
