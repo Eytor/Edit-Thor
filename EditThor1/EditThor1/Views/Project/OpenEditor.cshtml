@@ -4,11 +4,15 @@
     ViewBag.Title = "OpenEditor";
 }
 
-
-@using (Html.BeginForm("Save", "Project", FormMethod.Post, new {id = "form1", projectID = Model.AllFiles[0].projectID }))
+@if (ViewBag.fileID != null)
 {
-    @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
-    <input type="submit" value="Save code" />
+    using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
+    {
+        @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
+        @Html.HiddenFor(m => m.fileId )
+        @Html.HiddenFor(m => m.projectId )
+        <input type="submit" value="Save code" />
+    }
 }
 <div class="row">
     <div class="col-md-3" id="filecolumn">
@@ -22,7 +26,7 @@
                 }
             </ul>
         </div>
-        @Html.ActionLink("+", "CreateFile", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = "large" })
+        @Html.ActionLink("+", "CreateFile", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = ViewBag.prID })
     </div>
     <div id="editor" class="col-md-9">
         @ViewBag.code

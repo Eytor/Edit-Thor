@@ -54,5 +54,16 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
+
+        public void CreateFile(int projectID, string name, string type)
+        {
+            File file = new File();
+            file.name = name;
+            file.type = type;
+            file.projectID = projectID;
+            file.file = new byte[0];
+            _db.Files.Add(file);
+            _db.SaveChanges();
+        }
     }
 }

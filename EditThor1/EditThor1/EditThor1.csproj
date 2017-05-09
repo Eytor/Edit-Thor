@@ -290,6 +290,7 @@
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Project\OpenEditor.cshtml" />
     <Content Include="Views\Project\ShareProject.cshtml" />
+    <Content Include="Views\Project\CreateFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
