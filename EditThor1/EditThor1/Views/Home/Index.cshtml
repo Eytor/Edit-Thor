@@ -5,10 +5,11 @@
 }
 <div class="row" id="main-content">
     <div class="col-md-2">
-        <ul>
-            <li>@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
-            <li>@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
-            <li>@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+        @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn custom-btn left-column", id = "small"  })<br/>
+        <ul id="remove-margin">
+            <li class="filter-list left-column">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+            <li class="filter-list left-column">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
+            <li class="filter-list left-column">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
         </ul>
     </div>
     <div class="col-md-10">
@@ -23,15 +24,15 @@
             {
                 if(item.ownerID == User.Identity.GetUserId())
                 {
-                    <a class="btn col-md-10 custom-btn project-list" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
-                        <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                        <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName )</div>
+                    <a class="btn col-md-10 custom-btn" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
+                        <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
+                        <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName )</div>
                     </a>
-                    <div class="col-md-2 dropdown navbar-right">
+                    <div class="col-md-2 dropdown navbar-right project-list">
                         <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                         </a>
-                        <ul class="dropdown-menu project-list">
+                        <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Invite", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                             <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                             <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
@@ -41,14 +42,14 @@
                 else
                 {
                     <a class="btn col-md-10 custom-btn" style="outline:none;" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
-                        <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                        <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                        <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
+                        <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
                     </a>
                     <div class="col-md-2 dropdown navbar-right">
                         <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                         </a>
-                        <ul class="dropdown-menu project-list">
+                        <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                         </ul>
                     </div>
@@ -58,6 +59,6 @@
 
        
 
-        @Html.ActionLink("+", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = "large" })       
+       @* @Html.ActionLink("+", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = "large" })    *   
     </div>
 </div>

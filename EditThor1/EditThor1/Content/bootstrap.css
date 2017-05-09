@@ -58,7 +58,11 @@ html {
 }
 
 body {
-  margin: 40px;
+    /*margin á síðurnar*/
+
+  margin: 80px;
+  /*bakgrunnslitir*/
+  background-color:whitesmoke;
 }
 
 a:focus {
@@ -315,7 +319,6 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
 }
 
 input,
@@ -349,6 +352,7 @@ a:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
+  list-style-type:none;
 }
 
 img {

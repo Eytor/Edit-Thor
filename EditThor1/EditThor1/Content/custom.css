@@ -14,6 +14,7 @@ a.logo
     margin-top: 1px;
 }
 
+
 form 
 { 
     margin: 0 auto; 
@@ -51,7 +52,7 @@ form
     height: 50px;
     color: #0363a8;
     padding-top: 15px;
-    font-size: 130%;
+    font-size: 115%;
     text-align: left;
 }
 
@@ -93,7 +94,7 @@ form
 #filelist
 {
     list-style-type: none;
-    padding-left: 2px;
+    padding-left: 0px;
 }
 
 a:focus
@@ -102,6 +103,24 @@ a:focus
 }
 
 .project-list {
-    border-top:thick;
     padding:20px;
+    border-top: 1px solid grey; 
+    list-style: none;
+    height:10px;
+}
+
+.filter-list {
+    list-style-type:none;
+    margin-top:10px;
+}
+
+.left-column {
+   margin-left:0px;
+}
+
+#small {
+    border:solid grey 1px;
+    padding:15px;
+    margin-left:30px;
+    margin-top:10px;
 }
