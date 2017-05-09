@@ -59,6 +59,7 @@ namespace EditThor1.Controllers
                 model.fileId = Convert.ToInt32(fileID);
             }
             ViewBag.code = code;
+            ViewBag.DocumentId = id;
             return View(model);
         }
 

@@ -23,7 +23,7 @@
             {
                 if(item.ownerID == User.Identity.GetUserId())
                 {
-                    <a class="btn col-md-10 custom-btn" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
+                    <a class="btn col-md-10 custom-btn project-list" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                         <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
                         <div class="col-md-5" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName )</div>
                     </a>
@@ -31,7 +31,7 @@
                         <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu project-list">
                             <li>@Html.ActionLink("Invite", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                             <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                             <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
@@ -48,7 +48,7 @@
                         <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu project-list">
                             <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                         </ul>
                     </div>

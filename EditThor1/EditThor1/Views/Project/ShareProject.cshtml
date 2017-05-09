@@ -1,10 +1,10 @@
 ﻿@model EditThor1.Models.ViewModels.UserViewModel
 
 @{
-    ViewBag.Title = "ShareProject";
+    ViewBag.Title = "Share project";
 }
 
-<h2>ShareProject</h2>
+<h2>Invite</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>UserViewModel</h4>
+        <h5>Enter an email address to invite another user to your project</h5>
         <hr />
         @Html.HiddenFor(model => model.ProjectID)
         <div class="form-group">
@@ -24,14 +24,14 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Invite" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {
