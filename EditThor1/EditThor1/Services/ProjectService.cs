@@ -14,22 +14,23 @@ namespace EditThor1.Services
         
         private ApplicationDbContext _db = new ApplicationDbContext();
 
+        private string _userId = HttpContext.Current.User.Identity.GetUserId();
+
         public void AddProject(string name)
         {
-            string userId = HttpContext.Current.User.Identity.GetUserId();
             Project adds = new Project();
             File file = new File();
             adds.name = name;
-            adds.ownerID = userId;
+            adds.ownerID = _userId;
             adds.ownerName = (from u in _db.Users
-                          where u.Id == userId
+                          where u.Id == _userId
                           select u.UserName).SingleOrDefault();
             _db.Projects.Add(adds);
             _db.SaveChanges();
 
             var theProjectID = (from i in _db.Projects
                                 where i.name == name
-                                where i.ownerID == userId
+                                where i.ownerID == _userId
                                 select i.ID).SingleOrDefault();
             file.name = "Index.html";
             file.type = "HTML";
@@ -157,7 +158,41 @@ namespace EditThor1.Services
             _db.SaveChanges();
         }
 
-        
 
+        public bool isOwner(int projectID)
+        {
+            var result = (from p in _db.Projects
+                          where p.ID == projectID
+                          where p.ownerID == _userId
+                          select p).SingleOrDefault();
+            if (result != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool HasAccess(int projectID)
+        {
+            var result = (from u in _db.UserProjects
+                          where u.ProjectID == projectID
+                          where u.UserID == _userId
+                          select u).SingleOrDefault();
+            if (result != null || isOwner(projectID))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void LeaveProject(int projectID)
+        {
+            UserProject result = (from u in _db.UserProjects
+                                  where u.ProjectID == projectID
+                                  where u.UserID == _userId
+                                  select u).SingleOrDefault();
+            _db.UserProjects.Remove(result);
+            _db.SaveChanges();
+        }
     }
 }

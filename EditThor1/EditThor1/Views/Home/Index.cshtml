@@ -53,6 +53,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
+                            <li>@Html.ActionLink("Leave Project", "LeaveProject", new { Controller = "Project", projectID = item.ID })</li>
                         </ul>
                     </div>
                 }

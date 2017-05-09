@@ -74,5 +74,7 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
+
+        
     }
 }

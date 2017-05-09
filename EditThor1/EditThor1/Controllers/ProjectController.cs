@@ -54,6 +54,10 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            if (!service.HasAccess(Convert.ToInt32(id)))
+            {
+                throw new HttpException(404, "Project is Empty");
+            }
             ViewBag.fileID = fileID;
             ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
             ListFileViewModel model = new ListFileViewModel();
@@ -226,6 +230,17 @@ namespace EditThor1.Controllers
             fileService.DeleteFile(data.fileId);
 
             return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
+        }
+
+        [HttpGet]
+        public ActionResult LeaveProject(int? projectID)
+        {
+            if(projectID == null)
+            {
+                //todo
+            }
+            service.LeaveProject(Convert.ToInt32(projectID));
+            return RedirectToAction("Index", "Home");
         }
     }
 }
