@@ -222,5 +222,24 @@ namespace EditThor1.Services
             }
             return false;
         }
+
+        public List<string> UserListofSharedProject(int projectID)
+        {
+            List<string> userNames = new List<string>();
+            string ownerName = (from p in _db.Projects
+                                where p.ID == projectID
+                                select p.ownerName).SingleOrDefault();
+            userNames.Add(ownerName);
+            List<string> sharedUsers = (from p in _db.UserProjects
+                                        join u in _db.Users on p.UserID equals u.Id
+                                        where p.ProjectID == projectID
+                                        select u.UserName).ToList();
+            foreach (string name in sharedUsers)
+            {
+                userNames.Add(name);
+            }
+            
+            return userNames;
+        }
     }
 }

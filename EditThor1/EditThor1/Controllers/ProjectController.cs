@@ -63,7 +63,8 @@ namespace EditThor1.Controllers
             ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
-            if(fileID != null)
+            model.Users = service.UserListofSharedProject(Convert.ToInt32(id));
+            if (fileID != null)
             {
                 model.projectId = Convert.ToInt32(id);
                 model.fileId = Convert.ToInt32(fileID);

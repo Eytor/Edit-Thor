@@ -8,7 +8,7 @@
 <div class="row">
     <h2>@ViewBag.ProjectName</h2>
     <div class="col-md-3 col-sm-12" id="filecolumn">
-        <div>
+        <div class="col-md-12">
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
@@ -17,8 +17,17 @@
 
                 }
             </ul>
+            @Html.ActionLink("+", "CreateFile", new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
         </div>
-        @Html.ActionLink("+", "CreateFile",new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
+        <div class="col-md-12" style="margin-top: 10px;">
+            <ul>
+                @foreach (string username in Model.Users)
+                {
+                    <li>@username</li>
+                }
+            </ul>
+
+        </div>
     </div>
     <div id="editor" class="col-md-9 col-sm-12">
         @ViewBag.code

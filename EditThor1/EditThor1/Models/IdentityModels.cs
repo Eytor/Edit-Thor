@@ -44,11 +44,5 @@ namespace EditThor1.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<EditThor1.Models.ViewModels.ProjectViewModel> ProjectViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<EditThor1.Models.ViewModels.UserViewModel> UserViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<EditThor1.Models.ViewModels.FileViewModel> FileViewModels { get; set; }
     }
 }
