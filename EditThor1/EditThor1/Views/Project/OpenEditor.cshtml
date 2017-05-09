@@ -26,7 +26,7 @@
                 }
             </ul>
         </div>
-        @Html.ActionLink("+", "CreateFile", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = ViewBag.prID })
+        @Html.ActionLink("+", "CreateFile",new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
     </div>
     <div id="editor" class="col-md-9">
         @ViewBag.code
