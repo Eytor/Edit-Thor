@@ -190,9 +190,22 @@ namespace EditThor1.Services
             UserProject result = (from u in _db.UserProjects
                                   where u.ProjectID == projectID
                                   where u.UserID == _userId
-                                  select u).SingleOrDefault();
+                                  select u).FirstOrDefault();
             _db.UserProjects.Remove(result);
             _db.SaveChanges();
+        }
+
+        public bool UserHasAccess(string userID, int projectID)
+        {
+            UserProject result = (from u in _db.UserProjects
+                                  where u.ProjectID == projectID
+                                  where u.UserID == userID
+                                  select u).FirstOrDefault();
+            if (result != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
