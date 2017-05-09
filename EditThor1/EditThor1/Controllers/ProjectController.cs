@@ -54,6 +54,7 @@ namespace EditThor1.Controllers
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
             ViewBag.code = code;
+            ViewBag.DocumentId = id;
             return View(model);
         }
 
