@@ -100,3 +100,8 @@ a:focus
 {
     outline: none;
 }
+
+.project-list {
+    border-top:thick;
+    padding:20px;
+}
