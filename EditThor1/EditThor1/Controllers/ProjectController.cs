@@ -38,6 +38,10 @@ namespace EditThor1.Controllers
 
             var names = model.name;
 
+            if (fileService.checkSameName(names))
+            {
+                throw new HttpException(404, "Project allready exists");
+            }
             service.AddProject(names);
 
             return RedirectToAction("Index", "Home");
