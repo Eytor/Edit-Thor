@@ -51,12 +51,18 @@ namespace EditThor1.Controllers
                 return RedirectToAction("Login", "Account");
             }
             ViewBag.fileID = fileID;
+            ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
             ListFileViewModel model = new ListFileViewModel();
             model.AllFiles = service.OpenProject(id);
             if(fileID != null)
             {
                 model.projectId = Convert.ToInt32(id);
                 model.fileId = Convert.ToInt32(fileID);
+            }
+            if(model.AllFiles.Count == 0)
+            {
+                model.projectId = Convert.ToInt32(id);
+                return RedirectToAction("CreateFile", new { id = model.projectId });
             }
             ViewBag.code = code;
             ViewBag.DocumentId = id;

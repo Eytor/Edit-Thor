@@ -22,21 +22,23 @@
 
             @foreach (var item in Model.AllProject)
             {
-                if(item.ownerID == User.Identity.GetUserId())
+                if (item.ownerID == User.Identity.GetUserId())
                 {
-                    <a class="btn col-md-10 custom-btn" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
-                        <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                        <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName )</div>
-                    </a>
-                    <div class="col-md-2 dropdown navbar-right project-list">
-                        <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
+                    <div class="lines">
+                        <a class="btn col-md-10 custom-btn" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
+                            <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
+                            <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Invite", "ShareProject", new { Controller = "Project", id = item.ID })</li>
-                            <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
-                            <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
-                        </ul>
+                        <div class="col-md-2 dropdown navbar-right project-list">
+                            <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Invite", "ShareProject", new { Controller = "Project", id = item.ID })</li>
+                                <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
+                                <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
+                            </ul>
+                        </div>
                     </div>
                 }
                 else
