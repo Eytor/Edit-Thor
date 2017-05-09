@@ -13,6 +13,8 @@ namespace EditThor1.Models.ViewModels
 
         //the name of the project
         [Required]
+        [StringLength(200, ErrorMessage = "The name must be at least {2} characters long.", MinimumLength = 1)]
+
         [Display(Name = "Project name")]
         public string name { get; set; }
 

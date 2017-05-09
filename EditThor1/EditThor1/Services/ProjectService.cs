@@ -77,7 +77,6 @@ namespace EditThor1.Services
                                     orderby project.name ascending
                                     where userId == project.ownerID
                                     select project).ToList();
-
             return result;
 
         }
