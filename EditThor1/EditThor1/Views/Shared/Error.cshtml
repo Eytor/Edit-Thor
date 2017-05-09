@@ -4,6 +4,11 @@
     ViewBag.Title = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<div class="col-md-8">
+    <h1>Error</h1>
+    <h4>Don't panic, but an error occurred while processing your request.</h4>
+    @Html.ActionLink("Back", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-default panicbutton" })
+</div>
+
+
 

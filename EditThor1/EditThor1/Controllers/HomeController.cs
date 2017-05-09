@@ -14,7 +14,7 @@ namespace EditThor1.Controllers
 
         public ActionResult Index(int? id)
         {
-            if(!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }

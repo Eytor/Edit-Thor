@@ -212,6 +212,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="fonts\Migrations\Configuration.cs" />
+    <Compile Include="Handlers\CustomHandleErrorAttribute.cs" />
     <Compile Include="Hubs\CodeHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\File.cs" />
@@ -231,6 +232,8 @@
     <Compile Include="Services\InformationService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\CustomApplicationException.cs" />
+    <Compile Include="Utilities\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
