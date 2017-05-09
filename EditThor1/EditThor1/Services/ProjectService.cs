@@ -184,5 +184,15 @@ namespace EditThor1.Services
             }
             return false;
         }
+
+        public void LeaveProject(int projectID)
+        {
+            UserProject result = (from u in _db.UserProjects
+                                  where u.ProjectID == projectID
+                                  where u.UserID == _userId
+                                  select u).SingleOrDefault();
+            _db.UserProjects.Remove(result);
+            _db.SaveChanges();
+        }
     }
 }

@@ -227,5 +227,16 @@ namespace EditThor1.Controllers
 
             return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
         }
+
+        [HttpGet]
+        public ActionResult LeaveProject(int? projectID)
+        {
+            if(projectID == null)
+            {
+                //todo
+            }
+            service.LeaveProject(Convert.ToInt32(projectID));
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
