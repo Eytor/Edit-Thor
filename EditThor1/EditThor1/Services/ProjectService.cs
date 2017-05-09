@@ -194,5 +194,20 @@ namespace EditThor1.Services
             _db.UserProjects.Remove(result);
             _db.SaveChanges();
         }
+
+        public bool checkSameName(string name)
+        {
+            List<Project> projectNames = (from f in _db.Projects
+                                       where f.ownerID == _userId
+                                       select f).ToList();
+            foreach (var f in projectNames)
+            {
+                if (name == f.name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

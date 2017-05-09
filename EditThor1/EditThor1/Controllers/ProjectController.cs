@@ -38,8 +38,9 @@ namespace EditThor1.Controllers
 
             var names = model.name;
 
-            if (fileService.checkSameName(names))
+            if (service.checkSameName(names))
             {
+                //Virkar en exception virkar ekki
                 throw new HttpException(404, "Project allready exists");
             }
             service.AddProject(names);
