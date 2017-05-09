@@ -195,19 +195,22 @@ namespace EditThor1.Services
             _db.SaveChanges();
         }
 
-<<<<<<< HEAD
+
         public bool checkSameName(string name)
         {
             List<Project> projectNames = (from f in _db.Projects
-                                       where f.ownerID == _userId
-                                       select f).ToList();
+                                          where f.ownerID == _userId
+                                          select f).ToList();
             foreach (var f in projectNames)
             {
                 if (name == f.name)
                 {
                     return true;
                 }
-=======
+            }
+            return false;
+        }
+
         public bool UserHasAccess(string userID, int projectID)
         {
             UserProject result = (from u in _db.UserProjects
@@ -217,9 +220,15 @@ namespace EditThor1.Services
             if (result != null)
             {
                 return true;
->>>>>>> 1544efb724e63a94c7df3b7b653c4af62adbfbec
+
             }
             return false;
+        }
+
+        public List<string> ListofSharedProject()
+        {
+            
+            return null;
         }
     }
 }
