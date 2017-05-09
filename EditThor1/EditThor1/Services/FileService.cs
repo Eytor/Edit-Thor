@@ -65,5 +65,14 @@ namespace EditThor1.Services
             _db.Files.Add(file);
             _db.SaveChanges();
         }
+        public void DeleteFile(int fileID)
+        {
+            File file = _db.Files.Where(x => x.ID == fileID).SingleOrDefault();
+            if (file != null)
+            {
+                _db.Files.Remove(file);
+                _db.SaveChanges();
+            }
+        }
     }
 }
