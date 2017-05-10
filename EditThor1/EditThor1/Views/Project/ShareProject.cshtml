@@ -4,7 +4,6 @@
     ViewBag.Title = "Share project";
 }
 
-<h2>Invite</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,6 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <h2>Share</h2>
         <h5>Enter an email address to invite another user to your project</h5>
         <hr />
         @Html.HiddenFor(model => model.ProjectID)

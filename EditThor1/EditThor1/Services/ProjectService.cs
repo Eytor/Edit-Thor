@@ -246,9 +246,9 @@ namespace EditThor1.Services
             var userID = GetUserID(name);
             if (userID == null)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }
