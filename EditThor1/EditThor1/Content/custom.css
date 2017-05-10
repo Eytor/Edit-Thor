@@ -126,11 +126,6 @@ a:focus
     margin-top:10px;
 }
 
-body
-{
-    background: url(https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/17990727_10155238188711983_3714858987730992676_n.jpg?oh=fba71875f994ec5385631d784595301e&oe=5977766B) repeat top left;
-}
-
 .active
 {
     background-color:aqua;
