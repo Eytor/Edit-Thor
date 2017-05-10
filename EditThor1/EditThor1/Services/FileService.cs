@@ -98,8 +98,12 @@ namespace EditThor1.Services
             return fileEnding;
         }
 
-        public string GetFileTypeName(int typeID)
+        public string GetFileTypeName(int fileID)
         {
+            int typeID = (from f in _db.Files
+                          join t in _db.FileTypes on f.typeID equals t.ID
+                          where f.ID == fileID
+                          select t.ID).SingleOrDefault();
             string typename = (from t in _db.FileTypes
                               where t.ID == typeID
                               select t.typeName).SingleOrDefault();

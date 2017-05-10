@@ -213,8 +213,8 @@ namespace EditThor1.Controllers
             }
             ViewBag.ProjectID = id;
             FileViewModel model = new FileViewModel();
-            model.type = fileService.GetAvailableTypes();
             model.projectID = Convert.ToInt32(id);
+            model.type = fileService.GetAvailableTypes();
             return View(model);
         }
 

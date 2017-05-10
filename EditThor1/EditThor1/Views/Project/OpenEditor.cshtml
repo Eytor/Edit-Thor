@@ -63,10 +63,9 @@
 
 
     var documentID = @ViewBag.DocumentID;
-
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/"+ @Model.filetype);
+    editor.getSession().setMode("ace/mode/@Model.filetype");
 
 
 
