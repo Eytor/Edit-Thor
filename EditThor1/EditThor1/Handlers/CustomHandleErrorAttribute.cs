@@ -29,7 +29,7 @@ namespace EditThor1.Handlers
                 { 
                     viewName = "ErrorShareProject";
                 }
-                if (currentController == "Project" && currentActionName == "CreateProject")
+                else if (currentController == "Project" && currentActionName == "CreateProject")
                 {
                     viewName = "ErrorCreateProject";
                 }

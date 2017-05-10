@@ -3,6 +3,7 @@
 @{
     //ViewBag.Title = "Home Page";
 }
+
 <div class="row" id="main-content">
     <h2>@ViewBag.Title</h2>
     <div class="col-md-2">
@@ -37,8 +38,7 @@
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Share", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                                 <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
-                                <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
-                            </ul>
+                                <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID }, new { name="delete" })</li>
                         </div>
                     </div>
                 }
@@ -54,15 +54,26 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
-                            <li>@Html.ActionLink("Leave Project", "LeaveProject", new { Controller = "Project", projectID = item.ID })</li>
+                            <li>@Html.ActionLink("Leave Project", "LeaveProject", new { Controller = "Project", projectID = item.ID, name="leave" })</li>
                         </ul>
                     </div>
                 }
             }
         </div>
 
-       
+   
 
        @* @Html.ActionLink("+", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn custom-btn col-md-12", id = "large" })    *@   
     </div>
 </div>
+@section Scripts 
+{
+<script src='jquery/jquery.js' type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[name="delete"]").click(function () {
+                return confirm('Delete the selected file?');
+            });
+        });
+    </script>
+}
