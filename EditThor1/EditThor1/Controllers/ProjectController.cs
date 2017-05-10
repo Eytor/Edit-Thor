@@ -49,6 +49,7 @@ namespace EditThor1.Controllers
         }
 
         [HttpGet]
+        [ValidateInput(false)]
         public ActionResult OpenEditor(int? id, string code, int? fileID)
         {
             if (!User.Identity.IsAuthenticated)
@@ -89,7 +90,7 @@ namespace EditThor1.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Save(FormCollection model)
         {
 

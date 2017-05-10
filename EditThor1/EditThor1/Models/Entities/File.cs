@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace EditThor1.Models.Entities
 {
@@ -17,6 +18,7 @@ namespace EditThor1.Models.Entities
         public int typeID { get; set; }
 
         //the actual file itself
+        [AllowHtml]
         public byte[] file { get; set; }
 
         //the ID of the project this particular file belongs to

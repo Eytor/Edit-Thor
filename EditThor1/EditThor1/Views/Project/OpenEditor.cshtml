@@ -36,9 +36,7 @@
         </div>
     </div>
     <div class="col-md-10">
-        <div id="editor">
-            @ViewBag.code
-        </div>
+        <div id="editor">@ViewBag.code</div>
     </div>
 </div>
 @if (ViewBag.fileID != null)
@@ -73,6 +71,7 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/@Model.filetype");
+    editor.setOption("firstLineNumber", 1)
 
 
 
