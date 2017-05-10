@@ -8,8 +8,7 @@
 <h2>@ViewBag.ProjectName</h2>
 <div class="row" id="editorContainer">
 
-    <div class="col-md-2 col-sm-12">
-        <div class="col-md-12" id="filecolumn">
+    <div class="col-md-2 cols," id="filecolumn">
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
@@ -26,8 +25,7 @@
                 }
             </ul>
             @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
-        </div>
-        <div class="col-md-12" id="projectinfo">
+        <div class="col-md-12 col-sm-6" >
             <h5>Users linked to project</h5>
             <ul>
                 @foreach (string username in Model.Users)
@@ -37,7 +35,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-10 col-sm-12">
+    <div class="col-md-10">
         <div id="editor">
             @ViewBag.code
         </div>
@@ -56,7 +54,7 @@
     {
         @Html.HiddenFor(m => m.fileId)
         @Html.HiddenFor(m => m.projectId)
-        <input type="submit" name="delete" value="DELETE MOTHERFUCKER" class="btn btn-danger col-sm-6" />
+        <input type="submit" value="DELETE " class="btn btn-danger col-sm-6" />
     }
 }
 
@@ -107,13 +105,9 @@
         });
     });
 
-    $(document).ready(function(){
-        $("input[name='delete']").click(function() {
-            return confirm('Delete the selected file?');
-        });
-    });
-</script>
 
+
+</script>
 }
 
 
