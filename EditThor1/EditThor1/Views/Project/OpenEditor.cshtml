@@ -9,6 +9,7 @@
 <div class="row" id="editorContainer">
 
     <div class="col-md-2 cols," id="filecolumn">
+        @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project",  id = ViewBag.DocumentId }, new { @class = "btn custom-btn col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
@@ -24,10 +25,10 @@
 
                 }
             </ul>
-            @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
-        <div class="col-md-12 col-sm-6" >
-            <h5>Users linked to project</h5>
-            <ul>
+        <div class="col-md-12 col-sm-6" id="project-info" >
+            <h4>Project Info</h4>
+            <h5>Users:</h5>
+            <ul id="user-list">
                 @foreach (string username in Model.Users)
                 {
                     <li class="user">@username</li>

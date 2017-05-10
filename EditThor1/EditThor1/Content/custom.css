@@ -103,6 +103,7 @@ form
 {
     list-style-type: none;
     padding-left: 0px;
+    height: 360px;
 }
 
 a:focus
@@ -138,11 +139,32 @@ a:focus
 
 .active
 {
-    background-color:aqua;
+    border:solid 1px #00FFFF;
+    border-radius: 5px 20px 20px 5px;
+    padding-left: 20px;
 }
 
 .user
 {
     list-style-type: none;
     color: crimson;
+}
+
+.custom-btn
+{
+    border: dashed 2px #0363a8 !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#project-info
+{
+    padding-left: 0px;
+    border-top:dashed #0363a8;
+}
+
+#user-list
+{
+    list-style-type: none;
+    padding-left: 0px;
 }
