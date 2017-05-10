@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h2>New File</h2>
+        <h2>New file</h2>
         <h5>Enter a name for your file</h5>
         <hr />
         @Html.HiddenFor(model => model.projectID)
@@ -39,7 +39,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Project", "OpenEditor", new { controller = "Project",  id = Model.projectID, @class = "btn btn-default" })
+    @Html.ActionLink("Back to Projects", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {
