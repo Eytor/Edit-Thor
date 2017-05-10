@@ -12,15 +12,9 @@
                 <span class="caret" id="red"></span>
             </a>    
                 <ul class="dropdown-menu">
-                    <li>
-                        @Html.ActionLink("Change your password", "ChangePassword", "Manage")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Themes", "Themes", "Home");
-                    </li>
-                    <li>
-                        @Html.ActionLink("Help", "Help", "Home")
-                    </li>
+                    <li>@Html.ActionLink("Change your password", "ChangePassword", "Manage")</li>
+                    <li>@Html.ActionLink("Themes", "Themes", "Home")</li>
+                    <li>@Html.ActionLink("Help", "Help", "Home")</li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                 </ul>
         </div>
