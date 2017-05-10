@@ -86,6 +86,7 @@ namespace EditThor1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(FormCollection model)
         {
 

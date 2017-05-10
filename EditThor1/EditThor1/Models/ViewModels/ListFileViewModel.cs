@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace EditThor1.Models.ViewModels
 {
@@ -12,6 +13,7 @@ namespace EditThor1.Models.ViewModels
         public int projectId { get; set; }
         public int fileId { get; set; }
         public List<File> AllFiles { get; set; }
+        [AllowHtml]
         public string Content { get; set; }
         public List<string> Users { get; set; }
 
