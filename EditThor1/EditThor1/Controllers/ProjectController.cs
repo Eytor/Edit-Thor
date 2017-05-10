@@ -17,6 +17,7 @@ namespace EditThor1.Controllers
     {
         private ProjectService service = new ProjectService();
         private FileService fileService = new FileService();
+        private ThemeService themeService = new ThemeService();
         // GET: Project
 
         public ActionResult CreateProject()
@@ -61,6 +62,7 @@ namespace EditThor1.Controllers
             ViewBag.fileID = fileID;
             ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
             ListFileViewModel model = new ListFileViewModel();
+            ThemeViewModel themeModel = new ThemeViewModel();
             model.AllFiles = service.OpenProject(id);
             model.Users = service.UserListofSharedProject(Convert.ToInt32(id));
             if (fileID != null)
@@ -68,6 +70,7 @@ namespace EditThor1.Controllers
                 model.projectId = Convert.ToInt32(id);
                 model.fileId = Convert.ToInt32(fileID);
                 model.filetype = fileService.GetFileTypeName(Convert.ToInt32(fileID));
+                themeModel.themeName = themeService.CallTheme();
             }
             if(model.AllFiles.Count == 0)
             {

@@ -11,6 +11,7 @@ namespace EditThor1.Controllers
     public class HomeController : Controller
     {
         private ProjectService service = new ProjectService();
+        private ThemeService themeService = new ThemeService();
 
         public ActionResult Index(int? id)
         {
@@ -76,6 +77,33 @@ namespace EditThor1.Controllers
             }
             return View(service.OpenProject(id));
         }
+
+        [HttpGet]
+        public ActionResult Themes()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            ThemeViewModel model = new ThemeViewModel();
+            model.themeList = themeService.GetThemes();
+      
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Themes(ThemeViewModel model)
+        {
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            themeService.SetTheme(model.themeID);
+            return RedirectToAction("Index", "Home");
+           
+        }
+       
 
     }
 }

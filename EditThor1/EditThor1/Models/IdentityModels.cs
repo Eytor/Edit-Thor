@@ -13,6 +13,7 @@ namespace EditThor1.Models
     {
         public virtual List<Project> projects { get; set; }
         public virtual List<Theme> themes { get; set; }
+        public int themeId { get; set; }
        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
