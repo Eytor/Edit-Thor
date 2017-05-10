@@ -40,8 +40,7 @@ namespace EditThor1.Controllers
 
             if (service.checkSameName(names))
             {
-                //Virkar en exception virkar ekki
-                throw new HttpException(404, "Project allready exists");
+                throw new Exception("Project already exists");
             }
             service.AddProject(names);
 
@@ -57,7 +56,7 @@ namespace EditThor1.Controllers
             }
             if (!service.HasAccess(Convert.ToInt32(id)))
             {
-                throw new HttpException(404, "Project is Empty");
+                throw new Exception("Project is Empty");
             }
             ViewBag.fileID = fileID;
             ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
@@ -160,7 +159,12 @@ namespace EditThor1.Controllers
             model.ID = service.GetUserID(userName);
             if (service.UserHasAccess(model.ID, model.ProjectID))
             {
-                throw new HttpException(404, "User already has access to this project");
+                throw new Exception("User already has access to this project");
+            }
+            if (!service.IsRegisteredUser(userName))
+            {
+                throw new Exception("User isn't registered.");
+
             }
             service.ShareProject(model.ID, model.ProjectID);
             return RedirectToAction("Index", "Home");

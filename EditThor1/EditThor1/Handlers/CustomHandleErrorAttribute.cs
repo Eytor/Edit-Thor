@@ -23,17 +23,20 @@ namespace EditThor1.Handlers
             string currentController = (string)filterContext.RouteData.Values["controller"];
             string currentActionName = (string)filterContext.RouteData.Values["action"];
 
-            if (currentController != "Book" && currentController != "Movie")
+            if (ex is Exception)
             {
-                viewName = "Error";
-            }
-            else if (ex is CustomApplicationException)
-            {
-                viewName = "ErrorCustom";
-            }
-            else if (ex is ArgumentException)
-            {
-                viewName = "ErrorArgument";
+                if(currentController == "Project" && currentActionName == "ShareProject")
+                { 
+                    viewName = "ErrorShareProject";
+                }
+                if (currentController == "Project" && currentActionName == "CreateProject")
+                {
+                    viewName = "ErrorCreateProject";
+                }
+                else
+                {
+                    viewName = "Error";
+                }
             }
             HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception, currentController, currentActionName);
             ViewResult result = new ViewResult

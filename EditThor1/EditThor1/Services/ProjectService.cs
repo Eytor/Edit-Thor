@@ -241,5 +241,14 @@ namespace EditThor1.Services
             
             return userNames;
         }
+        public bool IsRegisteredUser(string name)
+        {
+            var userID = GetUserID(name);
+            if (userID == null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
