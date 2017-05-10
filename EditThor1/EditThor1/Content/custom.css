@@ -108,6 +108,7 @@ form
 a:focus
 {
     outline: none;
+    text-decoration:none;
 }
 
 .lines 
@@ -145,4 +146,9 @@ a:focus
 {
     list-style-type: none;
     color: crimson;
+}
+
+.highlight {
+    font-weight:bold;
+    text-decoration:underline;
 }

@@ -9,7 +9,7 @@
     <div class="col-md-2">
         @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-default left-column", id = "small"  })<br/>
         <ul id="remove-margin">
-            <li class="filter-list left-column">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+            <li class="filter-list left-column highlight">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
             <li class="filter-list left-column">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
             <li class="filter-list left-column">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
         </ul>
@@ -77,6 +77,12 @@
         });
         $("li[name='leave']").click(function () {
             return confirm('Are you sure you want to leave this project?');
+        });
+        var classHighlight = 'highlight';
+        var $bolded = $('.filter-list').click(function (e) {
+            e.preventDefault();
+            $bolded.removeClass(classHighlight);
+            $(this).addClass(classHighlight);
         });
     });
 </script>
