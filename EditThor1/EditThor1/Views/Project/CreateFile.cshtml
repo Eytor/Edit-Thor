@@ -41,7 +41,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Project", "OpenEditor", new { controller = "Project",  id = Model.projectID, @class = "btn btn-default" })
 </div>
 
 @section Scripts {

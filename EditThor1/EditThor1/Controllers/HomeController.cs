@@ -22,15 +22,18 @@ namespace EditThor1.Controllers
             ListProjectViewModel listAll = new ListProjectViewModel();
             if (id == null)
             {
+                ViewBag.Title = "All Projects";
                 listAll.AllProject = service.GetAllUserProjects();
 
             }
             else if(id == 1)
             {
+                ViewBag.Title = "My Projects";
                 listAll.AllProject = service.GetMyProjects();
             }
             else
             {
+                ViewBag.Title = "Shared with me";
                 listAll.AllProject = service.GetSharedProjects();
             }
             

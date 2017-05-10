@@ -1,9 +1,10 @@
 ﻿@model EditThor1.Models.ViewModels.ListProjectViewModel
 @using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Home Page";
+    //ViewBag.Title = "Home Page";
 }
 <div class="row" id="main-content">
+    <h2>@ViewBag.Title</h2>
     <div class="col-md-2">
         @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn custom-btn left-column", id = "small"  })<br/>
         <ul id="remove-margin">
@@ -34,7 +35,7 @@
                                 <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Invite", "ShareProject", new { Controller = "Project", id = item.ID })</li>
+                                <li>@Html.ActionLink("Share", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                                 <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                                 <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
                             </ul>
