@@ -33,7 +33,7 @@ namespace EditThor1.Services
                                 where i.ownerID == _userId
                                 select i.ID).SingleOrDefault();
             file.name = "Index.html";
-            file.type = "HTML";
+            file.typeID = 1;
             file.file = new byte[64];
             file.projectID = theProjectID;
             _db.Files.Add(file);

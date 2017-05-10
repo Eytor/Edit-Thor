@@ -59,7 +59,6 @@ form
 #red
 {
     border-top:4px solid #0363a8;
-
 }
 
 #editor
@@ -79,7 +78,6 @@ form
     font-size: 200%;
     font-weight: bold;
     border:dashed 2px #0363a8;
-    border:dotted 1px #0363a8;
 }
 
 #filecolumn
@@ -102,22 +100,26 @@ a:focus
     outline: none;
 }
 
-.lines {
+.lines 
+{
     border-top: 1px solid grey; 
     list-style: none;
-    padding-bottom; padding-top:10px;
+    padding-top:10px;
 }
 
-.filter-list {
+.filter-list 
+{
     list-style-type:none;
     margin-top:10px;
 }
 
-.left-column {
+.left-column 
+{
    margin-left:0px;
 }
 
-#small {
+#small 
+{
     border:solid grey 1px;
     padding:15px;
     margin-left:30px;

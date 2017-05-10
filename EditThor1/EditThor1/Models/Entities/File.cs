@@ -14,7 +14,7 @@ namespace EditThor1.Models.Entities
         public string name { get; set; }
 
         //the type of file ?
-        public string type { get; set; }
+        public int typeID { get; set; }
 
         //the actual file itself
         public byte[] file { get; set; }

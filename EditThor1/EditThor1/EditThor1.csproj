@@ -216,6 +216,7 @@
     <Compile Include="Hubs\CodeHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\File.cs" />
+    <Compile Include="Models\Entities\FileTypes.cs" />
     <Compile Include="Models\Entities\Project.cs" />
     <Compile Include="Models\Entities\Theme.cs" />
     <Compile Include="Models\Entities\UserProject.cs" />

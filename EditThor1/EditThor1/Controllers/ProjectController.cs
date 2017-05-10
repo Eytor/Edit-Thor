@@ -212,6 +212,7 @@ namespace EditThor1.Controllers
             }
             ViewBag.ProjectID = id;
             FileViewModel model = new FileViewModel();
+            model.type = fileService.GetAvailableTypes();
             model.projectID = Convert.ToInt32(id);
             return View(model);
         }
@@ -223,7 +224,7 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            fileService.CreateFile(model.projectID, model.name, model.type);
+            fileService.CreateFile(model.projectID, model.name, model.typeID);
             return RedirectToAction("OpenEditor", "Project", new { id = model.projectID });
         }
 
@@ -249,5 +250,7 @@ namespace EditThor1.Controllers
             service.LeaveProject(Convert.ToInt32(projectID));
             return RedirectToAction("Index", "Home");
         }
+
+
     }
 }

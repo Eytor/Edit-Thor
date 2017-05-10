@@ -35,6 +35,8 @@ namespace EditThor1.Models
 
         public IDbSet<UserProject> UserProjects { get; set; }
 
+        public IDbSet<FileTypes> FileTypes { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

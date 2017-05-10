@@ -5,6 +5,7 @@ using System.Web;
 using EditThor1.Models.Entities;
 using EditThor1.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
 
 namespace EditThor1.Services
 {
@@ -55,11 +56,11 @@ namespace EditThor1.Services
             }
         }
 
-        public void CreateFile(int projectID, string name, string type)
+        public void CreateFile(int projectID, string name, int type)
         {
             File file = new File();
-            file.name = name;
-            file.type = type;
+            file.name = name + GetFileEnding(type);
+            file.typeID = type;
             file.projectID = projectID;
             file.file = new byte[0];
             _db.Files.Add(file);
@@ -75,6 +76,26 @@ namespace EditThor1.Services
             }
         }
 
-        
+        public List<SelectListItem> GetAvailableTypes()
+        {
+            List<SelectListItem> categories = new List<SelectListItem>();
+
+            categories.Add(new SelectListItem() { Value = "", Text = " - Choose a File Type - " });
+
+            _db.FileTypes.ToList().ForEach((x) =>
+            {
+                categories.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.typeName });
+            });
+            
+            return categories;
+        }
+
+        public string GetFileEnding(int typeID)
+        {
+            string fileEnding = (from t in _db.FileTypes
+                                 where t.ID == typeID
+                                 select t.fileEnding).SingleOrDefault();
+            return fileEnding;
+        }
     }
 }

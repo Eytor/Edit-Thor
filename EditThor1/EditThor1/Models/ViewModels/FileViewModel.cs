@@ -1,7 +1,9 @@
-﻿using System;
+﻿using EditThor1.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace EditThor1.Models.ViewModels
 {
@@ -17,6 +19,8 @@ namespace EditThor1.Models.ViewModels
         public string name { get; set; }
 
         //the type of file ?
-        public string type { get; set; }
+        public List<SelectListItem> type { get; set; }
+
+        public int typeID { get; set; }
     }
 }
