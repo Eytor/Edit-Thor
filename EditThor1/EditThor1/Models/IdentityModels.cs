@@ -14,7 +14,11 @@ namespace EditThor1.Models
         public virtual List<Project> projects { get; set; }
         public virtual List<Theme> themes { get; set; }
         public int themeId { get; set; }
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> f7a9677fcd2bb0f5ccbeb6bfd606d9b9ebd366e4
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

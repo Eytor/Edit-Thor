@@ -89,6 +89,7 @@ namespace EditThor1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(FormCollection model)
         {
 
@@ -160,15 +161,15 @@ namespace EditThor1.Controllers
             }
             string userName = model.userName;
             model.ID = service.GetUserID(userName);
+            if (!service.IsRegisteredUser(userName))
+            {
+                throw new Exception("User isn't registered.");
+            }
             if (service.UserHasAccess(model.ID, model.ProjectID))
             {
                 throw new Exception("User already has access to this project");
             }
-            if (!service.IsRegisteredUser(userName))
-            {
-                throw new Exception("User isn't registered.");
 
-            }
             service.ShareProject(model.ID, model.ProjectID);
             return RedirectToAction("Index", "Home");
         }

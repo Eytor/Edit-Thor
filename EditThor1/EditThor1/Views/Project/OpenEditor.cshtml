@@ -5,10 +5,10 @@
 }
 
 
-<div class="row">
-    <h2>@ViewBag.ProjectName</h2>
-    <div class="col-md-3 col-sm-12" id="filecolumn">
-        <div class="col-md-12">
+<h2>@ViewBag.ProjectName</h2>
+<div class="row" id="editorContainer">
+
+    <div class="col-md-2 cols," id="filecolumn">
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
@@ -25,22 +25,21 @@
                 }
             </ul>
             @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
-        </div>
-        <div class="col-md-12" style="margin-top: 10px;">
+        <div class="col-md-12 col-sm-6" >
+            <h5>Users linked to project</h5>
             <ul>
-                <h5>Users linked to project</h5>
                 @foreach (string username in Model.Users)
                 {
                     <li class="user">@username</li>
                 }
             </ul>
-
         </div>
     </div>
-    <div id="editor" class="col-md-9 col-sm-12">
-        @ViewBag.code
+    <div class="col-md-10">
+        <div id="editor">
+            @ViewBag.code
+        </div>
     </div>
-
 </div>
 @if (ViewBag.fileID != null)
 {
@@ -55,7 +54,7 @@
     {
         @Html.HiddenFor(m => m.fileId)
         @Html.HiddenFor(m => m.projectId)
-        <input type="submit" value="DELETE MOTHERFUCKER" class="btn btn-danger col-sm-6" />
+        <input type="submit" value="DELETE " class="btn btn-danger col-sm-6" />
     }
 }
 

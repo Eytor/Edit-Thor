@@ -18,13 +18,13 @@ namespace EditThor1.Models.ViewModels
 
         //the name of the file
         [Required]
-        [Display(Name = "'File name")]
+        [Display(Name = "File name")]
         public string name { get; set; }
 
         //the type of file ?
         public List<SelectListItem> type { get; set; }
         [Required]
-        [Display(Name = "File Type")]
+        [Display(Name = "File type")]
         public int typeID { get; set; }
     }
 }
