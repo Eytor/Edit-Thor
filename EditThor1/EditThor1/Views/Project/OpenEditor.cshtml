@@ -12,7 +12,14 @@
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
-                    <li class="active">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                    if (Model.fileId == item.ID)
+                    {
+                        <li class="active">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                    }
                     //@Html.ActionLink("Edit Category 10", "Edit", "Categorys", new { area = "Admin", id = 10 }, null)
 
                 }
