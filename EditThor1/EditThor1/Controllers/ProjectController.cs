@@ -68,6 +68,7 @@ namespace EditThor1.Controllers
             {
                 model.projectId = Convert.ToInt32(id);
                 model.fileId = Convert.ToInt32(fileID);
+                model.filetype = fileService.GetFileTypeName(Convert.ToInt32(fileID));
             }
             if(model.AllFiles.Count == 0)
             {

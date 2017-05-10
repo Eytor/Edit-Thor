@@ -97,5 +97,13 @@ namespace EditThor1.Services
                                  select t.fileEnding).SingleOrDefault();
             return fileEnding;
         }
+
+        public string GetFileTypeName(int typeID)
+        {
+            string typename = (from t in _db.FileTypes
+                              where t.ID == typeID
+                              select t.typeName).SingleOrDefault();
+            return typename.ToLower();
+        }
     }
 }

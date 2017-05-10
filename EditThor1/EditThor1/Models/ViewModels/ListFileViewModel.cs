@@ -14,5 +14,7 @@ namespace EditThor1.Models.ViewModels
         public List<File> AllFiles { get; set; }
         public string Content { get; set; }
         public List<string> Users { get; set; }
+
+        public string filetype { get; set; }
     }
 }
