@@ -18,5 +18,7 @@ namespace EditThor1.Models.ViewModels
         public List<string> Users { get; set; }
 
         public string filetype { get; set; }
+
+        public string  theme { get; set; }
     }
 }

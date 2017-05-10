@@ -53,7 +53,7 @@ namespace EditThor1.Services
                                    where t.ID == userIdTheme
                                    select t.name).SingleOrDefault();
 
-            return currentTheme;
+            return currentTheme.ToLower();
         }
     }
 }
