@@ -24,13 +24,14 @@
 
                 }
             </ul>
-            @Html.ActionLink("+", "CreateFile", new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
+            @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project", @class = "btn custom-btn col-md-12", id = ViewBag.DocumentId })
         </div>
         <div class="col-md-12" style="margin-top: 10px;">
             <ul>
+                <h5>Users linked to project</h5>
                 @foreach (string username in Model.Users)
                 {
-                    <li>@username</li>
+                    <li class="user">@username</li>
                 }
             </ul>
 
