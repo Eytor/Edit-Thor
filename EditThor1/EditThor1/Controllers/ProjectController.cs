@@ -20,7 +20,7 @@ namespace EditThor1.Controllers
         private FileService fileService = new FileService();
         private ThemeService themeService = new ThemeService();
         // GET: Project
-        // returns create project site for logged in users
+        // Returns the Create project site for logged in users.
         public ActionResult CreateProject()
         {
             if (!User.Identity.IsAuthenticated)
@@ -31,7 +31,7 @@ namespace EditThor1.Controllers
             ProjectViewModel model = new ProjectViewModel();
             return View(model);
         }
-        // creates project from information gathered by user for logged in users
+        // Creates a project from information gathered by the user for logged in users.
         [HttpPost]
         public ActionResult CreateProject(ProjectViewModel model)
         {
@@ -39,7 +39,7 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            // checks if project with same name already exists created by same user
+            // Checks if a project with same name already exists for the same user.
             if (service.checkSameName(model.name))
             {
                 throw new Exception("Project already exists");
@@ -49,7 +49,7 @@ namespace EditThor1.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        // opens editor on specific project with a specific file open, if no file is specified it opens first file in project
+        // Opens the editor on a specific project with a specific file open. If no file is specified it opens the first file in the project.
         [HttpGet]
         [ValidateInput(false)]
         public ActionResult OpenEditor(int? id, string code, int? fileID)
@@ -58,7 +58,7 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            // checks if user has access to project
+            // Checks if the user has access to the project.
             if (!service.HasAccess(Convert.ToInt32(id)))
             {
                 //TODO: change to user doesn't have access
@@ -75,7 +75,7 @@ namespace EditThor1.Controllers
             }
             if (fileID == null)
             {
-                // redirects to get first file to display
+                // Redirects to get first file to display.
                 return RedirectToAction("DisplayFile", new {id = model.AllFiles.First().ID , projectID = id});
             }
 
@@ -89,7 +89,7 @@ namespace EditThor1.Controllers
             model.Users = service.UserListofSharedProject(Convert.ToInt32(id));
             return View(model);
         }
-        // saves file to database and redirects to open editor on same file
+        // Saves file to database and redirects to OpenEditor on the same file.
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Save(ListFileViewModel model)
@@ -107,7 +107,7 @@ namespace EditThor1.Controllers
             
             return RedirectToAction("OpenEditor", "Project", new { id = model.projectId, code = model.Content, fileID = model.fileId });
         }
-        // gets file from database and redirects to open editor with projectid, content(code) of file and file id
+        // Gets file from database and redirects to OpenEditor with the ProjectID, content(code) of file and file id.
         [HttpGet]
         public ActionResult DisplayFile(int? id, int? projectID)
         {
@@ -115,7 +115,7 @@ namespace EditThor1.Controllers
 
             return RedirectToAction("OpenEditor", "Project", new { id = projectID, code = ViewBag.code, fileID = id });
         }
-        // deletes project if user is owner of project
+        // Deletes the project if user is owner of project.
         [HttpGet]
         public ActionResult DeleteProject(int? id)
         {
