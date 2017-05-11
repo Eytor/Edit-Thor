@@ -173,7 +173,7 @@ namespace EditThor1.Controllers
             service.ShareProject(model.ID, model.ProjectID);
             return RedirectToAction("Index", "Home");
         }
-
+        // Downloads all files from project as (project name).zip
         [HttpGet]
         public FileResult Download(int id)
         {
@@ -211,7 +211,7 @@ namespace EditThor1.Controllers
                 return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = projectName };
             }
         }
-
+        // returns view for user to create file with name and file type
         [HttpGet]
         public ActionResult CreateFile(int? id)
         {
@@ -225,7 +225,7 @@ namespace EditThor1.Controllers
             model.type = fileService.GetAvailableTypes();
             return View(model);
         }
-
+        // takes input from user and creates file sends info to fileservice to be created
         [HttpPost]
         public ActionResult CreateFile(FileViewModel model)
         {
@@ -236,25 +236,25 @@ namespace EditThor1.Controllers
             fileService.CreateFile(model.projectID, model.name, model.typeID);
             return RedirectToAction("OpenEditor", "Project", new { id = model.projectID });
         }
-
+        // takes model carrying file id and sends to file service for deletion then redirects to open same project again
         [HttpPost]
-        public ActionResult DeleteFile(FormCollection model)
+        public ActionResult DeleteFile(ListFileViewModel model)
         {
+            fileService.DeleteFile(model.fileId);
 
-            ListFileViewModel data = new ListFileViewModel();
-            UpdateModel(data);
-
-            fileService.DeleteFile(data.fileId);
-
-            return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
+            return RedirectToAction("OpenEditor", "Project", new { id = model.projectId });
         }
-
+        // checks if user has access to project and if project exist then removes current user from project
         [HttpGet]
         public ActionResult LeaveProject(int? projectID)
         {
-            if(projectID == null)
+            if (projectID == null)
             {
                 //todo
+            }
+            if (!service.ProjectExists(Convert.ToInt32(projectID)))
+            {
+                // TODO: throw error
             }
             service.LeaveProject(Convert.ToInt32(projectID));
             return RedirectToAction("Index", "Home");
