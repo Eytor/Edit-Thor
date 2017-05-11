@@ -9,9 +9,30 @@
     <div class="col-md-2">
         @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-default left-column", id = "small"  })<br/>
         <ul id="remove-margin">
-            <li class="filter-list left-column">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
-            <li class="filter-list left-column">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
-            <li class="filter-list left-column">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+            @if (@ViewBag.Title == "All Projects")
+            {
+                <li class="filter-list left-column active">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+            }
+            else
+            {
+                <li class="filter-list left-column">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+            }
+            @if (@ViewBag.Title == "My Projects")
+            {
+                <li class="filter-list left-column active">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
+            }
+            else
+            {
+                <li class="filter-list left-column">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
+            }
+            @if (@ViewBag.Title == "Shared with me")
+            {
+                <li class="filter-list left-column active">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+            }
+            else
+            {
+                <li class="filter-list left-column">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+            }
         </ul>
     </div>
     <div class="col-md-10">
@@ -80,40 +101,5 @@
             return confirm('Are you sure you want to leave this project?');
         });
     });
-    function getUrlId() {
-        var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
-        function (m, key, value) {
-            vars[key] = value;
-        });
-        return vars;
-    }
-    var fId = getUrlVars()["id"];
-    
-/*
-    $(function () {
-        $('a.filter-list').click(function () {
-            $(function () {
-                $('.filter-list').click(function () {
-                    $('.filter-list').removeClass('highlight');
-                    $(this).addClass('highlight');
-                });
-            });/*
-            switch (fId) {
-                case "1":
-                    $('.filter-list').removeClass('highlight');
-                    $(this).addClass('highlight');
-                    break;
-                case "2":
-                    $('.filter-list').removeClass('highlight');
-                    $(this).addClass('highlight');
-                    break;
-                default:
-                    $('.filter-list').removeClass('highlight');
-                    $(this).addClass('highlight');
-            }
-            e.preventDefault();
-        });
-    });*/
 </script>
 }
