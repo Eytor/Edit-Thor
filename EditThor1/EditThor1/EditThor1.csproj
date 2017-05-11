@@ -248,6 +248,10 @@
     <Content Include="Images\logoWtext.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo1.png" />
+    <Content Include="Images\theme\chaos.png" />
+    <Content Include="Images\theme\monokai.png" />
+    <Content Include="Images\theme\sun_rise.png" />
+    <Content Include="Images\theme\twilight.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
