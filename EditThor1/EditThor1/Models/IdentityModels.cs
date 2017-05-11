@@ -26,7 +26,26 @@ namespace EditThor1.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public interface IAppDataContext
+    {
+        // Bæta við þegar User er settur inn.
+        // IDbSet<User> Users { get; set; }
+
+        IDbSet<Project> Projects { get; set; }
+
+        IDbSet<File> Files { get; set; }
+
+        IDbSet<Theme> Themes { get; set; }
+
+        IDbSet<UserProject> UserProjects { get; set; }
+
+        IDbSet<FileTypes> FileTypes { get; set; }
+
+        int SaveChanges();
+        ///System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity);
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext
     {
 
         public IDbSet<Project> Projects { get; set; }

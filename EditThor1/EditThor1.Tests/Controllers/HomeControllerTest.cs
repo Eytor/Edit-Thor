@@ -19,7 +19,7 @@ namespace EditThor1.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result = controller.Index(1) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -32,17 +32,10 @@ namespace EditThor1.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-<<<<<<< HEAD
-        //    ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-      //      Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-=======
             //ViewResult result = controller.About() as ViewResult;
 
             // Assert
             //Assert.AreEqual("Your application description page.", result.ViewBag.Message);
->>>>>>> 1e52eb7cd4d27a983149bc830e61b21fa8b8678c
         }
 
         [TestMethod]
