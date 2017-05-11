@@ -47,7 +47,7 @@
         @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
         @Html.HiddenFor(m => m.fileId)
         @Html.HiddenFor(m => m.projectId)
-        <input type="submit" value="SAVE MOTHERFUCKER" class="btn btn-success col-sm-6"  />
+        <input type="submit" value="SAVE (Ctrl+S)" class="btn btn-success col-sm-6" name="save" />
     }
     using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
     {
@@ -109,8 +109,15 @@
             codeHub.server.onChange(obj, documentID);
         });
     });
+    // til að leyfa Ctrl+S til að vista skrá
+    $(document).keydown(function(event) {
+        //19 for Mac Command+S
+        if (!( String.fromCharCode(event.which).toLowerCase() == 's' && event.ctrlKey) && !(event.which == 19)) return true;
+        event.preventDefault();
 
-
+        $('#form1').submit();
+        return false;
+    });
 
 </script>
 }
