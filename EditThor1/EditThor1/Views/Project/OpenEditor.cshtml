@@ -40,9 +40,10 @@
         <div id="editor">@ViewBag.code</div>
     </div>
 </div>
+<<<<<<< HEAD
 <div class="row">
     @if (ViewBag.fileID != null)
-    {
+    { 
         using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
         {
             @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
@@ -111,8 +112,15 @@
             codeHub.server.onChange(obj, documentID);
         });
     });
+    // til að leyfa Ctrl+S til að vista skrá
+    $(document).keydown(function(event) {
+        //19 for Mac Command+S
+        if (!( String.fromCharCode(event.which).toLowerCase() == 's' && event.ctrlKey) && !(event.which == 19)) return true;
+        event.preventDefault();
 
-
+        $('#form1').submit();
+        return false;
+    });
 
 </script>
 }
