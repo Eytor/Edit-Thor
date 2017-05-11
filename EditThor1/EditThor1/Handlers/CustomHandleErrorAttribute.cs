@@ -23,7 +23,21 @@ namespace EditThor1.Handlers
             string currentController = (string)filterContext.RouteData.Values["controller"];
             string currentActionName = (string)filterContext.RouteData.Values["action"];
 
-            if (ex is Exception)
+            if (ex is NotRegisteredException)
+            {
+                if (currentController == "Project" && currentActionName == "ShareProject")
+                {
+                    viewName = "ErrorNotRegistered";
+                }
+            }
+            if (ex is DeleteException)
+            {
+                if (currentController == "Project" && currentActionName == "DeleteProject")
+                {
+                    viewName = "ErrorDeleteProject";
+                }
+            }
+            else if (ex is Exception)
             {
                 if(currentController == "Project" && currentActionName == "ShareProject")
                 { 
@@ -38,6 +52,7 @@ namespace EditThor1.Handlers
                     viewName = "Error";
                 }
             }
+            
             HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception, currentController, currentActionName);
             ViewResult result = new ViewResult
             {

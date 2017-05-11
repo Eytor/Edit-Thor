@@ -1,0 +1,11 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div class="col-md-8">
+    <h1>Delete error</h1>
+    <h4>Project could not be deleted. Either you don't have access to it or it does not exist.</h4>
+    @Html.ActionLink("Back", "ShareProject", "Project", htmlAttributes: new { @class = "btn btn-default panicbutton" })
+</div>

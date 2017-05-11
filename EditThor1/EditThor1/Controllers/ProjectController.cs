@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Text;
 using EditThor1.Handlers;
+using EditThor1.Utilities;
 
 namespace EditThor1.Controllers
 {
@@ -131,10 +132,10 @@ namespace EditThor1.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 // þurfum ad gera aðeins betri villumeðhöndlun
-                return HttpNotFound();
+                throw new DeleteException();
             }
             // þurfum ad gera aðeins betri villumeðhöndlun
-            return HttpNotFound();
+            throw new DeleteException();
         }
         // returns share project window where you can add user to project by email
         [HttpGet]
@@ -159,7 +160,7 @@ namespace EditThor1.Controllers
             }
             if (!service.IsRegisteredUser(model.userName))
             {
-                throw new Exception("User isn't registered.");
+                throw new NotRegisteredException("User isn't registered.");
             }
 
             model.ID = service.GetUserID(model.userName);

@@ -235,6 +235,8 @@
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\DeleteException.cs" />
+    <Compile Include="Utilities\NotRegisteredException.cs" />
     <Compile Include="Utilities\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -311,6 +313,10 @@
     <Content Include="Views\Project\CreateFile.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Home\Themes.cshtml" />
+    <Content Include="Views\Shared\ErrorCreateProject.cshtml" />
+    <Content Include="Views\Shared\ErrorShareProject.cshtml" />
+    <Content Include="Views\Shared\ErrorNotRegistered.cshtml" />
+    <Content Include="Views\Shared\ErrorDeleteProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
