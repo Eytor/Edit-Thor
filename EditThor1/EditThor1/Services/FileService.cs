@@ -11,6 +11,16 @@ namespace EditThor1.Services
 {
     public class FileService
     {
+        private readonly IAppDataContext db;
+
+        public FileService(IAppDataContext dbContext)
+        {
+            db = dbContext ?? new ApplicationDbContext();
+        }
+
+        public FileService()
+        {
+        }
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
