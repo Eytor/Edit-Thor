@@ -115,10 +115,8 @@ namespace EditThor1.Services
 
         public List<File> GetAllFiles(int id)
         {
-            string userId = HttpContext.Current.User.Identity.GetUserId();
-            Project projectId = GetProjectById(id);
             List<File> result = (from i in _db.Files
-                                 where i.ID == id
+                                 where i.projectID == id
                                  select i).ToList();
             return result;
         }
