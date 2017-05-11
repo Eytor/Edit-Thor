@@ -12,54 +12,51 @@ namespace EditThor1.Controllers
     {
         private ProjectService service = new ProjectService();
         private ThemeService themeService = new ThemeService();
-
+        
+        // returns main site where all projects are displayed takes if wich is an identifyer for what projects to display
         public ActionResult Index(int? id)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
-
             ListProjectViewModel listAll = new ListProjectViewModel();
+            //if there is no id it will displat all projects related to user
             if (id == null)
             {
                 ViewBag.Title = "All Projects";
                 listAll.AllProject = service.GetAllUserProjects();
-
             }
+            //if id is 1 it will only display projects that current user created
             else if(id == 1)
             {
                 ViewBag.Title = "My Projects";
                 listAll.AllProject = service.GetMyProjects();
             }
+            // otherwise it will display projects that have been shared with current user
             else
             {
                 ViewBag.Title = "Shared with me";
                 listAll.AllProject = service.GetSharedProjects();
             }
             
-            
-
             return View(listAll);
         }
 
         public ActionResult Help()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Project()
+        
+        /*public ActionResult Project()
         {
             //makar þetta eitthvað sens? nei, hvad atti thetta ad gera?
             return RedirectToAction("CreateProject" , "Project");
-        }
+        }*/
 
         [HttpGet]
         public ActionResult OpenEditor(int? id)

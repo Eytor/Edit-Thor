@@ -1,10 +1,8 @@
 ﻿@model EditThor1.Models.ViewModels.ThemeViewModel
 
 @{
-    ViewBag.Title = "Themes";
+    ViewBag.Title = "Editor Themes";
 }
-
-<h2>Themes</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,30 +10,49 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ThemeViewModel</h4>
+        <h2 style="margin-left:17%">Editor Themes</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
-
+        <div>
+            <div class="col-md-3">
+                <p>Chaos</p>
+                <img src="~/Images/theme/chaos.png" class="img-rounded" alt="chaos-theme" width="200" height="150" />
+            </div>
+            
+            <div class="col-md-3">
+                <p>Monokai</p>
+                <img src="~/Images/theme/monokai.png" class="img-rounded" alt="Monokai-theme" width="200" height="150" />
+            </div>
+            <div class="col-md-3">
+                <p>Twilight</p>
+                <img src="~/Images/theme/twilight.png" class="img-rounded" alt="Twilight-theme" width="200" height="150" />
+            </div>
+            <div class="col-md-3">
+                <p>Solarized</p>
+                <img src="~/Images/theme/sun_rise.png" class="img-rounded" alt="Solarized_light-theme" width="200" height="150" />
+            </div>
+        </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.themeID, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            @Html.LabelFor(model => model.themeID, htmlAttributes: new { @class = "control-label col-md-4", @style="margin-top:50px" })
+            <div class="col-md-8" style="margin-top:50px">
                 @Html.DropDownListFor(model => model.themeID, Model.themeList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.themeID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-4 col-md-4">
+                @Html.ActionLink("Back", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Choose" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

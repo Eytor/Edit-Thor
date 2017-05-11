@@ -9,9 +9,30 @@
     <div class="col-md-2">
         @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-default left-column", id = "small"  })<br/>
         <ul id="remove-margin">
-            <li class="filter-list left-column highlight">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
-            <li class="filter-list left-column">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
-            <li class="filter-list left-column">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+            @if (@ViewBag.Title == "All Projects")
+            {
+                <li class="filter-list left-column active">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+            }
+            else
+            {
+                <li class="filter-list left-column">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+            }
+            @if (@ViewBag.Title == "My Projects")
+            {
+                <li class="filter-list left-column active">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
+            }
+            else
+            {
+                <li class="filter-list left-column">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
+            }
+            @if (@ViewBag.Title == "Shared with me")
+            {
+                <li class="filter-list left-column active">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+            }
+            else
+            {
+                <li class="filter-list left-column">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+            }
         </ul>
     </div>
     <div class="col-md-10">
@@ -20,6 +41,7 @@
             <div class="col-md-10">
                 <div class="col-md-5" style="text-align:left;"><h4>Project Name</h4></div>
                 <div class="col-md-5" style="text-align:left;"><h4>Owner</h4></div>
+                
             </div>
 
             @foreach (var item in Model.AllProject)
@@ -39,6 +61,7 @@
                                 <li>@Html.ActionLink("Share", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                                 <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
                                 <li name="delete">@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
+                            </ul>
                         </div>
                     </div>
                 }
@@ -76,12 +99,6 @@
         });
         $("li[name='leave']").click(function () {
             return confirm('Are you sure you want to leave this project?');
-        });
-        var classHighlight = 'highlight';
-        var $bolded = $('.filter-list').click(function (e) {
-            e.preventDefault();
-            $bolded.removeClass(classHighlight);
-            $(this).addClass(classHighlight);
         });
     });
 </script>
