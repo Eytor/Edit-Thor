@@ -8,7 +8,7 @@
 <h2>@ViewBag.ProjectName</h2>
 <div class="row" id="editorContainer">
 
-    <div class="col-md-2 cols," id="filecolumn">
+    <div class="col-md-2 col-sm-12" id="filecolumn">
         @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project",  id = ViewBag.DocumentId }, new { @class = "btn custom-btn col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
@@ -40,22 +40,24 @@
         <div id="editor">@ViewBag.code</div>
     </div>
 </div>
-@if (ViewBag.fileID != null)
-{
-    using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
+<div class="row">
+    @if (ViewBag.fileID != null)
     {
-        @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
-        @Html.HiddenFor(m => m.fileId)
-        @Html.HiddenFor(m => m.projectId)
-        <input type="submit" value="SAVE MOTHERFUCKER" class="btn btn-success col-sm-6"  />
+        using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
+        {
+            @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
+            @Html.HiddenFor(m => m.fileId)
+            @Html.HiddenFor(m => m.projectId)
+            <input type="submit" value="SAVE MOTHERFUCKER" class="btn btn-success col-sm-6" />
+        }
+        using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
+        {
+            @Html.HiddenFor(m => m.fileId)
+            @Html.HiddenFor(m => m.projectId)
+            <input type="submit" value="DELETE " class="btn btn-danger col-sm-6" name="delete" />
+        }
     }
-    using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
-    {
-        @Html.HiddenFor(m => m.fileId)
-        @Html.HiddenFor(m => m.projectId)
-        <input type="submit" value="DELETE " class="btn btn-danger col-sm-6" name="delete" />
-    }
-}
+</div>
 
 
 @section scripts
