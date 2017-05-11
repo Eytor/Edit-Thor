@@ -235,6 +235,7 @@
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\LeaveProjectException.cs" />
     <Compile Include="Utilities\DeleteException.cs" />
     <Compile Include="Utilities\NotRegisteredException.cs" />
     <Compile Include="Utilities\Logger.cs" />
@@ -273,6 +274,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\ErrorLeaveProject.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

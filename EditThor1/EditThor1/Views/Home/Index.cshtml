@@ -39,9 +39,8 @@
        <!-- <a class="btn custom-btn col-md-12" href="#"><span class="glyphicon glyphicon-plus"></span></a>-->
         <div class="row">
             <div class="col-md-10">
-                <div class="col-md-5" style="text-align:left;"><h4>Project Name</h4></div>
+                <div class="col-md-offset-1 col-md-4" style="text-align:left;"><h4>Project Name</h4></div>
                 <div class="col-md-5" style="text-align:left;"><h4>Owner</h4></div>
-                
             </div>
 
             @foreach (var item in Model.AllProject)
@@ -50,8 +49,9 @@
                 {
                     <div class="lines">
                         <a class="btn col-md-10" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
-                            <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                            <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                            <div class="col-md-1"><span class="glyphicon glyphicon-folder-close"></span></div>
+                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
+                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
                         </a>
                         <div class="col-md-2 dropdown navbar-right project-list">
                             <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -63,25 +63,26 @@
                                 <li name="delete">@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
                             </ul>
                         </div>
-                    </div>
+</div>
                 }
                 else
                 {
-                        <div class="lines">
-                            <a class="btn col-md-10" style="outline:none;" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
-                                <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                                <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                    <div class="lines">
+                        <a class="btn col-md-10" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
+                            <div class="col-md-1"><span class="glyphicon glyphicon-folder-close"></span></div>
+                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
+                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                        </a>
+                        <div class="col-md-2 dropdown navbar-right">
+                            <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
                             </a>
-                            <div class="col-md-2 dropdown navbar-right">
-                                <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
-                                    <li name="leave">@Html.ActionLink("Leave Project", "LeaveProject", new { Controller = "Project", projectID = item.ID })</li>
-                                </ul>
-                            </div>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
+                                <li name="leave">@Html.ActionLink("Leave Project", "LeaveProject", new { Controller = "Project", projectID = item.ID })</li>
+                            </ul>
                         </div>
+                    </div>
                 }
             }
         </div>

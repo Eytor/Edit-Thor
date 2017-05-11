@@ -23,6 +23,13 @@ namespace EditThor1.Handlers
             string currentController = (string)filterContext.RouteData.Values["controller"];
             string currentActionName = (string)filterContext.RouteData.Values["action"];
 
+            if (ex is LeaveProjectException)
+            {
+                if (currentController == "Project" && currentActionName == "LeaveProject")
+                {
+                    viewName = "ErrorLeaveProject";
+                }
+            }
             if (ex is NotRegisteredException)
             {
                 if (currentController == "Project" && currentActionName == "ShareProject")

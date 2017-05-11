@@ -67,7 +67,7 @@ namespace EditThor1.Controllers
             ListFileViewModel model = new ListFileViewModel();
             ThemeViewModel themeModel = new ThemeViewModel();
 
-            model.AllFiles = service.OpenProject(id);
+            model.AllFiles = service.GetAllFiles(Convert.ToInt32(id));
 
             if(model.AllFiles.Count == 0)
             {
@@ -250,11 +250,11 @@ namespace EditThor1.Controllers
         {
             if (projectID == null)
             {
-                //todo
+                throw new LeaveProjectException();
             }
             if (!service.ProjectExists(Convert.ToInt32(projectID)))
             {
-                // TODO: throw error
+                throw new LeaveProjectException();
             }
             service.LeaveProject(Convert.ToInt32(projectID));
             return RedirectToAction("Index", "Home");
