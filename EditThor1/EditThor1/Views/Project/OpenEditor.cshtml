@@ -9,7 +9,7 @@
 <div class="row" id="editorContainer">
 
     <div class="col-md-2 col-sm-12" id="filecolumn">
-        @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project",  id = ViewBag.DocumentId }, new { @class = "btn custom-btn col-md-12" })
+        @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project",  id = Model.projectId }, new { @class = "btn custom-btn col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
@@ -37,11 +37,11 @@
         </div>
     </div>
     <div class="col-md-10">
-        <div id="editor">@ViewBag.code</div>
+        <div id="editor">@Model.Content</div>
     </div>
 </div>
 <div class="row">
-    @if (ViewBag.fileID != null)
+    @if (Model.fileId != 0)
     { 
         using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
         {
@@ -74,7 +74,7 @@
         });
     });
 
-    var documentID = @ViewBag.DocumentID;
+    var documentID = @Model.projectId;
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/@Model.theme");
     editor.renderer.theme.green;

@@ -19,7 +19,7 @@ namespace EditThor1.Controllers
         private FileService fileService = new FileService();
         private ThemeService themeService = new ThemeService();
         // GET: Project
-
+        // returns create project site for logged in users
         public ActionResult CreateProject()
         {
             if (!User.Identity.IsAuthenticated)
@@ -30,24 +30,25 @@ namespace EditThor1.Controllers
             ProjectViewModel model = new ProjectViewModel();
             return View(model);
         }
-
+        // creates project from information gathered by user for logged in users
         [HttpPost]
-        public ActionResult CreateProject(FormCollection formData)
+        public ActionResult CreateProject(ProjectViewModel model)
         {
-            ProjectViewModel model = new ProjectViewModel();
-            UpdateModel(model);
-
-            var names = model.name;
-
-            if (service.checkSameName(names))
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            // checks if project with same name already exists created by same user
+            if (service.checkSameName(model.name))
             {
                 throw new Exception("Project already exists");
             }
-            service.AddProject(names);
+
+            service.AddProject(model.name);
 
             return RedirectToAction("Index", "Home");
         }
-
+        // opens editor on specific project with a specific file open, if no file is specified it opens first file in project
         [HttpGet]
         [ValidateInput(false)]
         public ActionResult OpenEditor(int? id, string code, int? fileID)
@@ -56,59 +57,56 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            // checks if user has access to project
             if (!service.HasAccess(Convert.ToInt32(id)))
             {
+                //TODO: change to user doesn't have access
                 throw new Exception("Project is Empty");
             }
-            ViewBag.fileID = fileID;
-            ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
             ListFileViewModel model = new ListFileViewModel();
             ThemeViewModel themeModel = new ThemeViewModel();
+
             model.AllFiles = service.OpenProject(id);
-            model.Users = service.UserListofSharedProject(Convert.ToInt32(id));
-            if (fileID != null)
-            {
-                model.projectId = Convert.ToInt32(id);
-                model.fileId = Convert.ToInt32(fileID);
-                model.filetype = fileService.GetFileTypeName(Convert.ToInt32(fileID));
-                model.theme = themeService.CallTheme();
-            }
+
             if(model.AllFiles.Count == 0)
             {
-                model.projectId = Convert.ToInt32(id);
-                return RedirectToAction("CreateFile", new { id = model.projectId });
+                return RedirectToAction("CreateFile", new { id = id });
             }
-            ViewBag.code = code;
-            ViewBag.DocumentId = id;
-
             if (fileID == null)
             {
+                // redirects to get first file to display
                 return RedirectToAction("DisplayFile", new {id = model.AllFiles.First().ID , projectID = id});
             }
 
+            ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
+            model.projectId = Convert.ToInt32(id);
+            model.Content = code;
+            model.projectId = Convert.ToInt32(id);
+            model.fileId = Convert.ToInt32(fileID);
+            model.filetype = fileService.GetFileTypeName(Convert.ToInt32(fileID));
+            model.theme = themeService.CallTheme();
+            model.Users = service.UserListofSharedProject(Convert.ToInt32(id));
             return View(model);
         }
-
+        // saves file to database and redirects to open editor on same file
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Save(FormCollection model)
+        public ActionResult Save(ListFileViewModel model)
         {
-            ListFileViewModel data = new ListFileViewModel();
-            UpdateModel(data);
-            if (data.Content != null)
+            if (model.Content != null)
             {
-                byte[] array = Encoding.ASCII.GetBytes(data.Content);
-                fileService.SaveFile(array, data.fileId);
+                byte[] array = Encoding.ASCII.GetBytes(model.Content);
+                fileService.SaveFile(array, model.fileId);
             }
             else
             {
                 byte[] array = new byte[0];
-                fileService.SaveFile(array, data.fileId);
+                fileService.SaveFile(array, model.fileId);
             }
             
-            return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
+            return RedirectToAction("OpenEditor", "Project", new { id = model.projectId, code = model.Content, fileID = model.fileId });
         }
-
+        // gets file from database and redirects to open editor with projectid, content(code) of file and file id
         [HttpGet]
         public ActionResult DisplayFile(int? id, int? projectID)
         {
@@ -116,7 +114,7 @@ namespace EditThor1.Controllers
 
             return RedirectToAction("OpenEditor", "Project", new { id = projectID, code = ViewBag.code, fileID = id });
         }
-
+        // deletes project if user is owner of project
         [HttpGet]
         public ActionResult DeleteProject(int? id)
         {
@@ -132,11 +130,13 @@ namespace EditThor1.Controllers
                     service.DeleteProject(id);
                     return RedirectToAction("Index", "Home");
                 }
+                // þurfum ad gera aðeins betri villumeðhöndlun
                 return HttpNotFound();
             }
+            // þurfum ad gera aðeins betri villumeðhöndlun
             return HttpNotFound();
         }
-
+        // returns share project window where you can add user to project by email
         [HttpGet]
         public ActionResult ShareProject(int? id)
         {
@@ -144,13 +144,12 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-
-            ViewBag.ProjectID = id;
+            
             UserViewModel model = new UserViewModel();
             model.ProjectID = Convert.ToInt32(id);
             return View(model);
         }
-
+        // takes in view model with project id and email of other user, checks if he exists then gets his id and sends to function in product
         [HttpPost]
         public ActionResult ShareProject(UserViewModel model)
         {
@@ -158,12 +157,13 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            string userName = model.userName;
-            model.ID = service.GetUserID(userName);
-            if (!service.IsRegisteredUser(userName))
+            if (!service.IsRegisteredUser(model.userName))
             {
                 throw new Exception("User isn't registered.");
             }
+
+            model.ID = service.GetUserID(model.userName);
+
             if (service.UserHasAccess(model.ID, model.ProjectID))
             {
                 throw new Exception("User already has access to this project");
