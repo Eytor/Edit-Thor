@@ -93,21 +93,19 @@ namespace EditThor1.Controllers
         [ValidateInput(false)]
         public ActionResult Save(FormCollection model)
         {
-
             ListFileViewModel data = new ListFileViewModel();
             UpdateModel(data);
-
-
-
-            if (data.Content == null)
+            if (data.Content != null)
             {
-                //todo error ?
+                byte[] array = Encoding.ASCII.GetBytes(data.Content);
+                fileService.SaveFile(array, data.fileId);
             }
-
-
-            byte[] array = Encoding.ASCII.GetBytes(data.Content);
-            fileService.SaveFile(array, data.fileId );
-
+            else
+            {
+                byte[] array = new byte[0];
+                fileService.SaveFile(array, data.fileId);
+            }
+            
             return RedirectToAction("OpenEditor", "Project", new { id = data.projectId });
         }
 
