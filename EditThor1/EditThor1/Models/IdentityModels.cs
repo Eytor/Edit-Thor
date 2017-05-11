@@ -28,9 +28,6 @@ namespace EditThor1.Models
 
     public interface IAppDataContext
     {
-        // Bæta við þegar User er settur inn.
-        // IDbSet<User> Users { get; set; }
-
         IDbSet<Project> Projects { get; set; }
 
         IDbSet<File> Files { get; set; }
@@ -42,7 +39,7 @@ namespace EditThor1.Models
         IDbSet<FileTypes> FileTypes { get; set; }
 
         int SaveChanges();
-        ///System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity);
+        //System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity);
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext
