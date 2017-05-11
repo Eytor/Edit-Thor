@@ -17,6 +17,10 @@ namespace EditThor1.Tests
         public MockDataContext()
         {
             Projects = new InMemoryDbSet<Project>();
+            Files = new InMemoryDbSet<File>();
+            Themes = new InMemoryDbSet<Theme>();
+            UserProjects = new InMemoryDbSet<UserProject>();
+            FileTypes = new InMemoryDbSet<FileTypes>();
         }
         public IDbSet<Project> Projects { get; set; }
 

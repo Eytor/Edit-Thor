@@ -21,6 +21,8 @@ namespace EditThor1.Services
 
         public ThemeService()
         {
+            _db = new ApplicationDbContext();
+
         }
 
         private string _userId = HttpContext.Current.User.Identity.GetUserId();

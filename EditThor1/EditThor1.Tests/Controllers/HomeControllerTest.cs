@@ -12,6 +12,6 @@ namespace EditThor1.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        
+
     }
 }
