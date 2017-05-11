@@ -96,9 +96,9 @@
     <Compile Include="MockDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Services\UnitTest1.cs" />
-    <Compile Include="Services\UnitTest2.cs" />
-    <Compile Include="Services\UnitTest3.cs" />
+    <Compile Include="Services\ProjectServiceTest.cs" />
+    <Compile Include="Services\FileServiceTest.cs" />
+    <Compile Include="Services\ThemeServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

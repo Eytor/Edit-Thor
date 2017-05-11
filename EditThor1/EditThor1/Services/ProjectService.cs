@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Web.Security;
+
 namespace EditThor1.Services
 {
     public class ProjectService
@@ -14,11 +15,13 @@ namespace EditThor1.Services
 
         public ProjectService(IAppDataContext dbContext)
         {
-            db = dbContext ?? new ApplicationDbContext();
+           db = dbContext ?? new ApplicationDbContext();
         }
 
         public ProjectService()
         {
+            _db = new ApplicationDbContext();
+
         }
 
         private ApplicationDbContext _db = new ApplicationDbContext();

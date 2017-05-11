@@ -20,6 +20,8 @@ namespace EditThor1.Services
 
         public FileService()
         {
+            _db = new ApplicationDbContext();
+
         }
 
         private ApplicationDbContext _db = new ApplicationDbContext();
