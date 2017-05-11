@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div class="col-md-8">
+    <h1>User isn't registered</h1>
+    <h4>Select another user, or ask this user to sign up with EditThor!</h4>
+    @Html.ActionLink("Back", "ShareProject", "Project", htmlAttributes: new { @class = "btn btn-default panicbutton" })
+</div>
+
+
+
