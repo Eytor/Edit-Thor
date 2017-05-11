@@ -13,7 +13,7 @@ namespace EditThor1.Controllers
         private ProjectService service = new ProjectService();
         private ThemeService themeService = new ThemeService();
         
-        // returns main site where all projects are displayed takes if wich is an identifyer for what projects to display for logged in users
+        // Returns the main site where all projects are displayed. Checks the user identity to know which projects to display for logged in users.
         public ActionResult Index(int? id)
         {
             if (!User.Identity.IsAuthenticated)
@@ -21,19 +21,19 @@ namespace EditThor1.Controllers
                 return RedirectToAction("Login", "Account");
             }
             ListProjectViewModel listAll = new ListProjectViewModel();
-            //if there is no id it will displat all projects related to user
+            // If there is no id it will display all projects related to user.
             if (id == null)
             {
                 ViewBag.Title = "All Projects";
                 listAll.AllProject = service.GetAllUserProjects();
             }
-            //if id is 1 it will only display projects that current user created
+            // If id is 1 it will only display projects that current user created.
             else if(id == 1)
             {
                 ViewBag.Title = "My Projects";
                 listAll.AllProject = service.GetMyProjects();
             }
-            // otherwise it will display projects that have been shared with current user
+            // Otherwise it will display projects that have been shared with the current user.
             else
             {
                 ViewBag.Title = "Shared with me";
@@ -42,7 +42,7 @@ namespace EditThor1.Controllers
             
             return View(listAll);
         }
-        // returns help site for logged in users
+        // Returns the Help site for logged in users.
         public ActionResult Help()
         {
             if (!User.Identity.IsAuthenticated)
@@ -52,7 +52,7 @@ namespace EditThor1.Controllers
             return View();
         }
         
-        // returns site where users can select themes for ace editior for logged in users
+        // Returns the site where users can select different themes for the Ace editor for logged in users.
         [HttpGet]
         public ActionResult Themes()
         {
@@ -66,7 +66,7 @@ namespace EditThor1.Controllers
       
             return View(model);
         }
-        // calls function in theme service where it sets theme as the one you just picked for logged in users
+        // Calls a function in the Theme service where it sets the selected theme for logged in users.
         [HttpPost]
         public ActionResult Themes(ThemeViewModel model)
         {

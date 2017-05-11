@@ -15,20 +15,20 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
         <div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6">
                 <p>Chaos</p>
                 <img src="~/Images/theme/chaos.png" class="img-rounded" alt="chaos-theme" width="200" height="150" />
             </div>
             
-            <div class="col-md-3">
+            <div class="col-md-3  col-sm-6">
                 <p>Monokai</p>
                 <img src="~/Images/theme/monokai.png" class="img-rounded" alt="Monokai-theme" width="200" height="150" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6">
                 <p>Twilight</p>
                 <img src="~/Images/theme/twilight.png" class="img-rounded" alt="Twilight-theme" width="200" height="150" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6">
                 <p>Solarized</p>
                 <img src="~/Images/theme/sun_rise.png" class="img-rounded" alt="Solarized_light-theme" width="200" height="150" />
             </div>
@@ -42,10 +42,10 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-4 col-md-4">
+            <div class="col-md-offset-4 col-md-4 col-sm-6 col-xs-4">
                 @Html.ActionLink("Back", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
             </div>
-            <div class="col-md-4" style="padding-left:42px">
+            <div class="col-md-offset-2 col-md-2 col-sm-4 col-sm-pull-2 col-xs-3 col-xs-pull-5" style="padding-left:42px">
                 <input type="submit" value="Choose" class="btn btn-primary" />
             </div>
         </div>
