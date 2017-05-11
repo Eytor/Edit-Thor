@@ -1,8 +1,10 @@
 ﻿body {
     padding-bottom: 20px;
-    color:#0363a8;
-    font-family:"Montserrat",Helvetica,sans-serif
+    color:#0363a8 !important;
+    font-family:"Montserrat",Helvetica,sans-serif;
+    background-color: #C0C0C0 !important;
 }
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
