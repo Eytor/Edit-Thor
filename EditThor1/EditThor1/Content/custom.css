@@ -109,6 +109,7 @@ form
 a:focus
 {
     outline: none;
+    text-decoration:none;
 }
 
 .lines 
@@ -163,8 +164,13 @@ a:focus
     border-top:dashed #0363a8;
 }
 
-#user-list
+#user-list 
 {
     list-style-type: none;
     padding-left: 0px;
+}
+
+.highlight {
+    font-weight:bold;
+    text-decoration:underline;
 }
