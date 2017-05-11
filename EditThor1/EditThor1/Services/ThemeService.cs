@@ -12,6 +12,17 @@ namespace EditThor1.Services
 {
     public class ThemeService
     {
+        private readonly IAppDataContext db;
+
+        public ThemeService(IAppDataContext dbContext)
+        {
+            db = dbContext ?? new ApplicationDbContext();
+        }
+
+        public ThemeService()
+        {
+        }
+
         private string _userId = HttpContext.Current.User.Identity.GetUserId();
         private ApplicationDbContext _db = new ApplicationDbContext();
 

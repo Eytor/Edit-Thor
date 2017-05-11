@@ -10,10 +10,21 @@ namespace EditThor1.Services
 {
     public class ProjectService
     {
-        private List<Project> _projects = new List<Project>();
-        
+        private readonly IAppDataContext db;
+
+        public ProjectService(IAppDataContext dbContext)
+        {
+            db = dbContext ?? new ApplicationDbContext();
+        }
+
+        public ProjectService()
+        {
+        }
+
         private ApplicationDbContext _db = new ApplicationDbContext();
 
+        private List<Project> _projects = new List<Project>();
+       
         private string _userId = HttpContext.Current.User.Identity.GetUserId();
 
         public void AddProject(string name)
@@ -104,10 +115,8 @@ namespace EditThor1.Services
 
         public List<File> GetAllFiles(int id)
         {
-            string userId = HttpContext.Current.User.Identity.GetUserId();
-            Project projectId = GetProjectById(id);
             List<File> result = (from i in _db.Files
-                                 where i.ID == id
+                                 where i.projectID == id
                                  select i).ToList();
             return result;
         }
