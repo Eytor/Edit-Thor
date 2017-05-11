@@ -13,7 +13,7 @@ namespace EditThor1.Controllers
         private ProjectService service = new ProjectService();
         private ThemeService themeService = new ThemeService();
         
-        // returns main site where all projects are displayed takes if wich is an identifyer for what projects to display
+        // returns main site where all projects are displayed takes if wich is an identifyer for what projects to display for logged in users
         public ActionResult Index(int? id)
         {
             if (!User.Identity.IsAuthenticated)
@@ -42,7 +42,7 @@ namespace EditThor1.Controllers
             
             return View(listAll);
         }
-
+        // returns help site for logged in users
         public ActionResult Help()
         {
             if (!User.Identity.IsAuthenticated)
@@ -52,29 +52,7 @@ namespace EditThor1.Controllers
             return View();
         }
         
-        /*public ActionResult Project()
-        {
-            //makar þetta eitthvað sens? nei, hvad atti thetta ad gera?
-            return RedirectToAction("CreateProject" , "Project");
-        }*/
-
-        [HttpGet]
-        public ActionResult OpenEditor(int? id)
-        {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            FileViewModel model = new FileViewModel();
-
-            if (id == null)
-            {
-                throw new HttpException(404, "Project is Empty");
-            }
-            return View(service.OpenProject(id));
-        }
-
+        // returns site where users can select themes for ace editior for logged in users
         [HttpGet]
         public ActionResult Themes()
         {
@@ -88,6 +66,7 @@ namespace EditThor1.Controllers
       
             return View(model);
         }
+        // calls function in theme service where it sets theme as the one you just picked for logged in users
         [HttpPost]
         public ActionResult Themes(ThemeViewModel model)
         {
