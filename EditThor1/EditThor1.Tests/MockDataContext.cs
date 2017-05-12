@@ -31,10 +31,10 @@ namespace EditThor1.Tests
         public MockDataContext()
         {
             this.Users = new InMemoryDbSet<ApplicationUser>();
-            Projects = new InMemoryDbSet<Project>();
+            this.Projects = new InMemoryDbSet<Project>();
             this.Files = new InMemoryDbSet<File>();
             this.Themes = new InMemoryDbSet<Theme>();
-            UserProjects = new InMemoryDbSet<UserProject>();
+            this.UserProjects = new InMemoryDbSet<UserProject>();
             this.FileTypes = new InMemoryDbSet<FileTypes>();
         }
         public IDbSet<Project> Projects { get; set; }
