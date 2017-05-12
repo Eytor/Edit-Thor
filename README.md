@@ -6,7 +6,7 @@ EditThor is a web editor for coding in real time along with other users. Coders 
 The web site logo. A lightning strikes an open book, indicating speed and strength. Font: Fabian.
 <img src="https://github.com/Eytor/Edit-Thor/blob/master/editthorlogo.PNG" alt="Logo" width="350">
 
-# Features
+## Features
 *  All following features apply to logged in users. Users who are not logged in are directed to the Login page. 
   * Users create their account providing their email and a password. They can change their password if they want and get a new one if they forget theirs.
   * Users can create new projects. A .html file opens automatically when the project is opened.
