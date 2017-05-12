@@ -29,7 +29,7 @@ namespace EditThor1.Services
         private ApplicationDbContext _db = new ApplicationDbContext();
 
 
-        // Function creates a list of all themes and returns if for dropdown list.
+        // Function creates a list of all themes and returns it for a dropdown list.
         public List<SelectListItem> GetThemes()
         {
             List<SelectListItem> sendThemes = new List<SelectListItem>();
