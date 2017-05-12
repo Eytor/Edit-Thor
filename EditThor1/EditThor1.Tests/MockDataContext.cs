@@ -6,21 +6,36 @@ using EditThor1.Models;
 using System.Data.Entity;
 using EditThor1.Models.Entities;
 using System.Data.Entity.Infrastructure;
+using EditThor1.Services;
+using System.Web;
+using System.Data.Entity;
 
 namespace EditThor1.Tests
 {
     /// <summary>
     /// Summary description for MockDataContext
     /// </summary>
+    ///
+    /*public class MockUserIdService : IUserIdService
+    {
+            // útfærir GetUserId() með því að kalla á HttpContext.Current.etc og skila því sem það skilar
+            string IUserIdService.GetUserId()
+            {
+                var _userId = "jkrg";
+                return _userId;
+            }
+     }*/
     class MockDataContext : IAppDataContext
     {
+        
         public MockDataContext()
         {
+            this.Users = new InMemoryDbSet<ApplicationUser>();
             Projects = new InMemoryDbSet<Project>();
-            Files = new InMemoryDbSet<File>();
-            Themes = new InMemoryDbSet<Theme>();
+            this.Files = new InMemoryDbSet<File>();
+            this.Themes = new InMemoryDbSet<Theme>();
             UserProjects = new InMemoryDbSet<UserProject>();
-            FileTypes = new InMemoryDbSet<FileTypes>();
+            this.FileTypes = new InMemoryDbSet<FileTypes>();
         }
         public IDbSet<Project> Projects { get; set; }
 
@@ -31,7 +46,8 @@ namespace EditThor1.Tests
         public IDbSet<UserProject> UserProjects { get; set; }
 
         public IDbSet<FileTypes> FileTypes { get; set; }
-
+   
+        public InMemoryDbSet<ApplicationUser> Users { get; set; }
 
         public int SaveChanges()
         {
@@ -44,5 +60,5 @@ namespace EditThor1.Tests
         {
             // Do nothing!
         }
-    }
+    }    
 }
