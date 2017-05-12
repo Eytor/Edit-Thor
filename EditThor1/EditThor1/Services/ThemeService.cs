@@ -22,7 +22,6 @@ namespace EditThor1.Services
         public ThemeService()
         {
             _db = new ApplicationDbContext();
-
         }
 
         private string _userId = HttpContext.Current.User.Identity.GetUserId();
@@ -46,7 +45,6 @@ namespace EditThor1.Services
         // Function sets current users theme by theme id.
         public void SetTheme(int themeID)
         {
-   
             ApplicationUser model = (from t in _db.Users
                                      where t.Id == _userId
                                      select t).SingleOrDefault();
@@ -57,7 +55,6 @@ namespace EditThor1.Services
         // Funtion gets the name of theme set to current user and returns it in lowercase.
         public string CallTheme()
         {
-            
             int userThemeID = (from t in _db.Users
                                where t.Id == _userId
                                select t.themeId).SingleOrDefault();

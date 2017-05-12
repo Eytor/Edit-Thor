@@ -114,7 +114,7 @@ namespace EditThor1.Services
         // Checks if project exists and returns true if it exists and false otherwise.
         public bool ProjectExists(int? projectID)
         {
-            if(_db.Projects.Where(x => x.ID == projectID).SingleOrDefault() != null)
+            if (_db.Projects.Where(x => x.ID == projectID).SingleOrDefault() != null)
             {
                 return true;
             }
@@ -142,7 +142,7 @@ namespace EditThor1.Services
         public string GetUserID(string name)
         {
             ApplicationUser user = _db.Users.Where(x => x.UserName == name).SingleOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 return user.Id;
             }

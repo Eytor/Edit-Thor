@@ -50,7 +50,7 @@ namespace EditThor1.Services
         public void DeleteFiles(int? projectID)
         {
             List<File> files = _db.Files.Where(x => x.ProjectID == projectID).ToList();
-            if(files != null)
+            if (files != null)
             {
                 foreach(File file in files)
                 {
