@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div class="col-md-8">
+    <h1>Name taken</h1>
+    <h4>There is already a file with this name in this project.</h4>
+    @Html.ActionLink("Back", "CreateFile", "Project", htmlAttributes: new { @class = "btn btn-default panicbutton" })
+</div>
+
+
+

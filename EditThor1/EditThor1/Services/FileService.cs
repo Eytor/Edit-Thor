@@ -70,6 +70,23 @@ namespace EditThor1.Services
             _db.Files.Add(file);
             _db.SaveChanges();
         }
+
+        // Checks if a file exists by the same name in the same project.
+        public bool checkSameFileName(string name, int typeID, int projectID)
+        {
+            name += GetFileEnding(typeID);
+            List<File> fileNames = (from fi in _db.Files
+                                    where fi.ProjectID == projectID
+                                    select fi).ToList();
+            foreach (var fi in fileNames)
+            {
+                if (name == fi.Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         // Function deletes file by file id.
         public void DeleteFile(int fileID)
         {
