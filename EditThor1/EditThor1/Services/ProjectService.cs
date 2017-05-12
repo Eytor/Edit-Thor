@@ -19,7 +19,6 @@ namespace EditThor1.Services
         public ProjectService()
         {
             _db = new ApplicationDbContext();
-
         }
 
         private ApplicationDbContext _db = new ApplicationDbContext();

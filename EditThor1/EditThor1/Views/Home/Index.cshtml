@@ -60,7 +60,7 @@
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Share", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                                 <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
-                                <li name="delete">@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
+                                <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID }, new { name = "delete" })</li>
                             </ul>
                         </div>
 </div>
