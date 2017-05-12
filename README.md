@@ -1,4 +1,5 @@
-#EditThor
+# EditThor
+
 EditThor is a web editor for coding in real time along with other users. Coders can invite other users to their projects and work on .html, .css and .js files.
 
 ## Logo
