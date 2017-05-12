@@ -25,11 +25,12 @@ namespace EditThor1.Services
         }
 
         private ApplicationDbContext _db = new ApplicationDbContext();
+
         // Function takes in data written in editor as byte array and updates file by file id.
         public void SaveFile(byte[] arr, int fileID)
         {
             File file = (from f in _db.Files
-                        where f.ID == fileId
+                        where f.ID == fileID
                         select f).SingleOrDefault();
 
             file.TheFile = arr;
