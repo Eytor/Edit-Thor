@@ -10,8 +10,8 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h2 style="padding-left:52px">New project</h2>
-        <h5 style="padding-left:52px">Enter a name for your project</h5>
+        <h2 class="col-md-offset-4">New project</h2>
+        <h5 class="col-md-offset-4">Enter a name for your project</h5>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -23,10 +23,10 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-4 col-md-4">
+            <div class="col-md-offset-4 col-md-4 col-sm-6 col-xs-4">
                 @Html.ActionLink("Back", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-default" })
             </div>
-            <div class="col-md-4" style="padding-left:47px">
+            <div class="col-md-offset-2 col-md-2 col-sm-4 col-sm-pull-2 col-xs-3 col-xs-pull-5" style="padding-left:47px">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
