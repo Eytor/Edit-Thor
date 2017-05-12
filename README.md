@@ -12,7 +12,7 @@ The web site logo. A lightning strikes an open book, indicating speed and streng
   * Users can create new projects. A .html file opens automatically when the project is opened.
   * Users can add files to projects. File formats available are .html, .css and .js.
   * Users take care of saving their code, either by using Ctrl+S or pressing the "Save file" button.
-  * Users can share their projects with other registered users.
+  * Users can share their projects with other registered users. Only project owners can invite others.
   * Users can see which people have access to a project, and can see their changes in real time.
   * Invited users can add and delete files from the project, but only the project owner can delete the project itself.
   * Users can download the project code as a .zip, in the corresponding file format.
