@@ -19,6 +19,7 @@ The web site logo. A lightning strikes an open book, indicating speed and streng
   * Users can change the theme of the editor.
   * Users can filter their projects by their own projects and projects shared with them. The default view is all projects.
   * A help page is available with instructions for the most common procedures.
+  * Syntax highlighting in the editor, different according to file type.
  
 ## Using the program
 
