@@ -9,17 +9,17 @@
 <div class="row" id="editorContainer">
 
     <div class="col-md-2 col-sm-12" id="filecolumn">
-        @Html.ActionLink("New File", "CreateFile", new { controller = "Project",  id = Model.projectId }, new { @class = " custom-btn col-md-12" })
+        @Html.ActionLink("New File", "CreateFile", new { controller = "Project",  id = Model.ProjectId }, new { @class = " custom-btn col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
-                    if (Model.fileId == item.ID)
+                    if (Model.FileId == item.ID)
                     {
-                        <li class="active filelist-item">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                        <li class="active filelist-item">@Html.ActionLink(item.Name, "DisplayFile", new { id = item.ID, projectID = item.ProjectID })</li>
                     }
                     else
                     {
-                        <li class="filelist-item">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                        <li class="filelist-item">@Html.ActionLink(item.Name, "DisplayFile", new { id = item.ID, projectID = item.ProjectID })</li>
                     }
                     //@Html.ActionLink("Edit Category 10", "Edit", "Categorys", new { area = "Admin", id = 10 }, null)
 
@@ -39,19 +39,19 @@
     </div>
 </div>
 <div class="row">
-    @if (Model.fileId != 0)
+    @if (Model.FileId != 0)
     { 
         using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
         {
             @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
-            @Html.HiddenFor(m => m.fileId)
-            @Html.HiddenFor(m => m.projectId)
+            @Html.HiddenFor(m => m.FileId)
+            @Html.HiddenFor(m => m.ProjectId)
             <input type="submit" value="&#128190; Save file (Ctrl+S)" class="btn btn-success col-sm-6 save-butt" />
         }
         using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
         {
-            @Html.HiddenFor(m => m.fileId)
-            @Html.HiddenFor(m => m.projectId)
+            @Html.HiddenFor(m => m.FileId)
+            @Html.HiddenFor(m => m.ProjectId)
             <input type="submit" value="&#128465; Delete file" class="btn btn-danger col-sm-6 delete-butt" name="delete" />
         }
     }
@@ -72,11 +72,11 @@
         });
     });
 
-    var documentID = @Model.projectId;
+    var documentID = @Model.ProjectId;
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/@Model.theme");
+    editor.setTheme("ace/theme/@Model.Theme");
     editor.renderer.theme.green;
-    editor.getSession().setMode("ace/mode/@Model.filetype");
+    editor.getSession().setMode("ace/mode/@Model.Filetype");
     editor.setOption("firstLineNumber", 1)
 
 

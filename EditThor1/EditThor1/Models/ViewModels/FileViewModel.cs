@@ -10,21 +10,22 @@ namespace EditThor1.Models.ViewModels
 {
     public class FileViewModel
     {
-        //the ID of the file
+        //The ID of the file.
         public int ID { get; set; }
         
-        // project ID
-        public int projectID { get; set; }
+        // Project ID.
+        public int ProjectID { get; set; }
 
-        //the name of the file
+        //The name of the file.
         [Required]
         [Display(Name = "File name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        //the type of file ?
-        public List<SelectListItem> type { get; set; }
+        //The type of file.
+        public List<SelectListItem> Type { get; set; }
+
         [Required]
         [Display(Name = "File type")]
-        public int typeID { get; set; }
+        public int TypeID { get; set; }
     }
 }

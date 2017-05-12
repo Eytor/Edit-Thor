@@ -12,21 +12,21 @@
         <h2 style="margin-left:77px">New file</h2>
         <h5 style="margin-left:77px">Enter a name for your file</h5>
         <hr />
-        @Html.HiddenFor(model => model.projectID)
+        @Html.HiddenFor(model => model.ProjectID)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.typeID, htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.TypeID, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.DropDownListFor(model => model.typeID, Model.type, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.typeID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TypeID, Model.Type, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
             </div>
         </div>
 

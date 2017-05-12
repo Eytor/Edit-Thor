@@ -45,13 +45,13 @@
 
             @foreach (var item in Model.AllProject)
             {
-                if (item.ownerID == User.Identity.GetUserId())
+                if (item.OwnerID == User.Identity.GetUserId())
                 {
                     <div class="lines">
                         <a class="btn col-md-10" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                             <div class="col-md-1"><span class="glyphicon glyphicon-folder-close"></span></div>
-                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.Name)</div>
+                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.OwnerName)</div>
                         </a>
                         <div class="col-md-2 dropdown navbar-right project-list">
                             <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -70,8 +70,8 @@
                     <div class="lines">
                         <a class="btn col-md-10" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                             <div class="col-md-1"><span class="glyphicon glyphicon-folder-close"></span></div>
-                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.Name)</div>
+                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.OwnerName)</div>
                         </a>
                         <div class="col-md-2 dropdown navbar-right">
                             <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

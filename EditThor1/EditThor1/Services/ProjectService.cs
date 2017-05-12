@@ -32,24 +32,24 @@ namespace EditThor1.Services
         {
             // Project
             Project adds = new Project();
-            adds.name = name;
-            adds.ownerID = _userId;
-            adds.ownerName = (from u in _db.Users
+            adds.Name = name;
+            adds.OwnerID = _userId;
+            adds.OwnerName = (from u in _db.Users
                           where u.Id == _userId
                           select u.UserName).SingleOrDefault();
             _db.Projects.Add(adds);
             _db.SaveChanges();
             // Get id of project we just created, since we don't allow projects with same name and same owner this isn't a problem
             var theProjectID = (from i in _db.Projects
-                                where i.name == name
-                                where i.ownerID == _userId
+                                where i.Name == name
+                                where i.OwnerID == _userId
                                 select i.ID).SingleOrDefault();
             // Dummy Html file
             File file = new File();
-            file.name = "Index.html";
-            file.typeID = 1;
-            file.file = new byte[64];
-            file.projectID = theProjectID;
+            file.Name = "Index.html";
+            file.TypeID = 1;
+            file.TheFile = new byte[64];
+            file.ProjectID = theProjectID;
             _db.Files.Add(file);
             _db.SaveChanges();
         }
@@ -67,7 +67,7 @@ namespace EditThor1.Services
         {
             var result = (from project in _db.Projects
                           where project.ID == projectID
-                          select project.name).SingleOrDefault();
+                          select project.Name).SingleOrDefault();
             return result;
         }
         // Gets a list of all projects user is associated with and returns it
@@ -89,8 +89,8 @@ namespace EditThor1.Services
         public List<Project> GetMyProjects()
         {
             List<Project> result = (from project in _db.Projects
-                                    orderby project.name ascending
-                                    where project.ownerID == _userId
+                                    orderby project.Name ascending
+                                    where project.OwnerID == _userId
                                     select project).ToList();
             return result;
         }
@@ -107,7 +107,7 @@ namespace EditThor1.Services
         public List<File> GetAllFiles(int projectID)
         {
             List<File> result = (from i in _db.Files
-                                 where i.projectID == projectID
+                                 where i.ProjectID == projectID
                                  select i).ToList();
             return result;
         }
@@ -163,7 +163,7 @@ namespace EditThor1.Services
         {
             string result = (from p in _db.Projects
                           where p.ID == projectID
-                          select p.ownerID).SingleOrDefault();
+                          select p.OwnerID).SingleOrDefault();
             if (result == _userId)
             {
                 return true;
@@ -197,11 +197,11 @@ namespace EditThor1.Services
         public bool checkSameName(string name)
         {
             List<Project> projectNames = (from f in _db.Projects
-                                          where f.ownerID == _userId
+                                          where f.OwnerID == _userId
                                           select f).ToList();
             foreach (var f in projectNames)
             {
-                if (name == f.name)
+                if (name == f.Name)
                 {
                     return true;
                 }
@@ -227,7 +227,7 @@ namespace EditThor1.Services
             List<string> userNames = new List<string>();
             string ownerName = (from p in _db.Projects
                                 where p.ID == projectID
-                                select p.ownerName).SingleOrDefault();
+                                select p.OwnerName).SingleOrDefault();
             userNames.Add(ownerName);
             List<string> sharedUsers = (from p in _db.UserProjects
                                         join u in _db.Users on p.UserID equals u.Id
@@ -255,7 +255,7 @@ namespace EditThor1.Services
         {
             string ownerID = (from p in _db.Projects
                               where p.ID == projectID
-                              select p.ownerID).SingleOrDefault();
+                              select p.OwnerID).SingleOrDefault();
             if (ownerID == _userId)
             {
                 return true;

@@ -9,7 +9,7 @@ namespace EditThor1.Models.ViewModels
     public class UserViewModel
     {
         [Display(Name = "Email")]
-        public string userName { get; set; }
+        public string UserName { get; set; }
 
         public string ID { get; set; }
 

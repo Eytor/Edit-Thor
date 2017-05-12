@@ -11,19 +11,19 @@ namespace EditThor1.Models.Entities
         //ID of the project
         public int ID { get; set; }
 
-        //the name of the project
-        public string name { get; set; }
+        //The name of the project.
+        public string Name { get; set; }
 
-        //the list of all users associated with the project
-        public virtual List<ApplicationUser> userslist { get; set; }
+        //The list of all users associated with the project.
+        public virtual List<ApplicationUser> Userslist { get; set; }
 
-        //the ID of the user who created the project
-        public string ownerID { get; set; }
+        //The ID of the user who created the project.
+        public string OwnerID { get; set; }
 
-        public string ownerName { get; set; }
+        public string OwnerName { get; set; }
 
-        //the list of all files in a project
-        public virtual List<File> filesList { get; set; }
+        //The list of all files in a project.
+        public virtual List<File> FilesList { get; set; }
 
     }
 }

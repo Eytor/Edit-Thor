@@ -22,11 +22,11 @@ namespace EditThor1.Tests.Services
             var t1 = new Project
             {
                 ID = 1,
-                name = "Pro1",
-                ownerID = "2seg",
-                ownerName = "Dabs",
-                filesList = null,
-                userslist = null,
+                Name = "Pro1",
+                OwnerID = "2seg",
+                OwnerName = "Dabs",
+                FilesList = null,
+                Userslist = null,
              };
             mockDb.Projects.Add(t1);
             
@@ -40,7 +40,7 @@ namespace EditThor1.Tests.Services
         {
             // Arrange:
             Project newProject = new Project();
-            newProject.name = "testPro";
+            newProject.Name = "testPro";
 
             // Act:
             _service.AddProject("testPro");

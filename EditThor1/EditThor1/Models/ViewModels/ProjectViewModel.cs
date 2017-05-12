@@ -11,17 +11,17 @@ namespace EditThor1.Models.ViewModels
     {
         public int ID { get; set; }
 
-        //the name of the project
+        //The name of the project.
         [Required]
         [Display(Name = "Project name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        //the type of the project
-        public string ownerID { get; set; }
+        //The type of the project.
+        public string OwnerID { get; set; }
 
-        //the path to the file
-        public List<ApplicationUser> userslist { get; set; }
+        //The path to the file.
+        public List<ApplicationUser> Userslist { get; set; }
 
-        public List<File> listFiles { get; set; }
+        public List<File> ListFiles { get; set; }
     }
 }
