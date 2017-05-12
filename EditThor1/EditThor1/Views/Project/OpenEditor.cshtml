@@ -5,29 +5,27 @@
 }
 
 
-<h2>@ViewBag.ProjectName</h2>
+<h2 class="project-name">@ViewBag.ProjectName</h2>
 <div class="row" id="editorContainer">
 
     <div class="col-md-2 col-sm-12" id="filecolumn">
-        @Html.ActionLink("Create new File", "CreateFile", new { controller = "Project",  id = Model.projectId }, new { @class = "btn custom-btn col-md-12" })
+        @Html.ActionLink("New File", "CreateFile", new { controller = "Project",  id = Model.projectId }, new { @class = " custom-btn col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
                     if (Model.fileId == item.ID)
                     {
-                        <li class="active">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                        <li class="active filelist-item">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
+                        <li class="filelist-item">@Html.ActionLink(item.name, "DisplayFile", new { id = item.ID, projectID = item.projectID })</li>
                     }
                     //@Html.ActionLink("Edit Category 10", "Edit", "Categorys", new { area = "Admin", id = 10 }, null)
 
                 }
             </ul>
         <div class="col-md-12 col-sm-6" id="project-info" >
-            <h4>Project Info</h4>
-            <h5>Users:</h5>
             <ul id="user-list">
                 @foreach (string username in Model.Users)
                 {
@@ -36,7 +34,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
         <div id="editor">@Model.Content</div>
     </div>
 </div>
@@ -48,13 +46,13 @@
             @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
             @Html.HiddenFor(m => m.fileId)
             @Html.HiddenFor(m => m.projectId)
-            <input type="submit" value="SAVE MOTHERFUCKER" class="btn btn-success col-sm-6" />
+            <input type="submit" value="&#128190; Save file (Ctrl+S)" class="btn btn-success col-sm-6 save-butt" />
         }
         using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
         {
             @Html.HiddenFor(m => m.fileId)
             @Html.HiddenFor(m => m.projectId)
-            <input type="submit" value="DELETE " class="btn btn-danger col-sm-6" name="delete" />
+            <input type="submit" value="&#128465; Delete file" class="btn btn-danger col-sm-6 delete-butt" name="delete" />
         }
     }
 </div>

@@ -11,7 +11,7 @@
         <ul id="remove-margin">
             @if (@ViewBag.Title == "All Projects")
             {
-                <li class="filter-list left-column active">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
+                <li class="filter-list left-column active-item">@Html.ActionLink("All Projects", "Index", new { id = "" })</li>
             }
             else
             {
@@ -19,7 +19,7 @@
             }
             @if (@ViewBag.Title == "My Projects")
             {
-                <li class="filter-list left-column active">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
+                <li class="filter-list left-column active-item">@Html.ActionLink("My projects", "Index", new { id = 1 })</li>
             }
             else
             {
@@ -27,7 +27,7 @@
             }
             @if (@ViewBag.Title == "Shared with me")
             {
-                <li class="filter-list left-column active">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
+                <li class="filter-list left-column active-item">@Html.ActionLink("Shared with me", "Index", new { id = 2 })</li>
             }
             else
             {
