@@ -9,7 +9,7 @@
 <div class="row" id="editorContainer">
 
     <div class="col-md-2 col-sm-6 col-xs-12 col-xxs-12" id="filecolumn">
-        @Html.ActionLink("New File", "CreateFile", new { controller = "Project",  id = Model.ProjectId }, new { @class = " custom-btn col-md-12" })
+        @Html.ActionLink("New File", "CreateFile", new { controller = "Project",  id = Model.ProjectId }, new { @class = " custom-btn btn btn-primary col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
                 {
