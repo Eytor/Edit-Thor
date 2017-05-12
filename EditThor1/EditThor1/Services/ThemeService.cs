@@ -29,7 +29,7 @@ namespace EditThor1.Services
         private ApplicationDbContext _db = new ApplicationDbContext();
 
 
-
+        // Function creates a list of all themes and returns if for dropdown list.
         public List<SelectListItem> GetThemes()
         {
             List<SelectListItem> sendThemes = new List<SelectListItem>();
@@ -43,27 +43,27 @@ namespace EditThor1.Services
 
             return sendThemes;
         }
-
-        public void SetTheme(int id)
+        // Function sets current users theme by theme id.
+        public void SetTheme(int themeID)
         {
    
             ApplicationUser model = (from t in _db.Users
                                      where t.Id == _userId
                                      select t).SingleOrDefault();
-            model.themeId = id;
+            model.themeId = themeID;
 
             _db.SaveChanges();
         }
-
+        // Funtion gets the name of theme set to current user and returns it in lowercase.
         public string CallTheme()
         {
             
-            int userIdTheme = (from t in _db.Users
+            int userThemeID = (from t in _db.Users
                                where t.Id == _userId
                                select t.themeId).SingleOrDefault();
 
             string currentTheme = (from t in _db.Themes
-                                   where t.ID == userIdTheme
+                                   where t.ID == userThemeID
                                    select t.Name).SingleOrDefault();
 
             return currentTheme.ToLower();

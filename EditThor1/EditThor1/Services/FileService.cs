@@ -25,39 +25,30 @@ namespace EditThor1.Services
         }
 
         private ApplicationDbContext _db = new ApplicationDbContext();
-
-        public void SaveFile(byte[] arr, int fileId)
+        // Function takes in data written in editor as byte array and updates file by file id.
+        public void SaveFile(byte[] arr, int fileID)
         {
-            Project adds = new Project();
-            File file = new File();
+            File file = (from f in _db.Files
+                        where f.ID == fileId
+                        select f).SingleOrDefault();
 
-            file = (from f in _db.Files
-                    where f.ID == fileId
-                    select f).SingleOrDefault();
-       
             file.TheFile = arr;
             _db.SaveChanges();
         }
-
-        public byte[] GetFiles(int? id, int? prId)
+        // Function finds and returns file by project id and file id.
+        public byte[] GetFiles(int? fileID, int? projectID)
         {
-            byte[] arr;
-
-            File data = new File();
-
-            data = (from f in _db.Files
-                    where f.ID == id
-                    where f.ProjectID == prId
-                    select f).SingleOrDefault();
-
-            arr = data.TheFile;
-            return arr;
+            byte[] data = (from f in _db.Files
+                           where f.ID == fileID
+                           where f.ProjectID == projectID
+                           select f.TheFile).SingleOrDefault();
+            return data;
         }
 
-
-        public void DeleteFiles(int? projectId)
+        // Function deletes all files within a project by project id.
+        public void DeleteFiles(int? projectID)
         {
-            List<File> files = _db.Files.Where(x => x.ProjectID == projectId).ToList();
+            List<File> files = _db.Files.Where(x => x.ProjectID == projectID).ToList();
             if(files != null)
             {
                 foreach(File file in files)
@@ -67,7 +58,7 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
-
+        // Function creates empty file in project.
         public void CreateFile(int projectID, string name, int type)
         {
             File file = new File();
@@ -78,6 +69,7 @@ namespace EditThor1.Services
             _db.Files.Add(file);
             _db.SaveChanges();
         }
+        // Function deletes file by file id.
         public void DeleteFile(int fileID)
         {
             File file = _db.Files.Where(x => x.ID == fileID).SingleOrDefault();
@@ -87,7 +79,7 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
-
+        // Function gets a list of available file types and returns it.
         public List<SelectListItem> GetAvailableTypes()
         {
             List<SelectListItem> categories = new List<SelectListItem>();
@@ -101,7 +93,7 @@ namespace EditThor1.Services
             
             return categories;
         }
-
+        // Function finds and returns the file ending(extension) from database by type id.
         public string GetFileEnding(int typeID)
         {
             string fileEnding = (from t in _db.FileTypes
@@ -109,7 +101,7 @@ namespace EditThor1.Services
                                  select t.FileEnding).SingleOrDefault();
             return fileEnding;
         }
-
+        // Function finds and returns the file type name from database by type id.
         public string GetFileTypeName(int fileID)
         {
             int typeID = (from f in _db.Files

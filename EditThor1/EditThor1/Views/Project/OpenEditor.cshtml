@@ -8,7 +8,7 @@
 <h2 class="project-name">@ViewBag.ProjectName</h2>
 <div class="row" id="editorContainer">
 
-    <div class="col-md-2 col-sm-12" id="filecolumn">
+    <div class="col-md-2 col-sm-6 col-xs-12 col-xxs-12" id="filecolumn">
         @Html.ActionLink("New File", "CreateFile", new { controller = "Project",  id = Model.ProjectId }, new { @class = " custom-btn col-md-12" })
             <ul id="filelist">
                 @foreach (var item in Model.AllFiles)
@@ -25,7 +25,7 @@
 
                 }
             </ul>
-        <div class="col-md-12 col-sm-6" id="project-info" >
+        <div class="col-md-12 col-sm-12" id="project-info" >
             <ul id="user-list">
                 @foreach (string username in Model.Users)
                 {
@@ -34,27 +34,31 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8 col-sm-6 col-xs-12 col-xxs-12">
         <div id="editor">@Model.Content</div>
     </div>
 </div>
-<div class="row">
+<div class="form-group" style="height:50px">
+    <div class="col-md-6 col-sm-6 col-xs-12 col-xxs-12">
     @if (Model.FileId != 0)
-    { 
+    {
         using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
         {
             @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
             @Html.HiddenFor(m => m.FileId)
             @Html.HiddenFor(m => m.ProjectId)
-            <input type="submit" value="&#128190; Save file (Ctrl+S)" class="btn btn-success col-sm-6 save-butt" />
+            <input type="submit" value="&#128190; Save file (Ctrl+S)" class="btn btn-success save-butt" />
         }
-        using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
+    }
+    </div>
+    <div class="col-md-offset-4 col-md-2 col-sm-6 col-xs-12 col-xxs-12">
+        @using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
         {
             @Html.HiddenFor(m => m.FileId)
             @Html.HiddenFor(m => m.ProjectId)
-            <input type="submit" value="&#128465; Delete file" class="btn btn-danger col-sm-6 delete-butt" name="delete" />
+            <input type="submit" value="&#128465; Delete file" class="btn btn-danger delete-butt" name="delete" />
         }
-    }
+    </div>
 </div>
 
 

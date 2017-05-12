@@ -61,8 +61,7 @@ namespace EditThor1.Controllers
             // Checks if the user has access to the project.
             if (!service.HasAccess(Convert.ToInt32(id)))
             {
-                //TODO: change to user doesn't have access
-                throw new Exception("Project is Empty");
+                throw new Exception("Project is Empty or no access");
             }
             ListFileViewModel model = new ListFileViewModel();
             ThemeViewModel themeModel = new ThemeViewModel();

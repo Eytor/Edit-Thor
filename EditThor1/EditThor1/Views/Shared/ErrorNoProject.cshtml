@@ -1,0 +1,11 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div class="col-md-8">
+    <h1>Failed to open</h1>
+    <h4>Project could not be opened, either it doesn't exist or you don't have access.</h4>
+    @Html.ActionLink("Back", "Index", "Project", null, htmlAttributes: new { @class = "btn btn-default panicbutton" })
+</div>
