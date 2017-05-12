@@ -27,7 +27,7 @@ namespace EditThor1.Services
         private List<Project> _projects = new List<Project>();
        
         private string _userId = HttpContext.Current.User.Identity.GetUserId();
-        // Creates project with 1 empty html dummy file
+        // Creates project with 1 empty html dummy file.
         public void AddProject(string name)
         {
             // Project
@@ -39,7 +39,7 @@ namespace EditThor1.Services
                           select u.UserName).SingleOrDefault();
             _db.Projects.Add(adds);
             _db.SaveChanges();
-            // Get id of project we just created, since we don't allow projects with same name and same owner this isn't a problem
+            // Gets id of project we just created, since we don't allow projects with same name and same owner this isn't a problem.
             var theProjectID = (from i in _db.Projects
                                 where i.Name == name
                                 where i.OwnerID == _userId
@@ -53,7 +53,7 @@ namespace EditThor1.Services
             _db.Files.Add(file);
             _db.SaveChanges();
         }
-        // Gets project from database by id and returns it
+        // Gets project from database by id and returns it.
         public Project GetProjectById(int projectID)
         {
             var result = (from project in _db.Projects
@@ -62,7 +62,7 @@ namespace EditThor1.Services
 
             return result;
         }
-        // Gets project name from database by id and returns it
+        // Gets project name from database by id and returns it.
         public string GetProjectName(int projectID)
         {
             var result = (from project in _db.Projects
@@ -70,7 +70,7 @@ namespace EditThor1.Services
                           select project.Name).SingleOrDefault();
             return result;
         }
-        // Gets a list of all projects user is associated with and returns it
+        // Gets a list of all projects that the user is associated with and returns it.
         public List<Project> GetAllUserProjects()
         {
             List<Project> projects = GetMyProjects();
@@ -85,7 +85,7 @@ namespace EditThor1.Services
             
             return projects;
         }
-        // Gets a list of all projects owned by user and returns it
+        // Gets a list of all projects owned by user and returns it.
         public List<Project> GetMyProjects()
         {
             List<Project> result = (from project in _db.Projects
@@ -94,7 +94,7 @@ namespace EditThor1.Services
                                     select project).ToList();
             return result;
         }
-        // Gets a list of all projects shared with current user and returns it
+        // Gets a list of all projects shared with current user and returns it.
         public List<Project> GetSharedProjects()
         {
             List<Project> projects = (from u in _db.UserProjects
@@ -103,7 +103,7 @@ namespace EditThor1.Services
                                       select i).ToList();
             return projects; 
         }
-        // Gets a List of all files within project and returns it 
+        // Gets a list of all files within project and returns it.
         public List<File> GetAllFiles(int projectID)
         {
             List<File> result = (from i in _db.Files
@@ -111,16 +111,16 @@ namespace EditThor1.Services
                                  select i).ToList();
             return result;
         }
-        // Checks if project exists and returns true if it exists and false otherwise
+        // Checks if project exists and returns true if it exists and false otherwise.
         public bool ProjectExists(int? projectID)
         {
-            if(_db.Projects.Where(x => x.ID == projectID).SingleOrDefault() != null)
+            if (_db.Projects.Where(x => x.ID == projectID).SingleOrDefault() != null)
             {
                 return true;
             }
             return false;
         }
-        // Deletes Project, all user Connections associated with that project and files by project id
+        // Deletes Project, all user connections associated with that project and files by project id.
         public void DeleteProject(int? projectID)
         {
             Project project = _db.Projects.Where(x => x.ID == projectID).SingleOrDefault();
@@ -138,17 +138,17 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
-        // Get users id by username(Email since it's automatically set as username)
+        // Get users id by username (email since it's automatically set as username).
         public string GetUserID(string name)
         {
             ApplicationUser user = _db.Users.Where(x => x.UserName == name).SingleOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 return user.Id;
             }
             return "";
         }
-        // Share project with user by user id and project id
+        // Share project with user by user id and project id.
         public void ShareProject(string userID, int projectID)
         {
             UserProject shareTable = new UserProject();
@@ -158,33 +158,13 @@ namespace EditThor1.Services
             _db.UserProjects.Add(shareTable);
             _db.SaveChanges();
         }
-      /*  // Checks if current user is owner of project by project id
-        public bool isOwner(int projectID)
-        {
-            string result = (from p in _db.Projects
-                          where p.ID == projectID
-                          select p.OwnerID).SingleOrDefault();
-            if (result == _userId)
-            {
-                return true;
-            }
-            return false;
-        } 
-        */
-        // Checks if current user has access to a project by project id
+
+        // Checks if current user has access to a project by project id. Used when opening a project.
         public bool HasAccess(int projectID)
         {
-            var result = (from u in _db.UserProjects
-                          where u.ProjectID == projectID
-                          where u.UserID == _userId
-                          select u).SingleOrDefault();
-            if (result != null || IsOwnerOfProject(projectID))
-            {
-                return true;
-            }
-            return false;
+            return UserHasAccess(_userId, projectID);
         }
-        // Removes access for current user in project by project id
+        // Removes access for current user in project by project id.
         public void LeaveProject(int projectID)
         {
             UserProject result = (from u in _db.UserProjects
@@ -194,7 +174,7 @@ namespace EditThor1.Services
             _db.UserProjects.Remove(result);
             _db.SaveChanges();
         }
-        // checks if user already has project with same name 
+        // Checks if user already has project with same name.
         public bool checkSameName(string name)
         {
             List<Project> projectNames = (from f in _db.Projects
@@ -209,7 +189,7 @@ namespace EditThor1.Services
             }
             return false;
         }
-        // Delete after removing from controller, function already exists HasAccess()
+        // Checks if project can be shared with the specified user.
         public bool UserHasAccess(string userID, int projectID)
         {
             string result = (from u in _db.UserProjects

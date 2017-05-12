@@ -26,7 +26,7 @@ namespace EditThor1.Services
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        // Function takes in data written in editor as byte array and updates file by file id.
+        // Function takes in data written in the editor as byte array and updates file by file id.
         public void SaveFile(byte[] arr, int fileID)
         {
             File file = (from f in _db.Files
@@ -50,7 +50,7 @@ namespace EditThor1.Services
         public void DeleteFiles(int? projectID)
         {
             List<File> files = _db.Files.Where(x => x.ProjectID == projectID).ToList();
-            if(files != null)
+            if (files != null)
             {
                 foreach(File file in files)
                 {
