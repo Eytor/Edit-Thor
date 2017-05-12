@@ -158,7 +158,7 @@ namespace EditThor1.Services
             _db.UserProjects.Add(shareTable);
             _db.SaveChanges();
         }
-        // Checks if current user is owner of project by project id
+      /*  // Checks if current user is owner of project by project id
         public bool isOwner(int projectID)
         {
             string result = (from p in _db.Projects
@@ -169,7 +169,8 @@ namespace EditThor1.Services
                 return true;
             }
             return false;
-        }
+        } 
+        */
         // Checks if current user has access to a project by project id
         public bool HasAccess(int projectID)
         {
@@ -177,7 +178,7 @@ namespace EditThor1.Services
                           where u.ProjectID == projectID
                           where u.UserID == _userId
                           select u).SingleOrDefault();
-            if (result != null || isOwner(projectID))
+            if (result != null || IsOwnerOfProject(projectID))
             {
                 return true;
             }
@@ -260,6 +261,7 @@ namespace EditThor1.Services
             {
                 return true;
             }
+
             return false;
         }
     }
