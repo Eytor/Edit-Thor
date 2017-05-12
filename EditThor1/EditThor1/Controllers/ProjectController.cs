@@ -230,6 +230,10 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            if (fileService.checkSameFileName(model.Name, model.TypeID, model.ProjectID))
+            {
+                throw new Exception("File with the same name exists.");
+            }
             fileService.CreateFile(model.ProjectID, model.Name, model.TypeID);
             return RedirectToAction("OpenEditor", "Project", new { id = model.ProjectID });
         }

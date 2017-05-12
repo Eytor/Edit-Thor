@@ -198,13 +198,13 @@ namespace EditThor1.Services
             string ownerID = (from p in _db.Projects
                              where p.ID == projectID
                              select p.OwnerID).SingleOrDefault();
-            if (result != userID || ownerID == userID )
+            if (result == userID || ownerID == userID )
             {
                 return true;
             }
             return false;
         }
-        // creates list of all users with access to project by project id and returns it
+        // Creates list of all users with access to project by project id and returns it
         public List<string> UserListofSharedProject(int projectID)
         {
             List<string> userNames = new List<string>();

@@ -58,6 +58,10 @@ namespace EditThor1.Handlers
                 {
                     viewName = "ErrorNoProject";
                 }
+                else if (currentController == "Project" && currentActionName == "CreateFile")
+                {
+                    viewName = "ErrorFilenameExists";
+                }
                 else
                 {
                     viewName = "Error";

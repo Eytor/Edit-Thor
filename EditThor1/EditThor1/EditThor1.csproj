@@ -319,6 +319,7 @@
     <Content Include="Views\Shared\ErrorNotRegistered.cshtml" />
     <Content Include="Views\Shared\ErrorDeleteProject.cshtml" />
     <Content Include="Views\Shared\ErrorNoProject.cshtml" />
+    <Content Include="Views\Shared\ErrorFilenameExists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
