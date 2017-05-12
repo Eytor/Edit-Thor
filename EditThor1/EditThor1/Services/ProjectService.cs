@@ -211,11 +211,13 @@ namespace EditThor1.Services
         // Delete after removing from controller, function already exists HasAccess()
         public bool UserHasAccess(string userID, int projectID)
         {
-            UserProject result = (from u in _db.UserProjects
-                                  where u.ProjectID == projectID
-                                  where u.UserID == userID
-                                  select u).FirstOrDefault();
-            if (result != null)
+            string result = (from u in _db.UserProjects
+                            where u.ProjectID == projectID
+                            select u.UserID).FirstOrDefault();
+            string ownerID = (from p in _db.Projects
+                             where p.ID == projectID
+                             select p.OwnerID).SingleOrDefault();
+            if (result != userID || ownerID == userID )
             {
                 return true;
             }
