@@ -72,11 +72,11 @@
         });
     });
 
-    var documentID = @Model.projectId;
+    var documentID = @Model.ProjectId;
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/@Model.theme");
+    editor.setTheme("ace/theme/@Model.Theme");
     editor.renderer.theme.green;
-    editor.getSession().setMode("ace/mode/@Model.filetype");
+    editor.getSession().setMode("ace/mode/@Model.Filetype");
     editor.setOption("firstLineNumber", 1)
 
 
