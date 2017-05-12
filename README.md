@@ -42,7 +42,7 @@ The web site logo. A lightning strikes an open book, indicating speed and streng
 * When you create a project, a .html file is created automatically. Inside the project, you can then add more files by selecting New file, type a name for the file and select the file type. You can choose .html, .css and .js.
 
 ### Deleting a project
-* Only the project owner can delete the project. Select the  project menu and click Download (.zip)
+* Only the project owner can delete the project. Select the  project menu and click Delete.
 
 ### Deleting a file
 * Owners and contributors can delete files from a project. Inside the project, open the file you want to delete and press the Delete file button.
@@ -53,7 +53,7 @@ The web site logo. A lightning strikes an open book, indicating speed and streng
 ## Motivation
 This is the final project of group 25 in the course VLN2 ("Verklegt námskeið 2") in the Computer Science department of the University of Reykjavik. Our teacher is Daníel Brandur Sigurgeirsson and our assistant instructor is Bjarni Leifsson.
 
-The name EditThor comes from Thor, the god of thunder. The name has many different connotations: it resembles the word "editor", so users shouldn't have problems understanding what it's for or remembering it. It is also derived from the Icelandic word "ritþór", which is a translation of the word "editor". Also, the group's veteran in the coding world is called Eyþór, so the name also includes a reference to him :) 
+The name EditThor comes from Thor, the god of thunder. The name has many different connotations: it resembles the word "editor", so users shouldn't have problems understanding what it's for or remembering it. It is also derived from the Icelandic word "ritþór", which is a translation of the word "editor". Also, the group's veteran in the coding world is called Eyþór, so the name also includes a tribute to him :) 
 
 ## Built With
 
