@@ -3,11 +3,8 @@
 EditThor is a web editor for coding in real time along with other users. Coders can invite other users to their projects and work on .html, .css and .js files.
 
 ## Logo
+The web site logo. A lightning strikes an open book, indicating speed and strength. Font: Fabian.
 <img src="https://github.com/Eytor/Edit-Thor/blob/master/editthorlogo.PNG" alt="Logo" width="350">
-
-## Architecture layout - describe how the program is built with MVC
-
-## Coding standards(rules) and tools
 
 # Features
 *  All following features apply to logged in users. Users who are not logged in are directed to the Login page. 
@@ -22,7 +19,36 @@ EditThor is a web editor for coding in real time along with other users. Coders 
   * Users can change the theme of the editor.
   * Users can filter their projects by their own projects and projects shared with them. The default view is all projects.
   * A help page is available with instructions for the most common procedures.
-  
+ 
+## Using the program
+
+### Creating a new project
+* Select the New project button on the main page and give the project a name. Then you can open the project or invite others to join you. 
+
+### Editing a project
+* You can work on your projects at the same time as other users that have access to it. Make sure to save your changes regularly by clicking the Save button.
+
+### Inviting other users to your project
+* Select the option button on the project, there you select a invite option. Input the email address or addresses of the users you want to invite. A person who is not a user of EditThor will have to sign up before begin able to start working with you on the project. You can see which users have access to the project on the project page.
+
+### Leaving a project
+* You can leave a project that you've been invited to. Just select the  project menu and click Share. Input the email address of the user you want to invite. A person who is not a user of EditThor will have to sign up before being able to start working with you on the project. You can see which users currently have access to the project on the project's page.
+
+### Changing the editor theme
+* Click your username in the top right corner and select Themes. You will be directed to a page where you can select between four different themes for the editor.
+
+### Adding a file to a project
+* When you create a project, a .html file is created automatically. Inside the project, you can then add more files by selecting New file, type a name for the file and select the file type. You can choose .html, .css and .js.
+
+### Deleting a project
+* Only the project owner can delete the project. Select the  project menu and click Download (.zip)
+
+### Deleting a file
+* Owners and contributors can delete files from a project. Inside the project, open the file you want to delete and press the Delete file button.
+
+### Downloading the code
+* You can download all your code to a zip file on your computer. Select the  project menu and click Download (.zip).
+
 ## Motivation
 This is the final project of group 25 in the course VLN2 ("Verklegt námskeið 2") in the Computer Science department of the University of Reykjavik. Our teacher is Daníel Brandur Sigurgeirsson and our assistant instructor is Bjarni Leifsson.
 
