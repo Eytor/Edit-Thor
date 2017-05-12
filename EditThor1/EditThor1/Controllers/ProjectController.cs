@@ -130,13 +130,11 @@ namespace EditThor1.Controllers
                     service.DeleteProject(id);
                     return RedirectToAction("Index", "Home");
                 }
-                // þurfum ad gera aðeins betri villumeðhöndlun
                 throw new DeleteException();
             }
-            // þurfum ad gera aðeins betri villumeðhöndlun
             throw new DeleteException();
         }
-        // Returns share project window where you can add user to project by email.
+        // Returns Share project window where you can add user to project by email.
         [HttpGet]
         public ActionResult ShareProject(int? id)
         {
@@ -149,7 +147,7 @@ namespace EditThor1.Controllers
             model.ProjectID = Convert.ToInt32(id);
             return View(model);
         }
-        // Takes in view model with project id and email of other user, checks if he exists then gets his id and sends to function in product.
+        // Takes in a view model with project id and email of another user, checks if he exists then gets his id and sends it.
         [HttpPost]
         public ActionResult ShareProject(UserViewModel model)
         {
@@ -172,7 +170,7 @@ namespace EditThor1.Controllers
             service.ShareProject(model.ID, model.ProjectID);
             return RedirectToAction("Index", "Home");
         }
-        // Downloads all files from project as (project name).zip.
+        // Downloads all files from the project as (project name).zip.
         [HttpGet]
         public FileResult Download(int id)
         {
@@ -182,20 +180,20 @@ namespace EditThor1.Controllers
                 projectName = service.GetProjectName(id) + ".zip";
             }
 
-            // af því "File" er frátekið í Systems.IO þarf að skrifa út allt namespacið
+            // Since "File" is reserved in Systems.IO we need to write out the namespace.
             List<Models.Entities.File> files = service.GetAllFiles(id);
 
             using (var compressedFileStream = new MemoryStream())
             {
-                //Býr til möppu og vistar strauminn í archive
+                // Creates a folder and saves the stream to an archive.
                 using (var zipArchive = new ZipArchive(compressedFileStream, ZipArchiveMode.Update, false))
                 {
                     foreach (var file in files)
                     {
-                        //Býr til zipEntry fyrir hverja skrá
+                        // Creates a zipEntry for each file
                         var zipEntry = zipArchive.CreateEntry(file.Name);
 
-                        //Sækir strauminn
+                        // Gets the stream
                         using (var originalFileStream = new MemoryStream(file.TheFile))
                         {
                             using (var zipEntryStream = zipEntry.Open())
@@ -210,7 +208,7 @@ namespace EditThor1.Controllers
                 return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = projectName };
             }
         }
-        // Returns view for user to create file with name and file type.
+        // Returns the view for the user to create a file with name and file type.
         [HttpGet]
         public ActionResult CreateFile(int? id)
         {
@@ -224,7 +222,7 @@ namespace EditThor1.Controllers
             model.Type = fileService.GetAvailableTypes();
             return View(model);
         }
-        // Takes input from user and creates file sends info to fileservice to be created.
+        // Takes input from user and creates file, sends info to fileservice to be created.
         [HttpPost]
         public ActionResult CreateFile(FileViewModel model)
         {
@@ -235,7 +233,7 @@ namespace EditThor1.Controllers
             fileService.CreateFile(model.ProjectID, model.Name, model.TypeID);
             return RedirectToAction("OpenEditor", "Project", new { id = model.ProjectID });
         }
-        // Takes model carrying file id and sends to file service for deletion then redirects to open same project again.
+        // Takes in a model carrying the file id and sends to file service for deletion then redirects to open same project again.
         [HttpPost]
         public ActionResult DeleteFile(ListFileViewModel model)
         {
@@ -243,7 +241,7 @@ namespace EditThor1.Controllers
 
             return RedirectToAction("OpenEditor", "Project", new { id = model.ProjectId });
         }
-        // Checks if user has access to project and if project exist then removes current user from project.
+        // Checks if user has access to project and if project exists it removes the current user from the project.
         [HttpGet]
         public ActionResult LeaveProject(int? projectID)
         {
