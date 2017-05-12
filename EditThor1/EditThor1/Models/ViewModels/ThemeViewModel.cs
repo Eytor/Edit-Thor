@@ -11,10 +11,10 @@ namespace EditThor1.Models.ViewModels
     {
         [Required]
         [Display(Name = "Theme")]
-        public int themeID { get; set; }
+        public int ThemeID { get; set; }
 
-        public string themeName { get; set; }
+        public string ThemeName { get; set; }
 
-        public List<SelectListItem> themeList { get; set; }
+        public List<SelectListItem> ThemeList { get; set; }
     }
 }

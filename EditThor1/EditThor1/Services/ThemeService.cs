@@ -38,7 +38,7 @@ namespace EditThor1.Services
 
             _db.Themes.ToList().ForEach((x) =>
             {
-                sendThemes.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.name });
+                sendThemes.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.Name });
             });
 
             return sendThemes;
@@ -64,7 +64,7 @@ namespace EditThor1.Services
 
             string currentTheme = (from t in _db.Themes
                                    where t.ID == userIdTheme
-                                   select t.name).SingleOrDefault();
+                                   select t.Name).SingleOrDefault();
 
             return currentTheme.ToLower();
         }
