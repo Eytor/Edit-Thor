@@ -158,7 +158,7 @@ namespace EditThor1.Services
             _db.UserProjects.Add(shareTable);
             _db.SaveChanges();
         }
-        // Checks if current user is owner of project by project id
+      /*  // Checks if current user is owner of project by project id
         public bool isOwner(int projectID)
         {
             string result = (from p in _db.Projects
@@ -169,7 +169,8 @@ namespace EditThor1.Services
                 return true;
             }
             return false;
-        }
+        } 
+        */
         // Checks if current user has access to a project by project id
         public bool HasAccess(int projectID)
         {
@@ -177,7 +178,7 @@ namespace EditThor1.Services
                           where u.ProjectID == projectID
                           where u.UserID == _userId
                           select u).SingleOrDefault();
-            if (result != null || isOwner(projectID))
+            if (result != null || IsOwnerOfProject(projectID))
             {
                 return true;
             }
@@ -211,11 +212,13 @@ namespace EditThor1.Services
         // Delete after removing from controller, function already exists HasAccess()
         public bool UserHasAccess(string userID, int projectID)
         {
-            UserProject result = (from u in _db.UserProjects
-                                  where u.ProjectID == projectID
-                                  where u.UserID == userID
-                                  select u).FirstOrDefault();
-            if (result != null)
+            string result = (from u in _db.UserProjects
+                            where u.ProjectID == projectID
+                            select u.UserID).FirstOrDefault();
+            string ownerID = (from p in _db.Projects
+                             where p.ID == projectID
+                             select p.OwnerID).SingleOrDefault();
+            if (result != userID || ownerID == userID )
             {
                 return true;
             }
@@ -260,6 +263,7 @@ namespace EditThor1.Services
             {
                 return true;
             }
+
             return false;
         }
     }
