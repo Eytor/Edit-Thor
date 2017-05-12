@@ -4,28 +4,30 @@ using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System;
 
 namespace EditThor1.Services
 {
     public class ProjectService
     {
         private readonly IAppDataContext db;
+        
+        private string user = string.Empty;
 
         public ProjectService(IAppDataContext dbContext)
         {
-           db = dbContext ?? new ApplicationDbContext();
+            db = dbContext ?? new ApplicationDbContext();
         }
 
         public ProjectService()
         {
             _db = new ApplicationDbContext();
-
         }
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         private List<Project> _projects = new List<Project>();
-       
+
         private string _userId = HttpContext.Current.User.Identity.GetUserId();
         // Creates project with 1 empty html dummy file.
         public void AddProject(string name)
