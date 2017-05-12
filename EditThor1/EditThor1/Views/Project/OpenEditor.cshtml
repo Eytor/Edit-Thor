@@ -25,7 +25,7 @@
 
                 }
             </ul>
-        <div class="col-md-12 col-sm-12" id="project-info" >
+        <div class="col-md-10 col-sm-12" id="project-info" >
             <ul id="user-list">
                 @foreach (string username in Model.Users)
                 {
@@ -38,28 +38,29 @@
         <div id="editor">@Model.Content</div>
     </div>
 </div>
-<div class="form-group" style="height:50px">
+<div class="form-group">
     <div class="col-md-6 col-sm-6 col-xs-12 col-xxs-12">
-    @if (Model.FileId != 0)
-    {
-        using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
-        {
-            @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
-            @Html.HiddenFor(m => m.FileId)
-            @Html.HiddenFor(m => m.ProjectId)
-            <input type="submit" value="&#128190; Save file (Ctrl+S)" class="btn btn-success save-butt" />
-        }
-    }
-    </div>
-    <div class="col-md-offset-4 col-md-2 col-sm-6 col-xs-12 col-xxs-12">
         @using (Html.BeginForm("DeleteFile", "Project", FormMethod.Post, new { id = "form2" }))
         {
             @Html.HiddenFor(m => m.FileId)
             @Html.HiddenFor(m => m.ProjectId)
-            <input type="submit" value="&#128465; Delete file" class="btn btn-danger delete-butt" name="delete" />
+            <input type="submit" value="&#128465; Delete file" class="btn btn-danger delete-butt" name="delete" style="margin-left:-50px" />
+        }
+    </div>
+    <div class="col-md-offset-4 col-md-2  col-sm-offset-2 col-sm-4 col-xs-12 col-xxs-12">
+        @if (Model.FileId != 0)
+        {
+            using (Html.BeginForm("Save", "Project", FormMethod.Post, new { id = "form1" }))
+            {
+                @Html.HiddenFor(m => m.Content, new { @id = "hidden_editor" })
+                @Html.HiddenFor(m => m.FileId)
+                @Html.HiddenFor(m => m.ProjectId)
+                <input type="submit" value="&#128190; Save file (Ctrl+S)" class="btn btn-primary save-butt" style="padding-right:9px" />
+            }
         }
     </div>
 </div>
+
 
 
 @section scripts
