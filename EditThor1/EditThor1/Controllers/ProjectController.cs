@@ -40,12 +40,12 @@ namespace EditThor1.Controllers
                 return RedirectToAction("Login", "Account");
             }
             // Checks if a project with same name already exists for the same user.
-            if (service.checkSameName(model.name))
+            if (service.checkSameName(model.Name))
             {
                 throw new Exception("Project already exists");
             }
 
-            service.AddProject(model.name);
+            service.AddProject(model.Name);
 
             return RedirectToAction("Index", "Home");
         }
@@ -61,8 +61,7 @@ namespace EditThor1.Controllers
             // Checks if the user has access to the project.
             if (!service.HasAccess(Convert.ToInt32(id)))
             {
-                //TODO: change to user doesn't have access
-                throw new Exception("Project is Empty");
+                throw new Exception("Project is Empty or no access");
             }
             ListFileViewModel model = new ListFileViewModel();
             ThemeViewModel themeModel = new ThemeViewModel();
@@ -80,12 +79,12 @@ namespace EditThor1.Controllers
             }
 
             ViewBag.ProjectName = service.GetProjectName(Convert.ToInt32(id));
-            model.projectId = Convert.ToInt32(id);
+            model.ProjectId = Convert.ToInt32(id);
             model.Content = code;
-            model.projectId = Convert.ToInt32(id);
-            model.fileId = Convert.ToInt32(fileID);
-            model.filetype = fileService.GetFileTypeName(Convert.ToInt32(fileID));
-            model.theme = themeService.CallTheme();
+            model.ProjectId = Convert.ToInt32(id);
+            model.FileId = Convert.ToInt32(fileID);
+            model.Filetype = fileService.GetFileTypeName(Convert.ToInt32(fileID));
+            model.Theme = themeService.CallTheme();
             model.Users = service.UserListofSharedProject(Convert.ToInt32(id));
             return View(model);
         }
@@ -97,15 +96,15 @@ namespace EditThor1.Controllers
             if (model.Content != null)
             {
                 byte[] array = Encoding.ASCII.GetBytes(model.Content);
-                fileService.SaveFile(array, model.fileId);
+                fileService.SaveFile(array, model.FileId);
             }
             else
             {
                 byte[] array = new byte[0];
-                fileService.SaveFile(array, model.fileId);
+                fileService.SaveFile(array, model.FileId);
             }
             
-            return RedirectToAction("OpenEditor", "Project", new { id = model.projectId, code = model.Content, fileID = model.fileId });
+            return RedirectToAction("OpenEditor", "Project", new { id = model.ProjectId, code = model.Content, fileID = model.FileId });
         }
         // Gets file from database and redirects to OpenEditor with the ProjectID, content(code) of file and file id.
         [HttpGet]
@@ -131,13 +130,11 @@ namespace EditThor1.Controllers
                     service.DeleteProject(id);
                     return RedirectToAction("Index", "Home");
                 }
-                // þurfum ad gera aðeins betri villumeðhöndlun
                 throw new DeleteException();
             }
-            // þurfum ad gera aðeins betri villumeðhöndlun
             throw new DeleteException();
         }
-        // returns share project window where you can add user to project by email
+        // Returns Share project window where you can add user to project by email.
         [HttpGet]
         public ActionResult ShareProject(int? id)
         {
@@ -150,7 +147,7 @@ namespace EditThor1.Controllers
             model.ProjectID = Convert.ToInt32(id);
             return View(model);
         }
-        // takes in view model with project id and email of other user, checks if he exists then gets his id and sends to function in product
+        // Takes in a view model with project id and email of another user, checks if he exists then gets his id and sends it.
         [HttpPost]
         public ActionResult ShareProject(UserViewModel model)
         {
@@ -158,12 +155,12 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            if (!service.IsRegisteredUser(model.userName))
+            if (!service.IsRegisteredUser(model.UserName))
             {
                 throw new NotRegisteredException("User isn't registered.");
             }
 
-            model.ID = service.GetUserID(model.userName);
+            model.ID = service.GetUserID(model.UserName);
 
             if (service.UserHasAccess(model.ID, model.ProjectID))
             {
@@ -173,7 +170,7 @@ namespace EditThor1.Controllers
             service.ShareProject(model.ID, model.ProjectID);
             return RedirectToAction("Index", "Home");
         }
-        // Downloads all files from project as (project name).zip
+        // Downloads all files from the project as (project name).zip.
         [HttpGet]
         public FileResult Download(int id)
         {
@@ -183,21 +180,21 @@ namespace EditThor1.Controllers
                 projectName = service.GetProjectName(id) + ".zip";
             }
 
-            // af því "File" er frátekið í Systems.IO þarf að skrifa út allt namespacið
+            // Since "File" is reserved in Systems.IO we need to write out the namespace.
             List<Models.Entities.File> files = service.GetAllFiles(id);
 
             using (var compressedFileStream = new MemoryStream())
             {
-                //Býr til möppu og vistar strauminn í archive
+                // Creates a folder and saves the stream to an archive.
                 using (var zipArchive = new ZipArchive(compressedFileStream, ZipArchiveMode.Update, false))
                 {
                     foreach (var file in files)
                     {
-                        //Býr til zipEntry fyrir hverja skrá
-                        var zipEntry = zipArchive.CreateEntry(file.name);
+                        // Creates a zipEntry for each file
+                        var zipEntry = zipArchive.CreateEntry(file.Name);
 
-                        //Sækir strauminn
-                        using (var originalFileStream = new MemoryStream(file.file))
+                        // Gets the stream
+                        using (var originalFileStream = new MemoryStream(file.TheFile))
                         {
                             using (var zipEntryStream = zipEntry.Open())
                             {
@@ -211,7 +208,7 @@ namespace EditThor1.Controllers
                 return new FileContentResult(compressedFileStream.ToArray(), "application/zip") { FileDownloadName = projectName };
             }
         }
-        // returns view for user to create file with name and file type
+        // Returns the view for the user to create a file with name and file type.
         [HttpGet]
         public ActionResult CreateFile(int? id)
         {
@@ -221,11 +218,11 @@ namespace EditThor1.Controllers
             }
             ViewBag.ProjectID = id;
             FileViewModel model = new FileViewModel();
-            model.projectID = Convert.ToInt32(id);
-            model.type = fileService.GetAvailableTypes();
+            model.ProjectID = Convert.ToInt32(id);
+            model.Type = fileService.GetAvailableTypes();
             return View(model);
         }
-        // takes input from user and creates file sends info to fileservice to be created
+        // Takes input from user and creates file, sends info to fileservice to be created.
         [HttpPost]
         public ActionResult CreateFile(FileViewModel model)
         {
@@ -233,18 +230,18 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            fileService.CreateFile(model.projectID, model.name, model.typeID);
-            return RedirectToAction("OpenEditor", "Project", new { id = model.projectID });
+            fileService.CreateFile(model.ProjectID, model.Name, model.TypeID);
+            return RedirectToAction("OpenEditor", "Project", new { id = model.ProjectID });
         }
-        // takes model carrying file id and sends to file service for deletion then redirects to open same project again
+        // Takes in a model carrying the file id and sends to file service for deletion then redirects to open same project again.
         [HttpPost]
         public ActionResult DeleteFile(ListFileViewModel model)
         {
-            fileService.DeleteFile(model.fileId);
+            fileService.DeleteFile(model.FileId);
 
-            return RedirectToAction("OpenEditor", "Project", new { id = model.projectId });
+            return RedirectToAction("OpenEditor", "Project", new { id = model.ProjectId });
         }
-        // checks if user has access to project and if project exist then removes current user from project
+        // Checks if user has access to project and if project exists it removes the current user from the project.
         [HttpGet]
         public ActionResult LeaveProject(int? projectID)
         {

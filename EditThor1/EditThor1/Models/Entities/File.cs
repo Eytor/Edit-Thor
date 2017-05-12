@@ -8,21 +8,21 @@ namespace EditThor1.Models.Entities
 {
     public class File
     {
-        //the ID of the file
+        // The ID of the file.
         public int ID { get; set; }
 
-        //the name of the file
-        public string name { get; set; }
+        // The name of the file.
+        public string Name { get; set; }
 
-        //the type of file ?
-        public int typeID { get; set; }
+        // The type of file.
+        public int TypeID { get; set; }
 
-        //the actual file itself
+        // The actual file itself.
         [AllowHtml]
-        public byte[] file { get; set; }
+        public byte[] TheFile { get; set; }
 
-        //the ID of the project this particular file belongs to
-        public int projectID { get; set; }
+        // The ID of the project this particular file belongs to.
+        public int ProjectID { get; set; }
 
     }
 }

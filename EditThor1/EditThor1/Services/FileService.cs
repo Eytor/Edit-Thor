@@ -26,39 +26,31 @@ namespace EditThor1.Services
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        public void SaveFile(byte[] arr, int fileId)
+        // Function takes in data written in the editor as byte array and updates file by file id.
+        public void SaveFile(byte[] arr, int fileID)
         {
-            Project adds = new Project();
-            File file = new File();
+            File file = (from f in _db.Files
+                        where f.ID == fileID
+                        select f).SingleOrDefault();
 
-            file = (from f in _db.Files
-                    where f.ID == fileId
-                    select f).SingleOrDefault();
-       
-            file.file = arr;
+            file.TheFile = arr;
             _db.SaveChanges();
         }
-
-        public byte[] GetFiles(int? id, int? prId)
+        // Function finds and returns file by project id and file id.
+        public byte[] GetFiles(int? fileID, int? projectID)
         {
-            byte[] arr;
-
-            File data = new File();
-
-            data = (from f in _db.Files
-                    where f.ID == id
-                    where f.projectID == prId
-                    select f).SingleOrDefault();
-
-            arr = data.file;
-            return arr;
+            byte[] data = (from f in _db.Files
+                           where f.ID == fileID
+                           where f.ProjectID == projectID
+                           select f.TheFile).SingleOrDefault();
+            return data;
         }
 
-
-        public void DeleteFiles(int? projectId)
+        // Function deletes all files within a project by project id.
+        public void DeleteFiles(int? projectID)
         {
-            List<File> files = _db.Files.Where(x => x.projectID == projectId).ToList();
-            if(files != null)
+            List<File> files = _db.Files.Where(x => x.ProjectID == projectID).ToList();
+            if (files != null)
             {
                 foreach(File file in files)
                 {
@@ -67,17 +59,18 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
-
+        // Function creates empty file in project.
         public void CreateFile(int projectID, string name, int type)
         {
             File file = new File();
-            file.name = name + GetFileEnding(type);
-            file.typeID = type;
-            file.projectID = projectID;
-            file.file = new byte[0];
+            file.Name = name + GetFileEnding(type);
+            file.TypeID = type;
+            file.ProjectID = projectID;
+            file.TheFile = new byte[0];
             _db.Files.Add(file);
             _db.SaveChanges();
         }
+        // Function deletes file by file id.
         public void DeleteFile(int fileID)
         {
             File file = _db.Files.Where(x => x.ID == fileID).SingleOrDefault();
@@ -87,7 +80,7 @@ namespace EditThor1.Services
                 _db.SaveChanges();
             }
         }
-
+        // Function gets a list of available file types and returns it.
         public List<SelectListItem> GetAvailableTypes()
         {
             List<SelectListItem> categories = new List<SelectListItem>();
@@ -96,29 +89,29 @@ namespace EditThor1.Services
 
             _db.FileTypes.ToList().ForEach((x) =>
             {
-                categories.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.typeName });
+                categories.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.TypeName });
             });
             
             return categories;
         }
-
+        // Function finds and returns the file ending(extension) from database by type id.
         public string GetFileEnding(int typeID)
         {
             string fileEnding = (from t in _db.FileTypes
                                  where t.ID == typeID
-                                 select t.fileEnding).SingleOrDefault();
+                                 select t.FileEnding).SingleOrDefault();
             return fileEnding;
         }
-
+        // Function finds and returns the file type name from database by type id.
         public string GetFileTypeName(int fileID)
         {
             int typeID = (from f in _db.Files
-                          join t in _db.FileTypes on f.typeID equals t.ID
+                          join t in _db.FileTypes on f.TypeID equals t.ID
                           where f.ID == fileID
                           select t.ID).SingleOrDefault();
             string typename = (from t in _db.FileTypes
                               where t.ID == typeID
-                              select t.typeName).SingleOrDefault();
+                              select t.TypeName).SingleOrDefault();
             return typename.ToLower();
         }
     }

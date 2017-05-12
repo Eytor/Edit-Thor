@@ -31,28 +31,28 @@ namespace EditThor1.Tests.Services
             var project = new Project
             {
                 ID = 1,
-                name = "pro1",
-                ownerID = userID1,
-                ownerName = userEm1,
-                filesList = null,
-                userslist = null,
+                Name = "pro1",
+                OwnerID = userID1,
+                OwnerName = userEm1,
+                FilesList = null,
+                Userslist = null,
             };
 
             var file = new File
             {
-                name = "index.html",
-                typeID = 1,
-                file = new byte[64],
-                projectID = 1,
+                Name = "index.html",
+                TypeID = 1,
+                TheFile = new byte[64],
+                ProjectID = 1,
             };
             mockDb.Files.Add(file);
 
             var file1 = new File
             {
-                name = "index.html",
-                typeID = 2,
-                file = new byte[64],
-                projectID = 2,
+                Name = "index.html",
+                TypeID = 2,
+                TheFile = new byte[64],
+                ProjectID = 2,
             };
             mockDb.Files.Add(file1);
 
@@ -65,13 +65,13 @@ namespace EditThor1.Tests.Services
             Project add = new Project();
             File file = new File();
             add.ID = 1;
-            add.name = "Pro1";
-            add.ownerID = "2a";
-            add.ownerName = "birna@ru.is";
-            file.name = "index.html";
-            file.typeID = 1;
-            file.file = new byte[64];
-            file.projectID = 1;
+            add.Name = "Pro1";
+            add.OwnerID = "2a";
+            add.OwnerName = "birna@ru.is";
+            file.Name = "index.html";
+            file.TypeID = 1;
+            file.TheFile = new byte[64];
+            file.ProjectID = 1;
 
             _service.SaveFile(null, 1);
 
@@ -85,13 +85,13 @@ namespace EditThor1.Tests.Services
             Project add = new Project();
             File file = new File();
             add.ID = 1;
-            add.name = "pro1";
-            add.ownerID = userID1;
-            add.ownerName = userEm1;
-            file.name = "index.html";
-            file.typeID = 1;
-            file.file = new byte[64];
-            file.projectID = 1;
+            add.Name = "pro1";
+            add.OwnerID = userID1;
+            add.OwnerName = userEm1;
+            file.Name = "index.html";
+            file.TypeID = 1;
+            file.TheFile = new byte[64];
+            file.ProjectID = 1;
 
             // Act:
             var result = _service.GetFiles(1, 1);
@@ -107,13 +107,13 @@ namespace EditThor1.Tests.Services
             File file = new File();
             Project pro = new Project();
             pro.ID = 1;
-            pro.name = "pro1";
-            pro.ownerID = userID5;
-            pro.ownerName = userEm5;
-            file.name = "index.html";
-            file.typeID = 1;
-            file.file = new byte[64];
-            file.projectID = 1;
+            pro.Name = "pro1";
+            pro.OwnerID = userID5;
+            pro.OwnerName = userEm5;
+            file.Name = "index.html";
+            file.TypeID = 1;
+            file.TheFile = new byte[64];
+            file.ProjectID = 1;
 
 
             // Act:

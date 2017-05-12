@@ -22,14 +22,13 @@ namespace EditThor1.Services
         public ThemeService()
         {
             _db = new ApplicationDbContext();
-
         }
 
         private string _userId = HttpContext.Current.User.Identity.GetUserId();
         private ApplicationDbContext _db = new ApplicationDbContext();
 
 
-
+        // Function creates a list of all themes and returns it for a dropdown list.
         public List<SelectListItem> GetThemes()
         {
             List<SelectListItem> sendThemes = new List<SelectListItem>();
@@ -38,33 +37,31 @@ namespace EditThor1.Services
 
             _db.Themes.ToList().ForEach((x) =>
             {
-                sendThemes.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.name });
+                sendThemes.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.Name });
             });
 
             return sendThemes;
         }
-
-        public void SetTheme(int id)
+        // Function sets current users theme by theme id.
+        public void SetTheme(int themeID)
         {
-   
             ApplicationUser model = (from t in _db.Users
                                      where t.Id == _userId
                                      select t).SingleOrDefault();
-            model.themeId = id;
+            model.themeId = themeID;
 
             _db.SaveChanges();
         }
-
+        // Funtion gets the name of theme set to current user and returns it in lowercase.
         public string CallTheme()
         {
-            
-            int userIdTheme = (from t in _db.Users
+            int userThemeID = (from t in _db.Users
                                where t.Id == _userId
                                select t.themeId).SingleOrDefault();
 
             string currentTheme = (from t in _db.Themes
-                                   where t.ID == userIdTheme
-                                   select t.name).SingleOrDefault();
+                                   where t.ID == userThemeID
+                                   select t.Name).SingleOrDefault();
 
             return currentTheme.ToLower();
         }

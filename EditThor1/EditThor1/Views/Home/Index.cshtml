@@ -5,9 +5,9 @@
 }
 
 <div class="row" id="main-content">
-    <h2>@ViewBag.Title</h2>
+    <h2 class="col-md-offset-1" style="margin-left:48px">@ViewBag.Title</h2>
     <div class="col-md-2">
-        @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-default left-column", id = "small"  })<br/>
+        @Html.ActionLink("New project", "CreateProject", "Project", "Project", htmlAttributes: new { @class = "btn btn-primary left-column", id = "small"  })<br/>
         <ul id="remove-margin">
             @if (@ViewBag.Title == "All Projects")
             {
@@ -35,23 +35,23 @@
             }
         </ul>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-offset-1 col-md-9">
        <!-- <a class="btn custom-btn col-md-12" href="#"><span class="glyphicon glyphicon-plus"></span></a>-->
         <div class="row">
             <div class="col-md-10">
-                <div class="col-md-offset-1 col-md-4" style="text-align:left;"><h4>Project Name</h4></div>
-                <div class="col-md-5" style="text-align:left;"><h4>Owner</h4></div>
+                <div class="col-md-offset-1 col-md-4 visible-lg visible-md" style="text-align:left;"><h4>Project Name</h4></div>
+                <div class="col-md-5 visible-lg visible-md" style="text-align:left;"><h4>Owner</h4></div>
             </div>
 
             @foreach (var item in Model.AllProject)
             {
-                if (item.ownerID == User.Identity.GetUserId())
+                if (item.OwnerID == User.Identity.GetUserId())
                 {
                     <div class="lines">
                         <a class="btn col-md-10" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                             <div class="col-md-1"><span class="glyphicon glyphicon-folder-close"></span></div>
-                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.Name)</div>
+                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.OwnerName)</div>
                         </a>
                         <div class="col-md-2 dropdown navbar-right project-list">
                             <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -60,7 +60,7 @@
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Share", "ShareProject", new { Controller = "Project", id = item.ID })</li>
                                 <li>@Html.ActionLink("Download (.zip)", "Download", new { Controller = "Project", id = item.ID })</li>
-                                <li name="delete">@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID })</li>
+                                <li>@Html.ActionLink("Delete", "DeleteProject", new { Controller = "Project", id = item.ID }, new { name = "delete" })</li>
                             </ul>
                         </div>
 </div>
@@ -70,8 +70,8 @@
                     <div class="lines">
                         <a class="btn col-md-10" href="~/Project/OpenEditor/@Html.DisplayFor(modelItem => item.ID)">
                             <div class="col-md-1"><span class="glyphicon glyphicon-folder-close"></span></div>
-                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.name)</div>
-                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.ownerName)</div>
+                                <div class="col-md-4 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.Name)</div>
+                                    <div class="col-md-5 project-list" style="text-align:left;">@Html.DisplayFor(modelItem => item.OwnerName)</div>
                         </a>
                         <div class="col-md-2 dropdown navbar-right">
                             <a class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

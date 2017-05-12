@@ -55,9 +55,9 @@ namespace EditThor1.Tests.Services
             var pro1 = new Project()
             {
                 ID = 1,
-                name = "pro1",
-                ownerID = userID1,
-                ownerName = userEm1,
+                Name = "pro1",
+                OwnerID = userID1,
+                OwnerName = userEm1,
                 
             };
             mockDb.Projects.Add(pro1);
@@ -65,13 +65,15 @@ namespace EditThor1.Tests.Services
             var pro2 = new Project()
             {
                 ID = 2,
-                name = "pro2",
-                ownerID = userID4,
-                ownerName = userEm4,
+                Name = "pro2",
+                OwnerID = userID4,
+                OwnerName = userEm4,
 
             };
             mockDb.Projects.Add(pro2);
 
+            
+            
             _service = new ProjectService(mockDb);
         
          }
@@ -81,10 +83,11 @@ namespace EditThor1.Tests.Services
         {
             // Arrange:
             Project newProject = new Project();
+
             newProject.ID = 1;
-            newProject.name = "testPro";
-            newProject.ownerID = userID2;
-            newProject.ownerName = userEm2;
+            newProject.Name = "testPro";
+            newProject.OwnerID = userID2;
+            newProject.OwnerName = userEm2;
 
             // Act:
             _service.AddProject("testPro");
@@ -118,10 +121,10 @@ namespace EditThor1.Tests.Services
             // Arrange:
             Project newProject = new Project();
             newProject.ID = 1;
-            newProject.name = "testPro";
-            newProject.ownerID = userID2;
-            newProject.ownerName = userEm2;
-            newProject.userslist = new List<ApplicationUser>();
+            newProject.Name = "testPro";
+            newProject.OwnerID = userID2;
+            newProject.OwnerName = userEm2;
+            newProject.Userslist = new List<ApplicationUser>();
 
             // Act:
             var result = _service.GetSharedProjects();
@@ -160,8 +163,8 @@ namespace EditThor1.Tests.Services
         public void TestisOwner()
         {
             Project pro = new Project();
-            pro.ownerName = userEm4;
-            pro.ownerID = userID4;
+            pro.OwnerName = userEm4;
+            pro.OwnerID = userID4;
             
         }
 

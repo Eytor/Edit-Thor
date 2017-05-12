@@ -7,11 +7,11 @@ namespace EditThor1.Models.Entities
 {
     public class Theme
     {
-        //the ID of the theme
+        // The ID of the theme.
         public int ID { get; set; }
 
-        //the name of the theme
-        public string name { get; set; }
+        // The name of the theme.
+        public string Name { get; set; }
 
     }
 }

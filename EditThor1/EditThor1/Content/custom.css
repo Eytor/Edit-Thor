@@ -21,11 +21,13 @@ form
     width:500px;
 }
 
-.wrapper {
+.wrapper 
+{
   width: 25%;
 }
 
-.center-block {
+.center-block 
+{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -37,12 +39,14 @@ form
     padding-top:20px;
 }
 
-.btn.glyphicon { 
+.btn.glyphicon 
+{ 
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 1.428571429;
 }
 
-.btn.glyphicon::first-letter { 
+.btn.glyphicon::first-letter 
+{ 
     font-family: 'Glyphicons Halflings';
     line-height: 1;
 }
@@ -67,15 +71,14 @@ form
 }
 #editor 
 {
-    position: absolute; /* Added */
+    position: absolute; 
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 117%;
     height: 600px;
 }
-
 
 #main-content
 {
@@ -139,7 +142,7 @@ a:focus
 
 .lines 
 {
-    border-top: 1px solid silver; 
+    border-bottom: 1px solid silver; 
     list-style: none;
     padding-top:45px;
 }
@@ -240,4 +243,9 @@ a:focus
 {
     display:inline-block;
     float:right;
+}
+
+.dropdowncolor
+{
+    background-color:#F5F5F5;
 }

@@ -232,7 +232,6 @@
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileService.cs" />
-    <Compile Include="Services\InformationService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Startup.cs" />
@@ -320,6 +319,7 @@
     <Content Include="Views\Shared\ErrorShareProject.cshtml" />
     <Content Include="Views\Shared\ErrorNotRegistered.cshtml" />
     <Content Include="Views\Shared\ErrorDeleteProject.cshtml" />
+    <Content Include="Views\Shared\ErrorNoProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
