@@ -35,7 +35,7 @@ namespace EditThor1.Services
                     where f.ID == fileId
                     select f).SingleOrDefault();
        
-            file.file = arr;
+            file.TheFile = arr;
             _db.SaveChanges();
         }
 
@@ -47,17 +47,17 @@ namespace EditThor1.Services
 
             data = (from f in _db.Files
                     where f.ID == id
-                    where f.projectID == prId
+                    where f.ProjectID == prId
                     select f).SingleOrDefault();
 
-            arr = data.file;
+            arr = data.TheFile;
             return arr;
         }
 
 
         public void DeleteFiles(int? projectId)
         {
-            List<File> files = _db.Files.Where(x => x.projectID == projectId).ToList();
+            List<File> files = _db.Files.Where(x => x.ProjectID == projectId).ToList();
             if(files != null)
             {
                 foreach(File file in files)
@@ -71,10 +71,10 @@ namespace EditThor1.Services
         public void CreateFile(int projectID, string name, int type)
         {
             File file = new File();
-            file.name = name + GetFileEnding(type);
-            file.typeID = type;
-            file.projectID = projectID;
-            file.file = new byte[0];
+            file.Name = name + GetFileEnding(type);
+            file.TypeID = type;
+            file.ProjectID = projectID;
+            file.TheFile = new byte[0];
             _db.Files.Add(file);
             _db.SaveChanges();
         }
@@ -96,7 +96,7 @@ namespace EditThor1.Services
 
             _db.FileTypes.ToList().ForEach((x) =>
             {
-                categories.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.typeName });
+                categories.Add(new SelectListItem() { Value = x.ID.ToString(), Text = x.TypeName });
             });
             
             return categories;
@@ -106,19 +106,19 @@ namespace EditThor1.Services
         {
             string fileEnding = (from t in _db.FileTypes
                                  where t.ID == typeID
-                                 select t.fileEnding).SingleOrDefault();
+                                 select t.FileEnding).SingleOrDefault();
             return fileEnding;
         }
 
         public string GetFileTypeName(int fileID)
         {
             int typeID = (from f in _db.Files
-                          join t in _db.FileTypes on f.typeID equals t.ID
+                          join t in _db.FileTypes on f.TypeID equals t.ID
                           where f.ID == fileID
                           select t.ID).SingleOrDefault();
             string typename = (from t in _db.FileTypes
                               where t.ID == typeID
-                              select t.typeName).SingleOrDefault();
+                              select t.TypeName).SingleOrDefault();
             return typename.ToLower();
         }
     }

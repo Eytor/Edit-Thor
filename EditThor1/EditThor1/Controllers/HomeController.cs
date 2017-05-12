@@ -62,7 +62,7 @@ namespace EditThor1.Controllers
             }
 
             ThemeViewModel model = new ThemeViewModel();
-            model.themeList = themeService.GetThemes();
+            model.ThemeList = themeService.GetThemes();
       
             return View(model);
         }
@@ -75,7 +75,7 @@ namespace EditThor1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            themeService.SetTheme(model.themeID);
+            themeService.SetTheme(model.ThemeID);
             return RedirectToAction("Index", "Home");
            
         }

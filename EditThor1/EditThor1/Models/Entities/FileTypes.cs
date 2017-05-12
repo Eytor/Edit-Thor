@@ -7,10 +7,12 @@ namespace EditThor1.Models.Entities
 {
     public class FileTypes
     {
+        //The ID of the filetype.
         public int ID { get; set; }
 
-        public string typeName { get; set; }
+        //The type of the the file
+        public string TypeName { get; set; }
 
-        public string fileEnding { get; set; }
+        public string FileEnding { get; set; }
     }
 }

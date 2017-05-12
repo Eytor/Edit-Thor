@@ -10,15 +10,19 @@ namespace EditThor1.Models.ViewModels
 {
     public class ListFileViewModel
     {
-        public int projectId { get; set; }
-        public int fileId { get; set; }
+        public int ProjectId { get; set; }
+
+        public int FileId { get; set; }
+
         public List<File> AllFiles { get; set; }
+
         [AllowHtml]
         public string Content { get; set; }
+        
         public List<string> Users { get; set; }
 
-        public string filetype { get; set; }
+        public string Filetype { get; set; }
 
-        public string  theme { get; set; }
+        public string  Theme { get; set; }
     }
 }
